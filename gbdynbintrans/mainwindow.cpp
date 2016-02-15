@@ -16,3 +16,14 @@ MainWindow::~MainWindow()
 {
     delete ui;
 }
+
+/* SLOTS */
+void MainWindow::openFileDialogTriggered() {
+    QString newFileName = this->_fileDialog->getOpenFileName(this, tr("Open ROM"), "", tr("GameBoy Files (*.gb)"));
+
+    if(newFileName != this->_filename) {
+        this->_filename = newFileName;
+        emit this->fileNameChanged(this->_filename);
+        qDebug() << this->_filename;
+    }
+}

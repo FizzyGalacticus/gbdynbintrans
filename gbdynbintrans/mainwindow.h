@@ -14,11 +14,7 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 public slots:
-    void openFileDialogTriggered() {
-        this->_filename = this->_fileDialog->getOpenFileName(this, tr("Open ROM"), "", tr("GameBoy Files (*.gb)"));
-        qDebug() << this->_filename;
-        emit this->fileNameChanged(this->_filename);
-    }
+    void openFileDialogTriggered();
 
 signals:
     void fileNameChanged(QString filename);
