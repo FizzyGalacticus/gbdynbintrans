@@ -27,3 +27,7 @@ void MainWindow::openFileDialogTriggered() {
         qDebug() << this->_filename;
     }
 }
+
+void MainWindow::loadROM(QString filename) {
+
+}

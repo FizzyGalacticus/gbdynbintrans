@@ -15,6 +15,7 @@ class MainWindow : public QMainWindow
 
 public slots:
     void openFileDialogTriggered();
+    void loadROM(QString filename);
 
 signals:
     void fileNameChanged(QString filename);
