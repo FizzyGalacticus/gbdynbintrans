@@ -27,8 +27,8 @@ public:
 private:
     Ui::MainWindow *ui;
 
-    QFileDialog * _fileDialog;
     QString _filename;
+    QFileDialog * _fileDialog;
 };
 
 #endif // MAINWINDOW_H

@@ -4,12 +4,13 @@
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow),
-    _fileDialog(new QFileDialog),
-    _filename("")
+    _filename(""),
+    _fileDialog(new QFileDialog)
 {
     ui->setupUi(this);
 
     connect(ui->actionOpen,SIGNAL(triggered(bool)),this, SLOT(openFileDialogTriggered()));
+    connect(this, SIGNAL(fileNameChanged(QString)), this, SLOT(loadROM(QString)));
 }
 
 MainWindow::~MainWindow()
@@ -29,5 +30,10 @@ void MainWindow::openFileDialogTriggered() {
 }
 
 void MainWindow::loadROM(QString filename) {
-
+//    OPEN FILE
+//    READ BYTE FROM FILE
+//    CONVERT BYTE TO HEX
+//    ADD HEX TO QSTRING
+//    SET QSTRING TO TEXTEDIT TEXT
+    this->ui->programCounterTextEdit->setText("Could not open " + filename + ". This has not yet been implemented.");
 }
