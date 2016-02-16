@@ -33,12 +33,11 @@ void MainWindow::openFileDialogTriggered() {
 void MainWindow::loadROM(QString filename) {
     unsigned char data;
     QString programText = "";
+
     ifstream inFile(filename.toStdString().c_str(), std::ios::binary);
-    inFile >> std::noskipws;
     inFile.seekg(900);
-    while(inFile >> data) {
-        programText += QString::number((int)data, 16);
-    }
+
+    while(inFile >> data) programText += QString::number((int)data, 16);
     inFile.close();
 
     if(programText.size())
