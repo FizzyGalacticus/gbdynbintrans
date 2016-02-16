@@ -1,4 +1,4 @@
-# gbdynbintrans
+# GbDynBinTrans
 Extremely basic GameBoy ROM dynamic binary translator.
 
 ## Dev Tools:
@@ -6,7 +6,7 @@ Extremely basic GameBoy ROM dynamic binary translator.
 
 [Qt Framework](http://www.qt.io/)
 
-## Compile .s assembly  files 
+## Compile .s assembly  files using GBDK
 ```
 gbdk/bin/lcc -o <outputfilename> <inputfilename>
 ```
