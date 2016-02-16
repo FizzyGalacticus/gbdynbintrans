@@ -1,5 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include <fstream>
+using std::ifstream;
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -25,15 +27,22 @@ void MainWindow::openFileDialogTriggered() {
     if(newFileName != this->_filename) {
         this->_filename = newFileName;
         emit this->fileNameChanged(this->_filename);
-        qDebug() << this->_filename;
     }
 }
 
 void MainWindow::loadROM(QString filename) {
-//    OPEN FILE
-//    READ BYTE FROM FILE
-//    CONVERT BYTE TO HEX
-//    ADD HEX TO QSTRING
-//    SET QSTRING TO TEXTEDIT TEXT
-    this->ui->programCounterTextEdit->setText("Could not open " + filename + ". This has not yet been implemented.");
+    unsigned char data;
+    QString programText = "";
+    ifstream inFile(filename.toStdString().c_str(), std::ios::binary);
+    inFile >> std::noskipws;
+    inFile.seekg(900);
+    while(inFile >> data) {
+        programText += QString::number((int)data, 16);
+    }
+    inFile.close();
+
+    if(programText.size())
+        this->ui->programCounterTextEdit->setText(programText);
+    else
+        this->ui->programCounterTextEdit->setText("Could not open " + filename + ". This has not yet been implemented.");
 }
