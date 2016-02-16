@@ -12,7 +12,8 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    connect(ui->actionOpen,SIGNAL(triggered(bool)),this, SLOT(openFileDialogTriggered()));
+    connect(ui->actionOpen,SIGNAL(triggered(bool)), this, SLOT(openFileDialogTriggered()));
+    connect(ui->actionExit, SIGNAL(triggered(bool)), this, SLOT(exitTriggered()));
     connect(ui->actionAbout, SIGNAL(triggered(bool)), this, SLOT(aboutDialogTriggered()));
     connect(this, SIGNAL(fileNameChanged(QString)), this, SLOT(loadROM(QString)));
 }
@@ -30,6 +31,10 @@ void MainWindow::openFileDialogTriggered() {
         this->_filename = newFileName;
         emit this->fileNameChanged(this->_filename);
     }
+}
+
+void MainWindow::exitTriggered() {
+    this->close();
 }
 
 void MainWindow::aboutDialogTriggered() {
