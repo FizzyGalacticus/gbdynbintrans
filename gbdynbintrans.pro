@@ -16,12 +16,14 @@ TEMPLATE = app
 SOURCES += src/main.cpp\
         src/mainwindow.cpp \
     src/aboutdialog.cpp \
-    src/jsoncpp.cpp
+    src/jsoncpp.cpp \
+    src/register.cpp
 
 HEADERS  += src/mainwindow.h \
     src/aboutdialog.h \
     src/json/json.h \
-    src/json/json-forwards.h
+    src/json/json-forwards.h \
+    src/register.h
 
 FORMS    += src/mainwindow.ui \
     src/aboutdialog.ui
