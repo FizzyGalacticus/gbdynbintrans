@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "aboutdialog.h"
 #include <fstream>
 using std::ifstream;
 
@@ -12,6 +13,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
 
     connect(ui->actionOpen,SIGNAL(triggered(bool)),this, SLOT(openFileDialogTriggered()));
+    connect(ui->actionAbout, SIGNAL(triggered(bool)), this, SLOT(aboutDialogTriggered()));
     connect(this, SIGNAL(fileNameChanged(QString)), this, SLOT(loadROM(QString)));
 }
 
@@ -28,6 +30,11 @@ void MainWindow::openFileDialogTriggered() {
         this->_filename = newFileName;
         emit this->fileNameChanged(this->_filename);
     }
+}
+
+void MainWindow::aboutDialogTriggered() {
+    AboutDialog * dialog = new AboutDialog(this);
+    dialog->show();
 }
 
 void MainWindow::loadROM(QString filename) {
