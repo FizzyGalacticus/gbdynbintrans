@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "aboutdialog.h"
+#include <QDir>
 #include <fstream>
 using std::ifstream;
 
@@ -16,6 +17,8 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->actionExit, SIGNAL(triggered(bool)), this, SLOT(exitTriggered()));
     connect(ui->actionAbout, SIGNAL(triggered(bool)), this, SLOT(aboutDialogTriggered()));
     connect(this, SIGNAL(fileNameChanged(QString)), this, SLOT(loadROM(QString)));
+
+    this->_fileDialog->setDirectory(QDir().currentPath() + "../../res/test_asm");
 }
 
 MainWindow::~MainWindow()
@@ -49,7 +52,11 @@ void MainWindow::loadROM(QString filename) {
     ifstream inFile(filename.toStdString().c_str(), std::ios::binary);
     inFile.seekg(900);
 
-    while(inFile >> data) programText += QString::number((int)data, 16);
+    while(inFile >> data) {
+        if((int)data < 16)
+            programText += "0";
+        programText += QString::number((int)data, 16);
+    }
     inFile.close();
 
     if(programText.size())
