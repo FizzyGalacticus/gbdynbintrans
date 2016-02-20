@@ -9,6 +9,9 @@ RegisterBank::RegisterBank(QWidget *parent) :
     _SP(0)
 {
     ui->setupUi(this);
+    connect(this, SIGNAL(valuesChanged()), this, SLOT(registerValuesHaveChanged()));
+
+    emit this->valuesChanged();
 }
 
 RegisterBank::~RegisterBank()
@@ -32,6 +35,7 @@ int RegisterBank::getA() const {
 
 void RegisterBank::setA(const int temp) {
 	this->_A = temp;
+	emit this->valuesChanged();
 }
 
 int RegisterBank::getB() const {
@@ -40,6 +44,7 @@ int RegisterBank::getB() const {
 
 void RegisterBank::setB(const int temp) {
 	this->_B = temp;
+	emit this->valuesChanged();
 }
 
 int RegisterBank::getC() const {
@@ -48,6 +53,7 @@ int RegisterBank::getC() const {
 
 void RegisterBank::setC(const int temp) {
 	this->_C = temp;
+	emit this->valuesChanged();
 }
 
 int RegisterBank::getD() const {
@@ -56,6 +62,7 @@ int RegisterBank::getD() const {
 
 void RegisterBank::setD(const int temp) {
 	this->_D = temp;
+	emit this->valuesChanged();
 }
 
 int RegisterBank::getE() const {
@@ -64,6 +71,7 @@ int RegisterBank::getE() const {
 
 void RegisterBank::setE(const int temp) {
 	this->_E = temp;
+	emit this->valuesChanged();
 }
 
 int RegisterBank::getH() const {
@@ -72,6 +80,7 @@ int RegisterBank::getH() const {
 
 void RegisterBank::setH(const int temp) {
 	this->_H = temp;
+	emit this->valuesChanged();
 }
 
 int RegisterBank::getL() const {
@@ -80,6 +89,7 @@ int RegisterBank::getL() const {
 
 void RegisterBank::setL(const int temp) {
 	this->_L = temp;
+	emit this->valuesChanged();
 }
 
 int RegisterBank::getBC() const {
@@ -90,6 +100,7 @@ void RegisterBank::setBC(const int temp) {
 	pair<__int8, __int8> regs = decomposeRegisters((__int16)temp);
 	this->setB(regs.first);
 	this->setC(regs.second);
+	emit this->valuesChanged();
 }
 
 int RegisterBank::getDE() const {
@@ -100,6 +111,7 @@ void RegisterBank::setDE(const int temp) {
 	pair<__int8, __int8> regs = decomposeRegisters((__int16)temp);
 	this->setD(regs.first);
 	this->setE(regs.second);
+	emit this->valuesChanged();
 }
 
 int RegisterBank::getHL() const {
@@ -110,6 +122,7 @@ void RegisterBank::setHL(const int temp) {
 	pair<__int8, __int8> regs = decomposeRegisters((__int16)temp);
 	this->setH(regs.first);
 	this->setL(regs.second);
+	emit this->valuesChanged();
 }
 
 int RegisterBank::getPC() const {
@@ -118,6 +131,7 @@ int RegisterBank::getPC() const {
 
 void RegisterBank::setPC(const int temp) {
 	this->_PC = temp;
+	emit this->valuesChanged();
 }
 
 int RegisterBank::getSP() const {
@@ -126,4 +140,20 @@ int RegisterBank::getSP() const {
 
 void RegisterBank::setSP(const int temp) {
 	this->_SP = temp;
+	emit this->valuesChanged();
+}
+
+void RegisterBank::registerValuesHaveChanged() {
+    this->ui->labelAValue->setText(QString::number(this->getA()));
+    this->ui->labelBValue->setText(QString::number(this->getB()));
+    this->ui->labelCValue->setText(QString::number(this->getC()));
+    this->ui->labelDValue->setText(QString::number(this->getD()));
+    this->ui->labelEValue->setText(QString::number(this->getE()));
+    this->ui->labelHValue->setText(QString::number(this->getH()));
+    this->ui->labelLValue->setText(QString::number(this->getL()));
+    this->ui->labelBCValue->setText(QString::number(this->getBC()));
+    this->ui->labelDEValue->setText(QString::number(this->getDE()));
+    this->ui->labelHLValue->setText(QString::number(this->getHL()));
+    this->ui->labelPCValue->setText(QString::number(this->getPC()));
+    this->ui->labelSPValue->setText(QString::number(this->getSP()));
 }

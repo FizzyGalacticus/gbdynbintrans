@@ -53,8 +53,11 @@ public:
     int getSP() const;
     void setSP(const int);
 
+private slots:
+    void registerValuesHaveChanged();
+
 signals:
-    void valueChanged();
+    void valuesChanged();
     void stackPointerPositionChanged(const int);
 
 private:
