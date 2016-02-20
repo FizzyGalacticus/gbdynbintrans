@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <QFileDialog>
 #include <QDebug>
+#include "registerbank.h"
 
 namespace Ui {
 class MainWindow;
@@ -31,6 +32,7 @@ private:
 
     QString _filename;
     QFileDialog * _fileDialog;
+    RegisterBank * _regBank;
 };
 
 #endif // MAINWINDOW_H

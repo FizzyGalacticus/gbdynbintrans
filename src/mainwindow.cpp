@@ -9,9 +9,11 @@ MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow),
     _filename(""),
-    _fileDialog(new QFileDialog)
+    _fileDialog(new QFileDialog),
+    _regBank(new RegisterBank)
 {
     ui->setupUi(this);
+    ui->registerLayout->addWidget(this->_regBank);
 
     connect(ui->actionOpen,SIGNAL(triggered(bool)), this, SLOT(openFileDialogTriggered()));
     connect(ui->actionExit, SIGNAL(triggered(bool)), this, SLOT(exitTriggered()));
