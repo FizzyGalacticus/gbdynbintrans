@@ -1,15 +1,23 @@
 #include "registerbank.h"
 #include "ui_registerbank.h"
+#include <QDebug>
 
 RegisterBank::RegisterBank(QWidget *parent) :
     QWidget(parent),
-    ui(new Ui::RegisterBank),
-    _A(0), _B(0), _C(0), _D(0),
-    _E(0), _H(0), _L(0), _PC(0),
-    _SP(0)
+    ui(new Ui::RegisterBank)
 {
     ui->setupUi(this);
     connect(this, SIGNAL(valuesChanged()), this, SLOT(registerValuesHaveChanged()));
+
+    this->setA(0);
+    this->setB(0);
+    this->setC(0);
+    this->setD(0);
+    this->setE(0);
+    this->setH(0);
+    this->setL(0);
+    this->setPC(0);
+    this->setSP(0);
 
     emit this->valuesChanged();
 }
@@ -21,7 +29,7 @@ RegisterBank::~RegisterBank()
 
 __int16 RegisterBank::combineRegisters(const __int8 & highReg, const __int8 & lowReg) const {
     __int16 combinedRegisters = highReg;
-    combinedRegisters = (combinedRegisters << 8) & lowReg;
+    combinedRegisters = (combinedRegisters << 8) | lowReg;
     return combinedRegisters;
 }
 
