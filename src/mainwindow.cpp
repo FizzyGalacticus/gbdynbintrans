@@ -11,11 +11,13 @@ MainWindow::MainWindow(QWidget *parent) :
     _filename(""),
     _fileDialog(new QFileDialog),
     _regBank(new RegisterBank),
-    _pc(new ProgramCounter)
+    _pc(new ProgramCounter),
+    _opDecoder(new OpcodeDecoder(":opcodes.json"))
 {
     ui->setupUi(this);
     ui->registerLayout->addWidget(this->_regBank);
     ui->programCounterLayout->addWidget(this->_pc);
+    ui->gridLayout->addWidget(this->_opDecoder);
 
     connect(ui->actionOpen,SIGNAL(triggered(bool)), this, SLOT(openFileDialogTriggered()));
     connect(ui->actionExit, SIGNAL(triggered(bool)), this, SLOT(exitTriggered()));

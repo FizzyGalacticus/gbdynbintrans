@@ -2,6 +2,11 @@
 #define OPCODEDECODER_H
 
 #include <QWidget>
+#include <unordered_map>
+using std::unordered_map;
+#include "json/json.h"
+#include <string>
+using std::string;
 
 namespace Ui {
 class OpcodeDecoder;
@@ -17,6 +22,7 @@ public:
 
 private:
     Ui::OpcodeDecoder *ui;
+    unordered_map<string, Json::Value> _opcodes;
 };
 
 #endif // OPCODEDECODER_H
