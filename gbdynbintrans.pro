@@ -17,14 +17,17 @@ SOURCES += src/main.cpp\
         src/mainwindow.cpp \
     src/aboutdialog.cpp \
     src/jsoncpp.cpp \
-    src/registerbank.cpp
+    src/registerbank.cpp \
+    src/programcounter.cpp
 
 HEADERS  += src/mainwindow.h \
     src/aboutdialog.h \
     src/json/json.h \
     src/json/json-forwards.h \
-    src/registerbank.h
+    src/registerbank.h \
+    src/programcounter.h
 
 FORMS    += src/mainwindow.ui \
     src/aboutdialog.ui \
-    src/registerbank.ui
+    src/registerbank.ui \
+    src/programcounter.ui
