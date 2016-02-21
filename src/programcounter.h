@@ -18,14 +18,21 @@ public:
     void setProgramCounter(const int);
     int getProgramCounter() const;
     void setProgramHex(QString);
+    const QString getOpcode();
 
 signals:
     void programCounterHasChanged(const int);
+    void programHexChanged();
 
 public slots:
 
+private slots:
+    void resetStyle();
+    void nextInstructionButtonPressed();
 
 private:
+    QString formatProgramHex(const QString) const;
+
     Ui::ProgramCounter *ui;
 
     __int16 _programCounter;
