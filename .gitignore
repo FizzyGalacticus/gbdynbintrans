@@ -1,3 +1,6 @@
 #Qt files
 *.pro.user
 build*
+
+#GameBoy ROM files
+*.gb
