@@ -1,29 +1,29 @@
 #include "registerbank.h"
 #include "ui_registerbank.h"
-#include <QDebug>
 #include <utility>
 using std::pair;
 using std::make_pair;
-#include <typeinfo>
-using std::type_info;
 
 RegisterBank::RegisterBank(QWidget *parent) :
     QWidget(parent),
-    ui(new Ui::RegisterBank)
+    ui(new Ui::RegisterBank),
+    _getAlias(),
+    _setAlias()
 {
     ui->setupUi(this);
     connect(this, SIGNAL(valuesChanged()), this, SLOT(registerValuesHaveChanged()));
 
-    this->setA(1);
-    this->setB(1);
+    this->setA(0);
+    this->setB(0);
     this->setC(0);
     this->setD(0);
     this->setE(0);
-    this->setH(1);
+    this->setH(0);
     this->setL(0);
     this->setPC(0);
     this->setSP(0);
 
+    /* Map register strings to corresponding getters */
     this->_getAlias.insert(make_pair<string, getPtr >("A", &RegisterBank::getA));
     this->_getAlias.insert(make_pair<string, getPtr >("B", &RegisterBank::getB));
     this->_getAlias.insert(make_pair<string, getPtr >("C", &RegisterBank::getC));
@@ -37,6 +37,7 @@ RegisterBank::RegisterBank(QWidget *parent) :
     this->_getAlias.insert(make_pair<string, getPtr >("PC", &RegisterBank::getPC));
     this->_getAlias.insert(make_pair<string, getPtr >("SP", &RegisterBank::getSP));
 
+    /* Map register strings to corresponding setters */
     this->_setAlias.insert(make_pair<string, setPtr >("A", &RegisterBank::setA));
     this->_setAlias.insert(make_pair<string, setPtr >("B", &RegisterBank::setB));
     this->_setAlias.insert(make_pair<string, setPtr >("C", &RegisterBank::setC));
@@ -51,8 +52,6 @@ RegisterBank::RegisterBank(QWidget *parent) :
     this->_setAlias.insert(make_pair<string, setPtr >("SP", &RegisterBank::setSP));
 
     emit this->valuesChanged();
-
-    this->add("A", 4);
 }
 
 RegisterBank::~RegisterBank()
@@ -185,21 +184,31 @@ void RegisterBank::setSP(const int temp) {
 }
 
 void RegisterBank::add(const QString op1, const QString op2) {
-    getPtr val1fn = this->_getAlias.at(op1.toStdString());
-    getPtr val2fn = this->_getAlias.at(op2.toStdString());
-    int val1 = (this->*val1fn)();
-    int val2 = (this->*val2fn)();
+    try {
+        getPtr val1fn = this->_getAlias.at(op1.toStdString());
+        getPtr val2fn = this->_getAlias.at(op2.toStdString());
+        int val1 = (this->*val1fn)();
+        int val2 = (this->*val2fn)();
 
-    setPtr setFn = this->_setAlias.at(op1.toStdString());
-    (this->*setFn)(val1 + val2);
+        setPtr setFn = this->_setAlias.at(op1.toStdString());
+        (this->*setFn)(val1 + val2);
+    }
+    catch(...) {
+
+    }
 }
 
 void RegisterBank::add(const QString op1, const int op2) {
-    getPtr val1fn = this->_getAlias.at(op1.toStdString());
-    int val1 = (this->*val1fn)();
+    try {
+        getPtr val1fn = this->_getAlias.at(op1.toStdString());
+        int val1 = (this->*val1fn)();
 
-    setPtr setFn = this->_setAlias.at(op1.toStdString());
-    (this->*setFn)(val1 + op2);
+        setPtr setFn = this->_setAlias.at(op1.toStdString());
+        (this->*setFn)(val1 + op2);
+    }
+    catch(...) {
+
+    }
 }
 
 void RegisterBank::registerValuesHaveChanged() {

@@ -8,8 +8,6 @@ using std::pair;
 using std::unordered_map;
 #include <string>
 using std::string;
-#include <functional>
-using std::function;
 
 namespace Ui {
 class RegisterBank;
@@ -71,8 +69,7 @@ signals:
     void stackPointerPositionChanged(const int);
 
 private:
-//    enum registers{REG_A, REG_B, REG_C, REG_D, REG_E, REG_H,
-//          REG_L, REG_BC, REG_DE, REG_HL, REG_PC, REG_SP};
+    /* Typdefs needed for passing function pointers */
     typedef int (RegisterBank::*getPtr)(void) const;
     typedef void (RegisterBank::*setPtr)(int);
     typedef std::map<string, getPtr> get_function_map;
