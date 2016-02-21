@@ -165,3 +165,7 @@ void RegisterBank::registerValuesHaveChanged() {
     this->ui->labelPCValue->setText(QString::number(this->getPC()));
     this->ui->labelSPValue->setText(QString::number(this->getSP()));
 }
+
+void RegisterBank::programCounterChanged(const int newCounter) {
+    this->setPC(newCounter);
+}

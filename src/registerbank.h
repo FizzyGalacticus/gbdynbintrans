@@ -55,6 +55,7 @@ public:
 
 private slots:
     void registerValuesHaveChanged();
+    void programCounterChanged(const int);
 
 signals:
     void valuesChanged();
