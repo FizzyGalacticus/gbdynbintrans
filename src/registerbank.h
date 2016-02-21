@@ -4,6 +4,12 @@
 #include <QWidget>
 #include <utility>
 using std::pair;
+#include <unordered_map>
+using std::unordered_map;
+#include <string>
+using std::string;
+#include <functional>
+using std::function;
 
 namespace Ui {
 class RegisterBank;
@@ -53,6 +59,9 @@ public:
     int getSP() const;
     void setSP(const int);
 
+    void add(const QString op1, const QString op2);
+    void add(const QString op1, const int op2);
+
 private slots:
     void registerValuesHaveChanged();
     void programCounterChanged(const int);
@@ -62,9 +71,21 @@ signals:
     void stackPointerPositionChanged(const int);
 
 private:
+//    enum registers{REG_A, REG_B, REG_C, REG_D, REG_E, REG_H,
+//          REG_L, REG_BC, REG_DE, REG_HL, REG_PC, REG_SP};
+    typedef int (RegisterBank::*getPtr)(void) const;
+    typedef void (RegisterBank::*setPtr)(int);
+    typedef std::map<string, getPtr> get_function_map;
+    typedef std::map<string, setPtr> set_function_map;
+
     __int16 combineRegisters(const __int8 &, const __int8 &) const;
     const pair<__int8, __int8> decomposeRegisters(const __int16 &);
+    int * getGetFunction(const QString);
+    void * getSetFunction(const QString);
+
     Ui::RegisterBank *ui;
+    get_function_map _getAlias;
+    set_function_map _setAlias;
     __int8 _A, _B, _C, _D, _E, _H, _L, _flags;
     __int16 _PC, _SP;
 };
