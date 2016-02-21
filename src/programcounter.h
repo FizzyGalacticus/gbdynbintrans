@@ -17,15 +17,19 @@ public:
 
     void setProgramCounter(const int);
     int getProgramCounter() const;
-    void setText(QString);
+    void setProgramHex(QString);
+
+signals:
+    void programCounterHasChanged(const int);
 
 public slots:
-    void programCounterHasChanged(const int);
+
 
 private:
     Ui::ProgramCounter *ui;
 
     __int16 _programCounter;
+    QString _programHex;
 };
 
 #endif // PROGRAMCOUNTER_H

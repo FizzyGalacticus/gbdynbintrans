@@ -55,6 +55,9 @@
       </item>
       <item>
        <layout class="QGridLayout" name="gridLayout">
+        <item row="0" column="0">
+         <layout class="QVBoxLayout" name="registerLayout"/>
+        </item>
         <item row="0" column="1">
          <spacer name="verticalSpacer">
           <property name="orientation">
@@ -69,14 +72,7 @@
          </spacer>
         </item>
         <item row="0" column="2">
-         <widget class="QTextEdit" name="programCounterTextEdit">
-          <property name="readOnly">
-           <bool>true</bool>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="0">
-         <layout class="QVBoxLayout" name="registerLayout"/>
+         <layout class="QVBoxLayout" name="programCounterLayout"/>
         </item>
        </layout>
       </item>

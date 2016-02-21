@@ -10,10 +10,12 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow),
     _filename(""),
     _fileDialog(new QFileDialog),
-    _regBank(new RegisterBank)
+    _regBank(new RegisterBank),
+    _pc(new ProgramCounter)
 {
     ui->setupUi(this);
     ui->registerLayout->addWidget(this->_regBank);
+    ui->programCounterLayout->addWidget(this->_pc);
 
     connect(ui->actionOpen,SIGNAL(triggered(bool)), this, SLOT(openFileDialogTriggered()));
     connect(ui->actionExit, SIGNAL(triggered(bool)), this, SLOT(exitTriggered()));
@@ -62,7 +64,7 @@ void MainWindow::loadROM(QString filename) {
     inFile.close();
 
     if(programText.size())
-        this->ui->programCounterTextEdit->setText(programText);
+        this->_pc->setProgramHex(programText);
     else
-        this->ui->programCounterTextEdit->setText("Could not open " + filename + ". This has not yet been implemented.");
+        this->_pc->setProgramHex("Could not open " + filename + ". This has not yet been implemented.");
 }
