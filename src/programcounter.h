@@ -29,6 +29,7 @@ public slots:
 private slots:
     void resetStyle();
     void nextInstructionButtonPressed();
+    void programCounterLineEditTextChanged(QString);
 
 private:
     QString formatProgramHex(const QString) const;

@@ -13,6 +13,7 @@ ProgramCounter::ProgramCounter(QWidget *parent) :
     connect(this, SIGNAL(programHexChanged()), this, SLOT(resetStyle()));
     connect(this, SIGNAL(programCounterHasChanged(int)), this, SLOT(resetStyle()));
     connect(this->ui->nextInstructionButton, SIGNAL(pressed()), this, SLOT(nextInstructionButtonPressed()));
+    connect(this->ui->programCounterLineEdit, SIGNAL(textChanged(QString)), this, SLOT(programCounterLineEditTextChanged(QString)));
 }
 
 ProgramCounter::~ProgramCounter()
@@ -59,6 +60,14 @@ void ProgramCounter::resetStyle() {
 
 void ProgramCounter::nextInstructionButtonPressed() {
     this->setProgramCounter(this->getProgramCounter()+1);
+}
+
+void ProgramCounter::programCounterLineEditTextChanged(QString newCounter) {
+    int counterInteger = newCounter.toInt();
+    if(counterInteger > this->_programHex.size()/2-1)
+        return;
+
+    this->setProgramCounter(counterInteger);
 }
 
 QString ProgramCounter::formatProgramHex(const QString str) const {
