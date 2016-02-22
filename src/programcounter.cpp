@@ -36,7 +36,7 @@ int ProgramCounter::getProgramCounter() const {
 
 void ProgramCounter::setProgramHex(QString hex) {
     this->_programHex = hex;
-    this->setProgramCounter(4);
+    this->setProgramCounter(0);
 
     emit this->programHexChanged();
 }
