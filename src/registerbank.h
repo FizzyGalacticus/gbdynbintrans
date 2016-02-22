@@ -60,6 +60,9 @@ public:
     void add(const QString op1, const QString op2);
     void add(const QString op1, const int op2);
 
+    void sub(const QString op1, const QString op2);
+    void sub(const QString op1, const int op2);
+
 private slots:
     void registerValuesHaveChanged();
     void programCounterChanged(const int);

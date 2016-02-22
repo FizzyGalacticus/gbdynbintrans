@@ -211,6 +211,34 @@ void RegisterBank::add(const QString op1, const int op2) {
     }
 }
 
+void RegisterBank::sub(const QString op1, const QString op2) {
+    try {
+        getPtr val1fn = this->_getAlias.at(op1.toStdString());
+        getPtr val2fn = this->_getAlias.at(op2.toStdString());
+        int val1 = (this->*val1fn)();
+        int val2 = (this->*val2fn)();
+
+        setPtr setFn = this->_setAlias.at(op1.toStdString());
+        (this->*setFn)(val1 - val2);
+    }
+    catch(...) {
+
+    }
+}
+
+void RegisterBank::sub(const QString op1, const int op2) {
+    try {
+        getPtr val1fn = this->_getAlias.at(op1.toStdString());
+        int val1 = (this->*val1fn)();
+
+        setPtr setFn = this->_setAlias.at(op1.toStdString());
+        (this->*setFn)(val1 - op2);
+    }
+    catch(...) {
+
+    }
+}
+
 void RegisterBank::registerValuesHaveChanged() {
     this->ui->labelAValue->setText(QString::number(this->getA()));
     this->ui->labelBValue->setText(QString::number(this->getB()));
