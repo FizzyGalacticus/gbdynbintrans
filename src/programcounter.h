@@ -2,6 +2,7 @@
 #define PROGRAMCOUNTER_H
 
 #include <QWidget>
+#include "opcodedecoder.h"
 
 namespace Ui {
 class ProgramCounter;
@@ -39,6 +40,7 @@ private:
 
     __int16 _programCounter;
     QString _programHex;
+    OpcodeDecoder * _opDecoder;
 };
 
 #endif // PROGRAMCOUNTER_H

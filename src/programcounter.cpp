@@ -7,13 +7,17 @@ using std::endl;
 ProgramCounter::ProgramCounter(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::ProgramCounter),
-    _programCounter(0)
+    _programCounter(0),
+    _opDecoder(new OpcodeDecoder(":opcodes.json"))
 {
     ui->setupUi(this);
+    ui->instructionLayout->addWidget(this->_opDecoder);
+
     connect(this, SIGNAL(programHexChanged()), this, SLOT(resetStyle()));
     connect(this, SIGNAL(programCounterHasChanged(int)), this, SLOT(resetStyle()));
     connect(this->ui->nextInstructionButton, SIGNAL(pressed()), this, SLOT(nextInstructionButtonPressed()));
     connect(this->ui->programCounterLineEdit, SIGNAL(textChanged(QString)), this, SLOT(programCounterLineEditTextChanged(QString)));
+    connect(this, SIGNAL(opcodeChanged(QString)), this->_opDecoder, SLOT(opcodeChanged(QString)));
 }
 
 ProgramCounter::~ProgramCounter()
