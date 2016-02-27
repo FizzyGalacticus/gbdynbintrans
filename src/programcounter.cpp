@@ -28,6 +28,7 @@ void ProgramCounter::setProgramCounter(const int pc) {
     this->_programCounter = pc;
 
     emit this->programCounterHasChanged(this->getProgramCounter());
+    emit this->opcodeChanged(this->getOpcode());
 }
 
 int ProgramCounter::getProgramCounter() const {
