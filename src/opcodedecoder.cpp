@@ -47,10 +47,13 @@ OpcodeDecoder::OpcodeDecoder(QString filename, QWidget *parent) :
 
             //Set values in Instruction object
             instr._mnemonic = mnemonic.asCString();
-//            instr._flagZ =
-//            instr._flagH =
-//            instr._flagN =
-//            instr._flagC =
+
+            if(!flags.isNull()) {
+                instr._flagZ = (flags[0] == "-" ? 0 : 1);
+                instr._flagH = (flags[1] == "-" ? 0 : 1);
+                instr._flagN = (flags[2] == "-" ? 0 : 1);
+                instr._flagC = (flags[3] == "-" ? 0 : 1);
+            }
 
             if(!operand1.isNull())
                 instr._op1 = operand1.asCString();
@@ -65,7 +68,6 @@ OpcodeDecoder::OpcodeDecoder(QString filename, QWidget *parent) :
 
             //Add instruction to map
             this->_opcodes.insert(make_pair(opcode, instr));
-            cout << instr._mnemonic << endl;
         }
     }
 }
