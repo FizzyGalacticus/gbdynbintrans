@@ -24,6 +24,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->actionAbout, SIGNAL(triggered(bool)), this, SLOT(aboutDialogTriggered()));
     connect(this, SIGNAL(fileNameChanged(QString)), this, SLOT(loadROM(QString)));
     connect(this->_pc, SIGNAL(programCounterHasChanged(int)), this->_regBank, SLOT(programCounterChanged(int)));
+    connect(this->_pc, SIGNAL(opcodeChanged(QString)), this->_opDecoder, SLOT(opcodeChanged(QString)));
 
     this->_fileDialog->setDirectory(QDir().currentPath() + "../../res/test_asm");
 }

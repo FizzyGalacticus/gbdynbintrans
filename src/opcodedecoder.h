@@ -16,23 +16,26 @@ class OpcodeDecoder : public QWidget
 {
     Q_OBJECT
 
+public slots:
+    void opcodeChanged(const QString);
+
 public:
     explicit OpcodeDecoder(QString filename, QWidget *parent = 0);
     ~OpcodeDecoder();
 
 private:
     struct Instruction {
-        int _numBytes:2;
-        int _numOps:2;
-        int _flagZ:1;
-        int _flagH:1;
-        int _flagN:1;
-        int _flagC:1;
+        unsigned int _numBytes:2;
+        unsigned int _numOps:2;
+        unsigned int _flagZ:1;
+        unsigned int _flagH:1;
+        unsigned int _flagN:1;
+        unsigned int _flagC:1;
         char _opcode[2];
-        const char * _op1;
-        const char * _op2;
-        const char * _mnemonic;
-        const char * _function;
+        string _op1;
+        string _op2;
+        string _mnemonic;
+        string _function;
 
         Instruction(const char * opcode) {
             _opcode[0] = opcode[0];
@@ -44,15 +47,16 @@ private:
             _flagH = 0;
             _flagN = 0;
             _flagC = 0;
-            _op1 = NULL;
-            _op2 = NULL;
-            _mnemonic = NULL;
-            _function = NULL;
+            _op1 = "";
+            _op2 = "";
+            _mnemonic = "";
+            _function = "";
         }
     };
 
     Ui::OpcodeDecoder *ui;
     unordered_map<string, Instruction> _opcodes;
+    Instruction _currentInstruction;
 };
 
 #endif // OPCODEDECODER_H

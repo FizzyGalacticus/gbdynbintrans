@@ -10,7 +10,8 @@ using std::make_pair;
 OpcodeDecoder::OpcodeDecoder(QString filename, QWidget *parent) :
     QWidget(parent),
     ui(new Ui::OpcodeDecoder),
-    _opcodes()
+    _opcodes(),
+    _currentInstruction("00")
 {
     ui->setupUi(this);
 
@@ -34,6 +35,10 @@ OpcodeDecoder::OpcodeDecoder(QString filename, QWidget *parent) :
 
         for(auto i = unprefixed.begin(); i != unprefixed.end(); i++) {
             string opcode = i.name().substr(2,2);
+
+            if(opcode.size() == 1)
+                opcode = "0" + opcode;
+
             Instruction instr(opcode.c_str());
 
             //Temporarily store values into Json::Value objects
@@ -46,7 +51,7 @@ OpcodeDecoder::OpcodeDecoder(QString filename, QWidget *parent) :
             Json::Value function = (*i)["function"];
 
             //Set values in Instruction object
-            instr._mnemonic = mnemonic.asCString();
+            instr._mnemonic = mnemonic.asString();
 
             if(!flags.isNull()) {
                 instr._flagZ = (flags[0] == "-" ? 0 : 1);
@@ -56,15 +61,15 @@ OpcodeDecoder::OpcodeDecoder(QString filename, QWidget *parent) :
             }
 
             if(!operand1.isNull())
-                instr._op1 = operand1.asCString();
+                instr._op1 = operand1.asString();
             if(!operand2.isNull())
-                instr._op2 = operand2.asCString();
+                instr._op2 = operand2.asString();
 
             instr._numOps = operandCount.asInt();
             instr._numBytes = bytes.asInt();
 
             if(!function.isNull())
-                instr._function = function.asCString();
+                instr._function = function.asString();
 
             //Add instruction to map
             this->_opcodes.insert(make_pair(opcode, instr));
@@ -75,4 +80,19 @@ OpcodeDecoder::OpcodeDecoder(QString filename, QWidget *parent) :
 OpcodeDecoder::~OpcodeDecoder()
 {
     delete ui;
+}
+
+void OpcodeDecoder::opcodeChanged(const QString opcode) {
+    this->_currentInstruction = this->_opcodes.at(opcode.toStdString());
+
+    QString instruction = this->_currentInstruction._mnemonic.c_str();
+
+    if(this->_currentInstruction._numOps >0) {
+        instruction += (QString(" ") + this->_currentInstruction._op1.c_str());
+
+        if(this->_currentInstruction._numOps > 1)
+            instruction += (QString(", ") + this->_currentInstruction._op2.c_str());
+    }
+
+    this->ui->instructionLabel->setText(instruction);
 }
