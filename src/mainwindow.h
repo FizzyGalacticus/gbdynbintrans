@@ -6,7 +6,6 @@
 #include <QDebug>
 #include "registerbank.h"
 #include "programcounter.h"
-#include "opcodedecoder.h"
 
 namespace Ui {
 class MainWindow;
@@ -36,7 +35,6 @@ private:
     QFileDialog * _fileDialog;
     RegisterBank * _regBank;
     ProgramCounter * _pc;
-    OpcodeDecoder * _opDecoder;
 };
 
 #endif // MAINWINDOW_H
