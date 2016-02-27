@@ -40,7 +40,7 @@ private:
 
     __int16 _programCounter;
     QString _programHex;
-    OpcodeDecoder * _opDecoder;
+    Cpu * _cpu;
 };
 
 #endif // PROGRAMCOUNTER_H

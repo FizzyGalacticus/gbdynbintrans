@@ -1,4 +1,4 @@
-#include "programcounter.h"
+#include "cpu.h"
 #include "ui_programcounter.h"
 #include <iostream>
 using std::cout;
@@ -8,16 +8,16 @@ ProgramCounter::ProgramCounter(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::ProgramCounter),
     _programCounter(0),
-    _opDecoder(new OpcodeDecoder(":opcodes.json"))
+    _cpu(new Cpu(":opcodes.json"))
 {
     ui->setupUi(this);
-    ui->instructionLayout->addWidget(this->_opDecoder);
+    ui->instructionLayout->addWidget(this->_cpu);
 
     connect(this, SIGNAL(programHexChanged()), this, SLOT(resetStyle()));
     connect(this, SIGNAL(programCounterHasChanged(int)), this, SLOT(resetStyle()));
     connect(this->ui->nextInstructionButton, SIGNAL(pressed()), this, SLOT(nextInstructionButtonPressed()));
     connect(this->ui->programCounterLineEdit, SIGNAL(textChanged(QString)), this, SLOT(programCounterLineEditTextChanged(QString)));
-    connect(this, SIGNAL(opcodeChanged(QString)), this->_opDecoder, SLOT(opcodeChanged(QString)));
+    connect(this, SIGNAL(opcodeChanged(QString)), this->_cpu, SLOT(opcodeChanged(QString)));
 }
 
 ProgramCounter::~ProgramCounter()

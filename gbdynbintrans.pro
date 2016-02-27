@@ -18,22 +18,22 @@ SOURCES += src/main.cpp\
     src/aboutdialog.cpp \
     src/jsoncpp.cpp \
     src/registerbank.cpp \
-    src/programcounter.cpp \
-    src/opcodedecoder.cpp
+    src/opcodedecoder.cpp \
+    src/cpu.cpp
 
 HEADERS  += src/mainwindow.h \
     src/aboutdialog.h \
     src/json/json.h \
     src/json/json-forwards.h \
     src/registerbank.h \
-    src/programcounter.h \
-    src/opcodedecoder.h
+    src/opcodedecoder.h \
+    src/cpu.h
 
 FORMS    += src/mainwindow.ui \
     src/aboutdialog.ui \
     src/registerbank.ui \
-    src/programcounter.ui \
-    src/opcodedecoder.ui
+    src/opcodedecoder.ui \
+    src/cpu.ui
 
 RESOURCES += \
     src/resources.qrc

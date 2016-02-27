@@ -5,7 +5,7 @@
 #include <QFileDialog>
 #include <QDebug>
 #include "registerbank.h"
-#include "programcounter.h"
+#include "cpu.h"
 
 namespace Ui {
 class MainWindow;
