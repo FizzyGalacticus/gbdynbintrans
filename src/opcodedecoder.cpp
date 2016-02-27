@@ -4,6 +4,8 @@
 using std::cout;
 using std::endl;
 #include <QFile>
+#include <utility>
+using std::make_pair;
 
 OpcodeDecoder::OpcodeDecoder(QString filename, QWidget *parent) :
     QWidget(parent),
@@ -31,7 +33,39 @@ OpcodeDecoder::OpcodeDecoder(QString filename, QWidget *parent) :
         Json::Value unprefixed = root["unprefixed"];
 
         for(auto i = unprefixed.begin(); i != unprefixed.end(); i++) {
-            //add to map here
+            string opcode = i.name().substr(2,2);
+            Instruction instr(opcode.c_str());
+
+            //Temporarily store values into Json::Value objects
+            Json::Value mnemonic = (*i)["mnemonic"];
+            Json::Value flags = (*i)["flags_ZHNC"];
+            Json::Value bytes = (*i)["bytes"];
+            Json::Value operandCount = (*i)["operand_count"];
+            Json::Value operand1 = (*i)["operand1"];
+            Json::Value operand2 = (*i)["operand2"];
+            Json::Value function = (*i)["function"];
+
+            //Set values in Instruction object
+            instr._mnemonic = mnemonic.asCString();
+//            instr._flagZ =
+//            instr._flagH =
+//            instr._flagN =
+//            instr._flagC =
+
+            if(!operand1.isNull())
+                instr._op1 = operand1.asCString();
+            if(!operand2.isNull())
+                instr._op2 = operand2.asCString();
+
+            instr._numOps = operandCount.asInt();
+            instr._numBytes = bytes.asInt();
+
+            if(!function.isNull())
+                instr._function = function.asCString();
+
+            //Add instruction to map
+            this->_opcodes.insert(make_pair(opcode, instr));
+            cout << instr._mnemonic << endl;
         }
     }
 }
