@@ -7,7 +7,7 @@ using std::endl;
 #include <utility>
 using std::make_pair;
 
-Cpu::Cpu(QString filename, QWidget *parent) :
+OpcodeDecoder::OpcodeDecoder(QString filename, QWidget *parent) :
     QWidget(parent),
     ui(new Ui::OpcodeDecoder),
     _opcodes(),
@@ -77,12 +77,12 @@ Cpu::Cpu(QString filename, QWidget *parent) :
     }
 }
 
-Cpu::~Cpu()
+OpcodeDecoder::~OpcodeDecoder()
 {
     delete ui;
 }
 
-void Cpu::opcodeChanged(const QString opcode) {
+void OpcodeDecoder::opcodeChanged(const QString opcode) {
     if(this->_opcodes.find(opcode.toStdString()) != this->_opcodes.end()) {
         this->_currentInstruction = this->_opcodes.at(opcode.toStdString());
 

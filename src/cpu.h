@@ -1,20 +1,20 @@
-#ifndef PROGRAMCOUNTER_H
-#define PROGRAMCOUNTER_H
+#ifndef CPU_H
+#define CPU_H
 
 #include <QWidget>
 #include "opcodedecoder.h"
 
 namespace Ui {
-class ProgramCounter;
+class Cpu;
 }
 
-class ProgramCounter : public QWidget
+class Cpu : public QWidget
 {
     Q_OBJECT
 
 public:
-    explicit ProgramCounter(QWidget *parent = 0);
-    ~ProgramCounter();
+    explicit Cpu(QWidget *parent = 0);
+    ~Cpu();
 
     void setProgramCounter(const int);
     int getProgramCounter() const;
@@ -36,11 +36,11 @@ private slots:
 private:
     QString formatProgramHex(const QString) const;
 
-    Ui::ProgramCounter *ui;
+    Ui::Cpu *ui;
 
     __int16 _programCounter;
     QString _programHex;
-    Cpu * _cpu;
+    OpcodeDecoder * _opDecoder;
 };
 
-#endif // PROGRAMCOUNTER_H
+#endif // CPU_H

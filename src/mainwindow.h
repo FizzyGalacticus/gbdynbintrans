@@ -34,7 +34,7 @@ private:
     QString _filename;
     QFileDialog * _fileDialog;
     RegisterBank * _regBank;
-    ProgramCounter * _pc;
+    Cpu * _cpu;
 };
 
 #endif // MAINWINDOW_H

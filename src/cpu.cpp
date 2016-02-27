@@ -1,31 +1,31 @@
 #include "cpu.h"
-#include "ui_programcounter.h"
+#include "ui_cpu.h"
 #include <iostream>
 using std::cout;
 using std::endl;
 
-ProgramCounter::ProgramCounter(QWidget *parent) :
+Cpu::Cpu(QWidget *parent) :
     QWidget(parent),
-    ui(new Ui::ProgramCounter),
+    ui(new Ui::Cpu),
     _programCounter(0),
-    _cpu(new Cpu(":opcodes.json"))
+    _opDecoder(new OpcodeDecoder(":opcodes.json"))
 {
     ui->setupUi(this);
-    ui->instructionLayout->addWidget(this->_cpu);
+    ui->instructionLayout->addWidget(this->_opDecoder);
 
     connect(this, SIGNAL(programHexChanged()), this, SLOT(resetStyle()));
     connect(this, SIGNAL(programCounterHasChanged(int)), this, SLOT(resetStyle()));
     connect(this->ui->nextInstructionButton, SIGNAL(pressed()), this, SLOT(nextInstructionButtonPressed()));
     connect(this->ui->programCounterLineEdit, SIGNAL(textChanged(QString)), this, SLOT(programCounterLineEditTextChanged(QString)));
-    connect(this, SIGNAL(opcodeChanged(QString)), this->_cpu, SLOT(opcodeChanged(QString)));
+    connect(this, SIGNAL(opcodeChanged(QString)), this->_opDecoder, SLOT(opcodeChanged(QString)));
 }
 
-ProgramCounter::~ProgramCounter()
+Cpu::~Cpu()
 {
     delete ui;
 }
 
-void ProgramCounter::setProgramCounter(const int pc) {
+void Cpu::setProgramCounter(const int pc) {
     if(pc > this->_programHex.size()/2-1)
         return;
 
@@ -35,22 +35,22 @@ void ProgramCounter::setProgramCounter(const int pc) {
     emit this->opcodeChanged(this->getOpcode());
 }
 
-int ProgramCounter::getProgramCounter() const {
+int Cpu::getProgramCounter() const {
     return this->_programCounter;
 }
 
-void ProgramCounter::setProgramHex(QString hex) {
+void Cpu::setProgramHex(QString hex) {
     this->_programHex = hex;
     this->setProgramCounter(0);
 
     emit this->programHexChanged();
 }
 
-const QString ProgramCounter::getOpcode() {
+const QString Cpu::getOpcode() {
     return this->_programHex.mid(this->getProgramCounter()*2,2);
 }
 
-void ProgramCounter::resetStyle() {
+void Cpu::resetStyle() {
     QString temp = "<div style=\"font-family: 'Lucida Console'; font-size: 16pt;\">";
 
     temp += formatProgramHex( this->_programHex.mid(0,this->getProgramCounter()*2) );
@@ -63,11 +63,11 @@ void ProgramCounter::resetStyle() {
     this->ui->textBrowser->setHtml(temp);
 }
 
-void ProgramCounter::nextInstructionButtonPressed() {
+void Cpu::nextInstructionButtonPressed() {
     this->setProgramCounter(this->getProgramCounter()+1);
 }
 
-void ProgramCounter::programCounterLineEditTextChanged(QString newCounter) {
+void Cpu::programCounterLineEditTextChanged(QString newCounter) {
     int counterInteger = newCounter.toInt();
     if(counterInteger > this->_programHex.size()/2-1)
         return;
@@ -75,7 +75,7 @@ void ProgramCounter::programCounterLineEditTextChanged(QString newCounter) {
     this->setProgramCounter(counterInteger);
 }
 
-QString ProgramCounter::formatProgramHex(const QString str) const {
+QString Cpu::formatProgramHex(const QString str) const {
     QString retStr = str;
 
     if(retStr.size() == 2) {

@@ -12,7 +12,7 @@ namespace Ui {
 class OpcodeDecoder;
 }
 
-class Cpu : public QWidget
+class OpcodeDecoder : public QWidget
 {
     Q_OBJECT
 
@@ -20,8 +20,8 @@ public slots:
     void opcodeChanged(const QString);
 
 public:
-    explicit Cpu(QString filename, QWidget *parent = 0);
-    ~Cpu();
+    explicit OpcodeDecoder(QString filename, QWidget *parent = 0);
+    ~OpcodeDecoder();
 
 private:
     struct Instruction {

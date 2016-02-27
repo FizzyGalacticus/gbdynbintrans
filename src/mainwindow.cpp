@@ -11,17 +11,17 @@ MainWindow::MainWindow(QWidget *parent) :
     _filename(""),
     _fileDialog(new QFileDialog),
     _regBank(new RegisterBank),
-    _pc(new ProgramCounter)
+    _cpu(new Cpu)
 {
     ui->setupUi(this);
     ui->registerLayout->addWidget(this->_regBank);
-    ui->programCounterLayout->addWidget(this->_pc);
+    ui->programCounterLayout->addWidget(this->_cpu);
 
     connect(ui->actionOpen,SIGNAL(triggered(bool)), this, SLOT(openFileDialogTriggered()));
     connect(ui->actionExit, SIGNAL(triggered(bool)), this, SLOT(exitTriggered()));
     connect(ui->actionAbout, SIGNAL(triggered(bool)), this, SLOT(aboutDialogTriggered()));
     connect(this, SIGNAL(fileNameChanged(QString)), this, SLOT(loadROM(QString)));
-    connect(this->_pc, SIGNAL(programCounterHasChanged(int)), this->_regBank, SLOT(programCounterChanged(int)));
+    connect(this->_cpu, SIGNAL(programCounterHasChanged(int)), this->_regBank, SLOT(programCounterChanged(int)));
 
     this->_fileDialog->setDirectory(QDir().currentPath() + "../../res/test_asm");
 }
@@ -67,7 +67,7 @@ void MainWindow::loadROM(QString filename) {
     inFile.close();
 
     if(programText.size())
-        this->_pc->setProgramHex(programText);
+        this->_cpu->setProgramHex(programText);
     else
-        this->_pc->setProgramHex("Could not open " + filename + ". This has not yet been implemented.");
+        this->_cpu->setProgramHex("Could not open " + filename + ". This has not yet been implemented.");
 }
