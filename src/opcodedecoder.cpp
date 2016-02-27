@@ -83,16 +83,19 @@ OpcodeDecoder::~OpcodeDecoder()
 }
 
 void OpcodeDecoder::opcodeChanged(const QString opcode) {
-    this->_currentInstruction = this->_opcodes.at(opcode.toStdString());
+    if(this->_opcodes.find(opcode.toStdString()) != this->_opcodes.end()) {
+        this->_currentInstruction = this->_opcodes.at(opcode.toStdString());
 
-    QString instruction = this->_currentInstruction._mnemonic.c_str();
+        QString instruction = this->_currentInstruction._mnemonic.c_str();
 
-    if(this->_currentInstruction._numOps >0) {
-        instruction += (QString(" ") + this->_currentInstruction._op1.c_str());
+        if(this->_currentInstruction._numOps >0) {
+            instruction += (QString(" ") + this->_currentInstruction._op1.c_str());
 
-        if(this->_currentInstruction._numOps > 1)
-            instruction += (QString(", ") + this->_currentInstruction._op2.c_str());
+            if(this->_currentInstruction._numOps > 1)
+                instruction += (QString(", ") + this->_currentInstruction._op2.c_str());
+        }
+
+        this->ui->instructionLabel->setText(instruction);
     }
-
-    this->ui->instructionLabel->setText(instruction);
+    else this->_currentInstruction = Instruction("00");
 }
