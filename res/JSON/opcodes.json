@@ -155,7 +155,8 @@
       ]
     }, 
     "0x29": {
-      "mnemonic": "ADD", 
+      "mnemonic": "ADD",
+      "function": "add", 
       "flags_ZHNC": [
         "-", 
         "0", 
@@ -513,7 +514,8 @@
       ]
     }, 
     "0x39": {
-      "mnemonic": "ADD", 
+      "mnemonic": "ADD",
+      "function": "add", 
       "flags_ZHNC": [
         "-", 
         "0", 
@@ -747,7 +749,8 @@
       ]
     }, 
     "0x9": {
-      "mnemonic": "ADD", 
+      "mnemonic": "ADD",
+      "function": "add", 
       "flags_ZHNC": [
         "-", 
         "0", 
@@ -1229,7 +1232,8 @@
       ]
     }, 
     "0xe6": {
-      "mnemonic": "ADD", 
+      "mnemonic": "ADD",
+      "function": "add", 
       "flags_ZHNC": [
         "0", 
         "0", 
@@ -2665,7 +2669,8 @@
       ]
     }, 
     "0xc6": {
-      "mnemonic": "ADD", 
+      "mnemonic": "ADD",
+      "function": "add", 
       "flags_ZHNC": [
         "Z", 
         "0", 
@@ -3116,7 +3121,8 @@
       ]
     }, 
     "0x84": {
-      "mnemonic": "ADD", 
+      "mnemonic": "ADD",
+      "function": "add", 
       "flags_ZHNC": [
         "Z", 
         "0", 
@@ -3132,7 +3138,8 @@
       ]
     }, 
     "0x85": {
-      "mnemonic": "ADD", 
+      "mnemonic": "ADD",
+      "function": "add", 
       "flags_ZHNC": [
         "Z", 
         "0", 
@@ -3148,7 +3155,8 @@
       ]
     }, 
     "0x86": {
-      "mnemonic": "ADD", 
+      "mnemonic": "ADD",
+      "function": "add", 
       "flags_ZHNC": [
         "Z", 
         "0", 
@@ -3164,7 +3172,8 @@
       ]
     }, 
     "0x87": {
-      "mnemonic": "ADD", 
+      "mnemonic": "ADD",
+      "function": "add", 
       "flags_ZHNC": [
         "Z", 
         "0", 
@@ -3180,7 +3189,8 @@
       ]
     }, 
     "0x80": {
-      "mnemonic": "ADD", 
+      "mnemonic": "ADD",
+      "function": "add", 
       "flags_ZHNC": [
         "Z", 
         "0", 
@@ -3196,7 +3206,8 @@
       ]
     }, 
     "0x81": {
-      "mnemonic": "ADD", 
+      "mnemonic": "ADD",
+      "function": "add", 
       "flags_ZHNC": [
         "Z", 
         "0", 
@@ -3212,7 +3223,8 @@
       ]
     }, 
     "0x82": {
-      "mnemonic": "ADD", 
+      "mnemonic": "ADD",
+      "function": "add", 
       "flags_ZHNC": [
         "Z", 
         "0", 
@@ -3228,7 +3240,8 @@
       ]
     }, 
     "0x83": {
-      "mnemonic": "ADD", 
+      "mnemonic": "ADD",
+      "function": "add", 
       "flags_ZHNC": [
         "Z", 
         "0", 
@@ -3399,7 +3412,8 @@
       ]
     }, 
     "0xd5": {
-      "mnemonic": "SUB", 
+      "mnemonic": "SUB",
+      "function": "sub", 
       "flags_ZHNC": [
         "Z", 
         "1", 
@@ -3509,7 +3523,8 @@
       ]
     }, 
     "0x19": {
-      "mnemonic": "ADD", 
+      "mnemonic": "ADD",
+      "function": "add", 
       "flags_ZHNC": [
         "-", 
         "0", 
@@ -3662,7 +3677,8 @@
       ]
     }, 
     "0x97": {
-      "mnemonic": "SUB", 
+      "mnemonic": "SUB",
+      "function": "sub", 
       "flags_ZHNC": [
         "Z", 
         "1", 
@@ -3677,7 +3693,8 @@
       ]
     }, 
     "0x96": {
-      "mnemonic": "SUB", 
+      "mnemonic": "SUB",
+      "function": "sub", 
       "flags_ZHNC": [
         "Z", 
         "1", 
@@ -3692,7 +3709,8 @@
       ]
     }, 
     "0x95": {
-      "mnemonic": "SUB", 
+      "mnemonic": "SUB",
+      "function": "sub", 
       "flags_ZHNC": [
         "Z", 
         "1", 
@@ -3707,7 +3725,8 @@
       ]
     }, 
     "0x94": {
-      "mnemonic": "SUB", 
+      "mnemonic": "SUB",
+      "function": "sub", 
       "flags_ZHNC": [
         "Z", 
         "1", 
@@ -3722,7 +3741,8 @@
       ]
     }, 
     "0x93": {
-      "mnemonic": "SUB", 
+      "mnemonic": "SUB",
+      "function": "sub", 
       "flags_ZHNC": [
         "Z", 
         "1", 
@@ -3737,7 +3757,8 @@
       ]
     }, 
     "0x92": {
-      "mnemonic": "SUB", 
+      "mnemonic": "SUB",
+      "function": "sub", 
       "flags_ZHNC": [
         "Z", 
         "1", 
@@ -3752,7 +3773,8 @@
       ]
     }, 
     "0x91": {
-      "mnemonic": "SUB", 
+      "mnemonic": "SUB",
+      "function": "sub", 
       "flags_ZHNC": [
         "Z", 
         "1", 
@@ -3767,7 +3789,8 @@
       ]
     }, 
     "0x90": {
-      "mnemonic": "SUB", 
+      "mnemonic": "SUB",
+      "function": "sub", 
       "flags_ZHNC": [
         "Z", 
         "1", 
