@@ -4,7 +4,6 @@
 #include <QMainWindow>
 #include <QFileDialog>
 #include <QDebug>
-#include "registerbank.h"
 #include "cpu.h"
 
 namespace Ui {
@@ -33,7 +32,6 @@ private:
 
     QString _filename;
     QFileDialog * _fileDialog;
-    RegisterBank * _regBank;
     Cpu * _cpu;
 };
 

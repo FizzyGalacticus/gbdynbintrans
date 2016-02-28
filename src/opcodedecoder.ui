@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
+ <author>Dustin L. Dodson &amp; Bucky J. Frost</author>
  <class>OpcodeDecoder</class>
  <widget class="QWidget" name="OpcodeDecoder">
   <property name="geometry">

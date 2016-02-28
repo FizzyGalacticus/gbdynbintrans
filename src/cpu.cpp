@@ -8,16 +8,19 @@ Cpu::Cpu(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::Cpu),
     _programCounter(0),
+    _regBank(new RegisterBank),
     _opDecoder(new OpcodeDecoder(":opcodes.json"))
 {
     ui->setupUi(this);
     ui->instructionLayout->addWidget(this->_opDecoder);
+    ui->registerLayout->addWidget(this->_regBank);
 
     connect(this, SIGNAL(programHexChanged()), this, SLOT(resetStyle()));
     connect(this, SIGNAL(programCounterHasChanged(int)), this, SLOT(resetStyle()));
     connect(this->ui->nextInstructionButton, SIGNAL(pressed()), this, SLOT(nextInstructionButtonPressed()));
     connect(this->ui->programCounterLineEdit, SIGNAL(textChanged(QString)), this, SLOT(programCounterLineEditTextChanged(QString)));
     connect(this, SIGNAL(opcodeChanged(QString)), this->_opDecoder, SLOT(opcodeChanged(QString)));
+    connect(this, SIGNAL(programCounterHasChanged(int)), this->_regBank, SLOT(programCounterChanged(int)));
 }
 
 Cpu::~Cpu()

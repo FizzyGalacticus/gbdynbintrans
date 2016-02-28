@@ -10,18 +10,15 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow),
     _filename(""),
     _fileDialog(new QFileDialog),
-    _regBank(new RegisterBank),
     _cpu(new Cpu)
 {
     ui->setupUi(this);
-    ui->registerLayout->addWidget(this->_regBank);
-    ui->programCounterLayout->addWidget(this->_cpu);
+    ui->centralLayout->addWidget(this->_cpu);
 
     connect(ui->actionOpen,SIGNAL(triggered(bool)), this, SLOT(openFileDialogTriggered()));
     connect(ui->actionExit, SIGNAL(triggered(bool)), this, SLOT(exitTriggered()));
     connect(ui->actionAbout, SIGNAL(triggered(bool)), this, SLOT(aboutDialogTriggered()));
     connect(this, SIGNAL(fileNameChanged(QString)), this, SLOT(loadROM(QString)));
-    connect(this->_cpu, SIGNAL(programCounterHasChanged(int)), this->_regBank, SLOT(programCounterChanged(int)));
 
     this->_fileDialog->setDirectory(QDir().currentPath() + "../../res/test_asm");
 }

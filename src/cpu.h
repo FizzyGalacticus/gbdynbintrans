@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include "opcodedecoder.h"
+#include "registerbank.h"
 
 namespace Ui {
 class Cpu;
@@ -40,6 +41,7 @@ private:
 
     __int16 _programCounter;
     QString _programHex;
+    RegisterBank * _regBank;
     OpcodeDecoder * _opDecoder;
 };
 
