@@ -194,8 +194,10 @@ void RegisterBank::add(Operand & op1,  Operand & op2) {
 }
 
 void RegisterBank::sub(Operand & op1, Operand & op2) {
-    setPtr setFn = this->_setAlias.at(op1.getRegisterName());
-    (this->*setFn)(op1.getVal() - op2.getVal());
+    getPtr getFn = this->_getAlias.at("A");
+    setPtr setFn = this->_setAlias.at("A");
+    const int A = (this->*getFn)();
+    (this->*setFn)(A - op1.getVal());
 }
 
 RegisterBank::getPtr RegisterBank::getRegisterAccessor(string registerName) {
