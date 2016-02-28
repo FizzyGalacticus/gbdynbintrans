@@ -183,60 +183,21 @@ void RegisterBank::setSP(const int temp) {
 	emit this->valuesChanged();
 }
 
-void RegisterBank::add(const QString op1, const QString op2) {
-    try {
-        getPtr val1fn = this->_getAlias.at(op1.toStdString());
-        getPtr val2fn = this->_getAlias.at(op2.toStdString());
-        int val1 = (this->*val1fn)();
-        int val2 = (this->*val2fn)();
-
-        setPtr setFn = this->_setAlias.at(op1.toStdString());
-        (this->*setFn)(val1 + val2);
-    }
-    catch(...) {
-
-    }
+void RegisterBank::add(Operand & op1,  Operand & op2) {
+    setPtr setFn = this->_setAlias.at(op1.getRegisterName());
+    (this->*setFn)(op1.getVal() + op2.getVal());
 }
 
-void RegisterBank::add(const QString op1, const int op2) {
-    try {
-        getPtr val1fn = this->_getAlias.at(op1.toStdString());
-        int val1 = (this->*val1fn)();
-
-        setPtr setFn = this->_setAlias.at(op1.toStdString());
-        (this->*setFn)(val1 + op2);
-    }
-    catch(...) {
-
-    }
+void RegisterBank::sub(Operand & op1, Operand & op2) {
+    setPtr setFn = this->_setAlias.at(op1.getRegisterName());
+    (this->*setFn)(op1.getVal() - op2.getVal());
 }
 
-void RegisterBank::sub(const QString op1, const QString op2) {
-    try {
-        getPtr val1fn = this->_getAlias.at(op1.toStdString());
-        getPtr val2fn = this->_getAlias.at(op2.toStdString());
-        int val1 = (this->*val1fn)();
-        int val2 = (this->*val2fn)();
+RegisterBank::getPtr RegisterBank::getRegisterAccessor(string registerName) {
+    if(this->_getAlias.find(registerName) != this->_getAlias.end())
+        return this->_getAlias.at(registerName);
 
-        setPtr setFn = this->_setAlias.at(op1.toStdString());
-        (this->*setFn)(val1 - val2);
-    }
-    catch(...) {
-
-    }
-}
-
-void RegisterBank::sub(const QString op1, const int op2) {
-    try {
-        getPtr val1fn = this->_getAlias.at(op1.toStdString());
-        int val1 = (this->*val1fn)();
-
-        setPtr setFn = this->_setAlias.at(op1.toStdString());
-        (this->*setFn)(val1 - op2);
-    }
-    catch(...) {
-
-    }
+    return NULL;
 }
 
 void RegisterBank::registerValuesHaveChanged() {

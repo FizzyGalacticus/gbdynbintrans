@@ -19,7 +19,8 @@ SOURCES += src/main.cpp\
     src/jsoncpp.cpp \
     src/registerbank.cpp \
     src/opcodedecoder.cpp \
-    src/cpu.cpp
+    src/cpu.cpp \
+    src/operand.cpp
 
 HEADERS  += src/mainwindow.h \
     src/aboutdialog.h \
@@ -27,7 +28,8 @@ HEADERS  += src/mainwindow.h \
     src/json/json-forwards.h \
     src/registerbank.h \
     src/opcodedecoder.h \
-    src/cpu.h
+    src/cpu.h \
+    src/operand.h
 
 FORMS    += src/mainwindow.ui \
     src/aboutdialog.ui \

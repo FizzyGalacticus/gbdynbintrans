@@ -8,6 +8,9 @@ using std::pair;
 using std::unordered_map;
 #include <string>
 using std::string;
+#include "operand.h"
+
+class Operand;
 
 namespace Ui {
 class RegisterBank;
@@ -18,6 +21,12 @@ class RegisterBank : public QWidget
     Q_OBJECT
 
 public:
+    /* Typdefs needed for passing function pointers */
+    typedef int (RegisterBank::*getPtr)(void) const;
+    typedef void (RegisterBank::*setPtr)(int);
+    typedef std::map<string, getPtr> get_function_map;
+    typedef std::map<string, setPtr> set_function_map;
+
     explicit RegisterBank(QWidget *parent = 0);
     ~RegisterBank();
 
@@ -57,11 +66,11 @@ public:
     int getSP() const;
     void setSP(const int);
 
-    void add(const QString op1, const QString op2);
-    void add(const QString op1, const int op2);
+    void add(Operand & op1, Operand & op2);
 
-    void sub(const QString op1, const QString op2);
-    void sub(const QString op1, const int op2);
+    void sub(Operand & op1, Operand & op2);
+
+    getPtr getRegisterAccessor(string);
 
 private slots:
     void registerValuesHaveChanged();
@@ -72,12 +81,6 @@ signals:
     void stackPointerPositionChanged(const int);
 
 private:
-    /* Typdefs needed for passing function pointers */
-    typedef int (RegisterBank::*getPtr)(void) const;
-    typedef void (RegisterBank::*setPtr)(int);
-    typedef std::map<string, getPtr> get_function_map;
-    typedef std::map<string, setPtr> set_function_map;
-
     __int16 combineRegisters(const __int8 &, const __int8 &) const;
     const pair<__int8, __int8> decomposeRegisters(const __int16 &);
     int * getGetFunction(const QString);
