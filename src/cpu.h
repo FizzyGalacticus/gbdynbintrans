@@ -25,7 +25,7 @@ public:
 signals:
     void programCounterHasChanged(const int);
     void programHexChanged();
-    void opcodeChanged(const QString);
+    void opcodeChanged(const QString, RegisterBank *);
 
 public slots:
 

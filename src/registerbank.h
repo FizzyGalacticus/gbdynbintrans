@@ -24,8 +24,10 @@ public:
     /* Typdefs needed for passing function pointers */
     typedef int (RegisterBank::*getPtr)(void) const;
     typedef void (RegisterBank::*setPtr)(int);
+    typedef void (RegisterBank::*fnPtr)(Operand &, Operand &);
     typedef std::map<string, getPtr> get_function_map;
     typedef std::map<string, setPtr> set_function_map;
+    typedef std::map<string, fnPtr> function_map;
 
     explicit RegisterBank(QWidget *parent = 0);
     ~RegisterBank();
@@ -72,6 +74,9 @@ public:
 
     getPtr getRegisterAccessor(string);
 
+public slots:
+    void instructionChanged(string, Operand &, Operand &);
+
 private slots:
     void registerValuesHaveChanged();
     void programCounterChanged(const int);
@@ -81,6 +86,7 @@ signals:
     void stackPointerPositionChanged(const int);
 
 private:
+
     __int16 combineRegisters(const __int8 &, const __int8 &) const;
     const pair<__int8, __int8> decomposeRegisters(const __int16 &);
     int * getGetFunction(const QString);
@@ -89,6 +95,7 @@ private:
     Ui::RegisterBank *ui;
     get_function_map _getAlias;
     set_function_map _setAlias;
+    function_map _functionAlias;
     __int8 _A, _B, _C, _D, _E, _H, _L, _flags;
     __int16 _PC, _SP;
 };

@@ -8,13 +8,14 @@ RegisterBank::RegisterBank(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::RegisterBank),
     _getAlias(),
-    _setAlias()
+    _setAlias(),
+    _functionAlias()
 {
     ui->setupUi(this);
     connect(this, SIGNAL(valuesChanged()), this, SLOT(registerValuesHaveChanged()));
 
-    this->setA(0);
-    this->setB(0);
+    this->setA(1);
+    this->setB(2);
     this->setC(0);
     this->setD(0);
     this->setE(0);
@@ -50,6 +51,10 @@ RegisterBank::RegisterBank(QWidget *parent) :
     this->_setAlias.insert(make_pair<string, setPtr >("HL", &RegisterBank::setHL));
     this->_setAlias.insert(make_pair<string, setPtr >("PC", &RegisterBank::setPC));
     this->_setAlias.insert(make_pair<string, setPtr >("SP", &RegisterBank::setSP));
+
+    /*Map strings to RegisterBank function pointers*/
+    this->_functionAlias.insert(make_pair<string, fnPtr>("add", &RegisterBank::add));
+    this->_functionAlias.insert(make_pair<string, fnPtr>("sub", &RegisterBank::sub));
 
     emit this->valuesChanged();
 }
@@ -198,6 +203,13 @@ RegisterBank::getPtr RegisterBank::getRegisterAccessor(string registerName) {
         return this->_getAlias.at(registerName);
 
     return NULL;
+}
+
+void RegisterBank::instructionChanged(string fn, Operand & op1, Operand & op2) {
+    if(this->_functionAlias.find(fn) != this->_functionAlias.end()) {
+        fnPtr function = this->_functionAlias.at(fn);
+        (this->*function)(op1, op2);
+    }
 }
 
 void RegisterBank::registerValuesHaveChanged() {

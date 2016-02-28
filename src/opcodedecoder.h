@@ -7,6 +7,7 @@ using std::unordered_map;
 #include "json/json.h"
 #include <string>
 using std::string;
+#include "operand.h"
 
 namespace Ui {
 class OpcodeDecoder;
@@ -17,7 +18,10 @@ class OpcodeDecoder : public QWidget
     Q_OBJECT
 
 public slots:
-    void opcodeChanged(const QString);
+    void opcodeChanged(const QString, RegisterBank *);
+
+signals:
+    instructionChanged(string, Operand &, Operand &);
 
 public:
     explicit OpcodeDecoder(QString filename, QWidget *parent = 0);

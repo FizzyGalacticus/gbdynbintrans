@@ -19,8 +19,9 @@ Cpu::Cpu(QWidget *parent) :
     connect(this, SIGNAL(programCounterHasChanged(int)), this, SLOT(resetStyle()));
     connect(this->ui->nextInstructionButton, SIGNAL(pressed()), this, SLOT(nextInstructionButtonPressed()));
     connect(this->ui->programCounterLineEdit, SIGNAL(textChanged(QString)), this, SLOT(programCounterLineEditTextChanged(QString)));
-    connect(this, SIGNAL(opcodeChanged(QString)), this->_opDecoder, SLOT(opcodeChanged(QString)));
+    connect(this, SIGNAL(opcodeChanged(QString, RegisterBank *)), this->_opDecoder, SLOT(opcodeChanged(QString, RegisterBank *)));
     connect(this, SIGNAL(programCounterHasChanged(int)), this->_regBank, SLOT(programCounterChanged(int)));
+    connect(this->_opDecoder, SIGNAL(instructionChanged(string,Operand&,Operand&)), this->_regBank, SLOT(instructionChanged(string,Operand&,Operand&)));
 }
 
 Cpu::~Cpu()
@@ -35,7 +36,7 @@ void Cpu::setProgramCounter(const int pc) {
     this->_programCounter = pc;
 
     emit this->programCounterHasChanged(this->getProgramCounter());
-    emit this->opcodeChanged(this->getOpcode());
+    emit this->opcodeChanged(this->getOpcode(), this->_regBank);
 }
 
 int Cpu::getProgramCounter() const {

@@ -82,7 +82,7 @@ OpcodeDecoder::~OpcodeDecoder()
     delete ui;
 }
 
-void OpcodeDecoder::opcodeChanged(const QString opcode) {
+void OpcodeDecoder::opcodeChanged(const QString opcode, RegisterBank * regBank) {
     if(this->_opcodes.find(opcode.toStdString()) != this->_opcodes.end()) {
         this->_currentInstruction = this->_opcodes.at(opcode.toStdString());
 
@@ -96,6 +96,9 @@ void OpcodeDecoder::opcodeChanged(const QString opcode) {
         }
 
         this->ui->instructionLabel->setText(instruction);
+
+        Operand op1(regBank, this->_currentInstruction._op1), op2(regBank, this->_currentInstruction._op2);
+        emit this->instructionChanged(this->_currentInstruction._function, op1, op2);
     }
     else this->_currentInstruction = Instruction("00");
 }
