@@ -14,7 +14,7 @@ RegisterBank::RegisterBank(QWidget *parent) :
     ui->setupUi(this);
     connect(this, SIGNAL(valuesChanged()), this, SLOT(registerValuesHaveChanged()));
 
-    this->setA(1);
+    this->setA(2);
     this->setB(2);
     this->setC(0);
     this->setD(0);
@@ -57,6 +57,8 @@ RegisterBank::RegisterBank(QWidget *parent) :
     this->_functionAlias.insert(make_pair<string, fnPtr>("sub", &RegisterBank::sub));
 
     emit this->valuesChanged();
+    Operand op1(this, "A"), op2(1);
+    this->sub(op1, op2);
 }
 
 RegisterBank::~RegisterBank()
@@ -194,10 +196,8 @@ void RegisterBank::add(Operand & op1,  Operand & op2) {
 }
 
 void RegisterBank::sub(Operand & op1, Operand & op2) {
-    getPtr getFn = this->_getAlias.at("A");
-    setPtr setFn = this->_setAlias.at("A");
-    const int A = (this->*getFn)();
-    (this->*setFn)(A - op1.getVal());
+    setPtr setFn = this->_setAlias.at(op1.getRegisterName());
+    (this->*setFn)(op1.getVal() - op2.getVal());
 }
 
 RegisterBank::getPtr RegisterBank::getRegisterAccessor(string registerName) {

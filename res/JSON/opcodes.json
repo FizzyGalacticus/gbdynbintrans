@@ -3420,8 +3420,9 @@
         "H", 
         "C"
       ], 
-      "operand1": "d8", 
-      "operand_count": 1, 
+      "operand1": "A",
+      "operand2": "d8", 
+      "operand_count": 2, 
       "bytes": 2, 
       "cycles": [
         8
@@ -3685,8 +3686,9 @@
         "H", 
         "C"
       ], 
-      "operand1": "A", 
-      "operand_count": 1, 
+      "operand1": "A",
+      "operand2": "A", 
+      "operand_count": 2, 
       "bytes": 1, 
       "cycles": [
         4
@@ -3701,8 +3703,9 @@
         "H", 
         "C"
       ], 
-      "operand1": "(HL)", 
-      "operand_count": 1, 
+      "operand1": "A",
+      "operand2": "(HL)", 
+      "operand_count": 2, 
       "bytes": 1, 
       "cycles": [
         8
@@ -3717,8 +3720,9 @@
         "H", 
         "C"
       ], 
-      "operand1": "L", 
-      "operand_count": 1, 
+      "operand1": "A",
+      "operand2": "L", 
+      "operand_count": 2, 
       "bytes": 1, 
       "cycles": [
         4
@@ -3733,8 +3737,9 @@
         "H", 
         "C"
       ], 
-      "operand1": "H", 
-      "operand_count": 1, 
+      "operand1": "A",
+      "operand2": "H", 
+      "operand_count": 2, 
       "bytes": 1, 
       "cycles": [
         4
@@ -3749,8 +3754,9 @@
         "H", 
         "C"
       ], 
-      "operand1": "E", 
-      "operand_count": 1, 
+      "operand1": "A",
+      "operand2": "E", 
+      "operand_count": 2, 
       "bytes": 1, 
       "cycles": [
         4
@@ -3765,8 +3771,9 @@
         "H", 
         "C"
       ], 
-      "operand1": "D", 
-      "operand_count": 1, 
+      "operand1": "A",
+      "operand2": "D", 
+      "operand_count": 2, 
       "bytes": 1, 
       "cycles": [
         4
@@ -3781,8 +3788,9 @@
         "H", 
         "C"
       ], 
-      "operand1": "C", 
-      "operand_count": 1, 
+      "operand1": "A",
+      "operand2": "C", 
+      "operand_count": 2, 
       "bytes": 1, 
       "cycles": [
         4
@@ -3797,8 +3805,9 @@
         "H", 
         "C"
       ], 
-      "operand1": "B", 
-      "operand_count": 1, 
+      "operand1": "A",
+      "operand2": "B", 
+      "operand_count": 2, 
       "bytes": 1, 
       "cycles": [
         4
