@@ -70,6 +70,31 @@ const pair<uint8_t, uint8_t> RegisterBank::decomposeRegisters(const uint16_t & r
     return pair<uint8_t, uint8_t>((reg >> 8), ((reg << 8) >> 8));
 }
 
+void RegisterBank::clearFlags() {
+    this->_flags = 0;
+    emit this->valuesChanged();
+}
+
+void RegisterBank::setZFlag() {
+    this->_flags = this->_flags | 0x80;
+    emit this->valuesChanged();
+}
+
+void RegisterBank::setOFlag() {
+    this->_flags = this->_flags | 0x40;
+    emit this->valuesChanged();
+}
+
+void RegisterBank::setHCFlag() {
+    this->_flags = this->_flags | 0x20;
+    emit this->valuesChanged();
+}
+
+void RegisterBank::setCFlag() {
+    this->_flags = this->_flags | 0x10;
+    emit this->valuesChanged();
+}
+
 int RegisterBank::getA() const {
     return this->_A;
 }
@@ -195,13 +220,36 @@ void RegisterBank::jp(Operand & op1, Operand & op2) {
 }
 
 void RegisterBank::add(Operand & op1,  Operand & op2) {
+    this->clearFlags(); //Clear flags
+
+    const int original = op1.getVal();
+
     setPtr setFn = this->_setAlias.at(op1.getRegisterName());
     (this->*setFn)(op1.getVal() + op2.getVal());
+
+    //Set flags
+    if(op1.getVal() == 0)
+        this->setZFlag();
+    if(original <= 15 && op1.getVal() > 15)
+        this->setHCFlag();
+    if(op2.getVal() > 0 && op1.getVal() < original)
+        this->setCFlag();
 }
 
 void RegisterBank::sub(Operand & op1, Operand & op2) {
+    this->clearFlags(); //Clear flags
+
+    const int original = op1.getVal();
+
     setPtr setFn = this->_setAlias.at(op1.getRegisterName());
     (this->*setFn)(op1.getVal() - op2.getVal());
+
+    //Set flags
+    if(op1.getVal() == 0)
+        this->setZFlag();
+    if(op2.getVal() > 0 && op1.getVal() > original)
+        this->setCFlag();
+    this->setOFlag();
 }
 
 RegisterBank::getPtr RegisterBank::getRegisterAccessor(string registerName) {
@@ -231,6 +279,10 @@ void RegisterBank::registerValuesHaveChanged() {
     this->ui->labelHLValue->setText(QString::number(this->getHL()));
     this->ui->labelPCValue->setText(QString::number(this->getPC()));
     this->ui->labelSPValue->setText(QString::number(this->getSP()));
+    this->ui->zeroFlagValue->setText(QString::number((this->_flags & 0x80)>>7));
+    this->ui->subOpFlagValue->setText(QString::number((this->_flags & 0x40)>>6));
+    this->ui->hCarryFlagValue->setText(QString::number((this->_flags & 0x20)>>5));
+    this->ui->carryFlagValue->setText(QString::number((this->_flags & 0x10)>>4));
 }
 
 void RegisterBank::programCounterChanged(const int newCounter) {

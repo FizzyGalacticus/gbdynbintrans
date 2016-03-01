@@ -88,11 +88,15 @@ signals:
     void stackPointerPositionChanged(const int);
 
 private:
-
     uint16_t combineRegisters(const uint8_t &, const uint8_t &) const;
     const pair<uint8_t, uint8_t> decomposeRegisters(const uint16_t &);
     int * getGetFunction(const QString);
     void * getSetFunction(const QString);
+    void clearFlags();
+    void setZFlag();
+    void setOFlag();
+    void setHCFlag();
+    void setCFlag();
 
     Ui::RegisterBank *ui;
     get_function_map _getAlias;
