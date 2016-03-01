@@ -2800,7 +2800,8 @@
       ]
     }, 
     "0xc3": {
-      "mnemonic": "JP", 
+      "mnemonic": "JP",
+      "function": "jp",
       "flags_ZHNC": [
         "-", 
         "-", 
