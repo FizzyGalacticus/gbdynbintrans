@@ -9,20 +9,14 @@ RegisterBank::RegisterBank(QWidget *parent) :
     ui(new Ui::RegisterBank),
     _getAlias(),
     _setAlias(),
-    _functionAlias()
+    _functionAlias(),
+    _A(0), _B(0), _C(0),
+    _D(0), _E(0), _H(0),
+    _L(0), _flags(0), _PC(0),
+    _SP(0)
 {
     ui->setupUi(this);
     connect(this, SIGNAL(valuesChanged()), this, SLOT(registerValuesHaveChanged()));
-
-    this->setA(0);
-    this->setB(0);
-    this->setC(0);
-    this->setD(0);
-    this->setE(0);
-    this->setH(0);
-    this->setL(0);
-    this->setPC(0);
-    this->setSP(0);
 
     /* Map register strings to corresponding getters */
     this->_getAlias.insert(make_pair<string, getPtr >("A", &RegisterBank::getA));
@@ -58,8 +52,6 @@ RegisterBank::RegisterBank(QWidget *parent) :
     this->_functionAlias.insert(make_pair<string, fnPtr>("sub", &RegisterBank::sub));
 
     emit this->valuesChanged();
-    Operand op1(this, "A"), op2(1);
-    this->sub(op1, op2);
 }
 
 RegisterBank::~RegisterBank()
