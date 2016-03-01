@@ -1,8 +1,5 @@
 #include "opcodedecoder.h"
 #include "ui_opcodedecoder.h"
-#include <iostream>
-using std::cout;
-using std::endl;
 #include <QFile>
 #include <utility>
 using std::make_pair;
