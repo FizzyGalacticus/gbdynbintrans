@@ -90,15 +90,17 @@ void Cpu::programCounterLineEditTextChanged(QString newCounter) {
 
 int Cpu::get8BitConst() {
     QString constHex = this->_programHex.mid(this->getProgramCounter()*2+2,2);
-    int constInt = constHex.toInt();
+    int constInt = constHex.toInt(0,16);
     this->_retrievedConst = true;
     this->_retrievedConstWidth = false;
     return constInt;
 }
 
 int Cpu::get16BitConst() {
-    QString constHex = this->_programHex.mid(this->getProgramCounter()*2+2,4);
-    int constInt = constHex.toInt();
+    QString constHexLeastSig = this->_programHex.mid(this->getProgramCounter()*2+2,2);
+    QString constHexMostSig = this->_programHex.mid(this->getProgramCounter()*2+4,2);
+    QString constHex = constHexMostSig + constHexLeastSig;
+    int constInt = constHex.toInt(0, 16);
     this->_retrievedConst = true;
     this->_retrievedConstWidth = true;
     return constInt;
