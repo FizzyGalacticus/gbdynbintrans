@@ -72,12 +72,12 @@ void Cpu::resetStyle() {
 void Cpu::nextInstructionButtonPressed() {
     if(this->_retrievedConst) {
         if(this->_retrievedConstWidth) {
-            this->setProgramCounter(this->getProgramCounter()+3);
             this->_retrievedConst = this->_retrievedConstWidth = false;
+            this->setProgramCounter(this->getProgramCounter()+3);
         }
         else {
-            this->setProgramCounter(this->getProgramCounter()+2);
             this->_retrievedConst = this->_retrievedConstWidth = false;
+            this->setProgramCounter(this->getProgramCounter()+2);
         }
     }
     else this->setProgramCounter(this->getProgramCounter()+1);
