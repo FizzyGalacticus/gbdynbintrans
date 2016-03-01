@@ -58,6 +58,8 @@ private:
         }
     };
 
+    Operand * initOp(const string &, RegisterBank *);
+
     Ui::OpcodeDecoder *ui;
     unordered_map<string, Instruction> _opcodes;
     Instruction _currentInstruction;

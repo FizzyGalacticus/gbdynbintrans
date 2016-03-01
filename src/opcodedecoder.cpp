@@ -80,6 +80,18 @@ OpcodeDecoder::~OpcodeDecoder()
     delete ui;
 }
 
+Operand * OpcodeDecoder::initOp(const string & opStr, RegisterBank * regBank) {
+    Operand * op;
+
+    if(opStr == "d8" || opStr == "a8")
+        op = new Operand( ( (Cpu *)this->parent() )->get8BitConst() );
+    else if(opStr == "d16" || opStr == "a16")
+        op = new Operand( ( (Cpu *)this->parent() )->get16BitConst() );
+    else op = new Operand(regBank, opStr);
+
+    return op;
+}
+
 void OpcodeDecoder::opcodeChanged(const QString opcode, RegisterBank * regBank) {
     if(this->_opcodes.find(opcode.toStdString()) != this->_opcodes.end()) {
         this->_currentInstruction = this->_opcodes.at(opcode.toStdString());
@@ -95,22 +107,10 @@ void OpcodeDecoder::opcodeChanged(const QString opcode, RegisterBank * regBank) 
 
         this->ui->instructionLabel->setText(instruction);
 
-        Operand * op1, * op2;
+        Operand * op1 = this->initOp(this->_currentInstruction._op1, regBank),
+                * op2 = this->initOp(this->_currentInstruction._op2, regBank);
 
-        if(this->_currentInstruction._op2 == "d8") {
-            op1 = new Operand(regBank, this->_currentInstruction._op1);
-            op2 = new Operand( ( (Cpu *)this->parent() )->get8BitConst() );
-            emit this->instructionChanged(this->_currentInstruction._function, *op1, *op2);
-        } else if(this->_currentInstruction._op2 == "d16") {
-            op1 = new Operand(regBank, this->_currentInstruction._op1);
-            op2 = new Operand( ( (Cpu *)this->parent() )->get16BitConst() );
-            emit this->instructionChanged(this->_currentInstruction._function, *op1, *op2);
-        }
-        else {
-            op1 = new Operand(regBank, this->_currentInstruction._op1);
-            op2 = new Operand(regBank, this->_currentInstruction._op2);
-            emit this->instructionChanged(this->_currentInstruction._function, *op1, *op2);
-        }
+        emit this->instructionChanged(this->_currentInstruction._function, *op1, *op2);
     }
     else this->_currentInstruction = Instruction("00");
 }

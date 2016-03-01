@@ -48,6 +48,7 @@ RegisterBank::RegisterBank(QWidget *parent) :
 
     /*Map strings to RegisterBank function pointers*/
     this->_functionAlias.insert(make_pair<string, fnPtr>("ld", &RegisterBank::ld));
+    this->_functionAlias.insert(make_pair<string, fnPtr>("jp", &RegisterBank::jp));
     this->_functionAlias.insert(make_pair<string, fnPtr>("add", &RegisterBank::add));
     this->_functionAlias.insert(make_pair<string, fnPtr>("sub", &RegisterBank::sub));
 
@@ -183,9 +184,14 @@ void RegisterBank::setSP(const int temp) {
 	emit this->valuesChanged();
 }
 
-void RegisterBank::ld(Operand &op1, Operand &op2) {
+void RegisterBank::ld(Operand & op1, Operand & op2) {
     this->sub(op1, op1);
     this->add(op1, op2);
+}
+
+void RegisterBank::jp(Operand & op1, Operand & op2) {
+    this->setPC(op1.getVal()-900);
+    emit this->jumpTriggered(this->getPC());
 }
 
 void RegisterBank::add(Operand & op1,  Operand & op2) {

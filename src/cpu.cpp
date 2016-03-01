@@ -21,6 +21,7 @@ Cpu::Cpu(QWidget *parent) :
     connect(this, SIGNAL(opcodeChanged(QString, RegisterBank *)), this->_opDecoder, SLOT(opcodeChanged(QString, RegisterBank *)));
     connect(this, SIGNAL(programCounterHasChanged(int)), this->_regBank, SLOT(programCounterChanged(int)));
     connect(this->_opDecoder, SIGNAL(instructionChanged(string,Operand&,Operand&)), this->_regBank, SLOT(instructionChanged(string,Operand&,Operand&)));
+    connect(this->_regBank, SIGNAL(jumpTriggered(int)), this, SLOT(jumpTriggered(int)));
 }
 
 Cpu::~Cpu()
@@ -104,6 +105,11 @@ int Cpu::get16BitConst() {
     this->_retrievedConst = true;
     this->_retrievedConstWidth = true;
     return constInt;
+}
+
+void Cpu::jumpTriggered(const int position) {
+    this->_retrievedConst = this->_retrievedConstWidth = false;
+    this->setProgramCounter(position);
 }
 
 QString Cpu::formatProgramHex(const QString str) const {

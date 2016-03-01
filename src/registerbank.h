@@ -69,6 +69,7 @@ public:
     void setSP(const int);
 
     void ld(Operand &, Operand &);
+    void jp(Operand &, Operand &);
     void add(Operand &, Operand &);
     void sub(Operand &, Operand &);
 
@@ -83,6 +84,7 @@ private slots:
 
 signals:
     void valuesChanged();
+    void jumpTriggered(const int);
     void stackPointerPositionChanged(const int);
 
 private:

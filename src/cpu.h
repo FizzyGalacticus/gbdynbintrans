@@ -30,6 +30,7 @@ signals:
     void opcodeChanged(const QString, RegisterBank *);
 
 public slots:
+    void jumpTriggered(const int);
 
 private slots:
     void resetStyle();
