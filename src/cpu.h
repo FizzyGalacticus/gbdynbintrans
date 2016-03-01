@@ -21,6 +21,8 @@ public:
     int getProgramCounter() const;
     void setProgramHex(QString);
     const QString getOpcode();
+    int get8BitConst();
+    int get16BitConst();
 
 signals:
     void programCounterHasChanged(const int);
@@ -43,6 +45,7 @@ private:
     QString _programHex;
     RegisterBank * _regBank;
     OpcodeDecoder * _opDecoder;
+    bool _retrievedConst, _retrievedConstWidth; //retrievedConstWidth 0 for 8bit 1 for 16bit
 };
 
 #endif // CPU_H

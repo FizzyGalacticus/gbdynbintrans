@@ -9,7 +9,9 @@ Cpu::Cpu(QWidget *parent) :
     ui(new Ui::Cpu),
     _programCounter(0),
     _regBank(new RegisterBank),
-    _opDecoder(new OpcodeDecoder(":opcodes.json"))
+    _opDecoder(new OpcodeDecoder(":opcodes.json", this)),
+    _retrievedConst(false),
+    _retrievedConstWidth(false)
 {
     ui->setupUi(this);
     ui->instructionLayout->addWidget(this->_opDecoder);
@@ -68,7 +70,17 @@ void Cpu::resetStyle() {
 }
 
 void Cpu::nextInstructionButtonPressed() {
-    this->setProgramCounter(this->getProgramCounter()+1);
+    if(this->_retrievedConst) {
+        if(this->_retrievedConstWidth) {
+            this->setProgramCounter(this->getProgramCounter()+3);
+            this->_retrievedConst = this->_retrievedConstWidth = false;
+        }
+        else {
+            this->setProgramCounter(this->getProgramCounter()+2);
+            this->_retrievedConst = this->_retrievedConstWidth = false;
+        }
+    }
+    else this->setProgramCounter(this->getProgramCounter()+1);
 }
 
 void Cpu::programCounterLineEditTextChanged(QString newCounter) {
@@ -77,6 +89,22 @@ void Cpu::programCounterLineEditTextChanged(QString newCounter) {
         return;
 
     this->setProgramCounter(counterInteger);
+}
+
+int Cpu::get8BitConst() {
+    QString constHex = this->_programHex.mid(this->getProgramCounter()*2+2,2);
+    int constInt = constHex.toInt();
+    this->_retrievedConst = true;
+    this->_retrievedConstWidth = false;
+    return constInt;
+}
+
+int Cpu::get16BitConst() {
+    QString constHex = this->_programHex.mid(this->getProgramCounter()*2+2,4);
+    int constInt = constHex.toInt();
+    this->_retrievedConst = true;
+    this->_retrievedConstWidth = true;
+    return constInt;
 }
 
 QString Cpu::formatProgramHex(const QString str) const {

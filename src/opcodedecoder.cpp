@@ -6,6 +6,7 @@ using std::endl;
 #include <QFile>
 #include <utility>
 using std::make_pair;
+#include "cpu.h"
 
 OpcodeDecoder::OpcodeDecoder(QString filename, QWidget *parent) :
     QWidget(parent),
@@ -97,8 +98,22 @@ void OpcodeDecoder::opcodeChanged(const QString opcode, RegisterBank * regBank) 
 
         this->ui->instructionLabel->setText(instruction);
 
-        Operand op1(regBank, this->_currentInstruction._op1), op2(regBank, this->_currentInstruction._op2);
-        emit this->instructionChanged(this->_currentInstruction._function, op1, op2);
+        Operand * op1, * op2;
+
+        if(this->_currentInstruction._op2 == "d8") {
+            op1 = new Operand(regBank, this->_currentInstruction._op1);
+            op2 = new Operand( ( (Cpu *)this->parent() )->get8BitConst() );
+            emit this->instructionChanged(this->_currentInstruction._function, *op1, *op2);
+        } else if(this->_currentInstruction._op2 == "d16") {
+            op1 = new Operand(regBank, this->_currentInstruction._op1);
+            op2 = new Operand( ( (Cpu *)this->parent() )->get16BitConst() );
+            emit this->instructionChanged(this->_currentInstruction._function, *op1, *op2);
+        }
+        else {
+            op1 = new Operand(regBank, this->_currentInstruction._op1);
+            op2 = new Operand(regBank, this->_currentInstruction._op2);
+            emit this->instructionChanged(this->_currentInstruction._function, *op1, *op2);
+        }
     }
     else this->_currentInstruction = Instruction("00");
 }
