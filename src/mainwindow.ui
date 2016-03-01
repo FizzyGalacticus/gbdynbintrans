@@ -14,6 +14,10 @@
   <property name="windowTitle">
    <string>gbdynbintrans</string>
   </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>../res/img/gameboy.gif</normaloff>../res/img/gameboy.gif</iconset>
+  </property>
   <widget class="QWidget" name="centralWidget">
    <layout class="QGridLayout" name="gridLayout_2">
     <item row="0" column="0">
