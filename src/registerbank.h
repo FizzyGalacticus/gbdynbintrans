@@ -96,8 +96,8 @@ private:
     get_function_map _getAlias;
     set_function_map _setAlias;
     function_map _functionAlias;
-    __int8 _A, _B, _C, _D, _E, _H, _L, _flags;
-    __int16 _PC, _SP;
+    unsigned __int8 _A, _B, _C, _D, _E, _H, _L, _flags;
+    unsigned __int16 _PC, _SP;
 };
 
 #endif // REGISTERBANK_H
