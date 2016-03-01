@@ -68,9 +68,9 @@ public:
     int getSP() const;
     void setSP(const int);
 
-    void add(Operand & op1, Operand & op2);
-
-    void sub(Operand & op1, Operand & op2);
+    void ld(Operand &, Operand &);
+    void add(Operand &, Operand &);
+    void sub(Operand &, Operand &);
 
     getPtr getRegisterAccessor(string);
 

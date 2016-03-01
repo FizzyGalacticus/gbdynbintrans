@@ -14,8 +14,8 @@ RegisterBank::RegisterBank(QWidget *parent) :
     ui->setupUi(this);
     connect(this, SIGNAL(valuesChanged()), this, SLOT(registerValuesHaveChanged()));
 
-    this->setA(2);
-    this->setB(2);
+    this->setA(0);
+    this->setB(0);
     this->setC(0);
     this->setD(0);
     this->setE(0);
@@ -53,6 +53,7 @@ RegisterBank::RegisterBank(QWidget *parent) :
     this->_setAlias.insert(make_pair<string, setPtr >("SP", &RegisterBank::setSP));
 
     /*Map strings to RegisterBank function pointers*/
+    this->_functionAlias.insert(make_pair<string, fnPtr>("ld", &RegisterBank::ld));
     this->_functionAlias.insert(make_pair<string, fnPtr>("add", &RegisterBank::add));
     this->_functionAlias.insert(make_pair<string, fnPtr>("sub", &RegisterBank::sub));
 
@@ -188,6 +189,11 @@ int RegisterBank::getSP() const {
 void RegisterBank::setSP(const int temp) {
 	this->_SP = temp;
 	emit this->valuesChanged();
+}
+
+void RegisterBank::ld(Operand &op1, Operand &op2) {
+    this->sub(op1, op1);
+    this->add(op1, op2);
 }
 
 void RegisterBank::add(Operand & op1,  Operand & op2) {
