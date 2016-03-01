@@ -42,7 +42,7 @@ private:
 
     Ui::Cpu *ui;
 
-    __int16 _programCounter;
+    uint16_t _programCounter;
     QString _programHex;
     RegisterBank * _regBank;
     OpcodeDecoder * _opDecoder;

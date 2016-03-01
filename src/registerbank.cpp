@@ -60,14 +60,14 @@ RegisterBank::~RegisterBank()
     delete ui;
 }
 
-__int16 RegisterBank::combineRegisters(const __int8 & highReg, const __int8 & lowReg) const {
-    __int16 combinedRegisters = highReg;
+uint16_t RegisterBank::combineRegisters(const uint8_t & highReg, const uint8_t & lowReg) const {
+    uint16_t combinedRegisters = highReg;
     combinedRegisters = (combinedRegisters << 8) | lowReg;
     return combinedRegisters;
 }
 
-const pair<__int8, __int8> RegisterBank::decomposeRegisters(const __int16 & reg) {
-    return pair<__int8, __int8>((reg >> 8), ((reg << 8) >> 8));
+const pair<uint8_t, uint8_t> RegisterBank::decomposeRegisters(const uint16_t & reg) {
+    return pair<uint8_t, uint8_t>((reg >> 8), ((reg << 8) >> 8));
 }
 
 int RegisterBank::getA() const {
@@ -138,7 +138,7 @@ int RegisterBank::getBC() const {
 }
 
 void RegisterBank::setBC(const int temp) {
-	pair<__int8, __int8> regs = decomposeRegisters((__int16)temp);
+    pair<uint8_t, uint8_t> regs = decomposeRegisters((uint16_t)temp);
 	this->setB(regs.first);
 	this->setC(regs.second);
 	emit this->valuesChanged();
@@ -149,7 +149,7 @@ int RegisterBank::getDE() const {
 }
 
 void RegisterBank::setDE(const int temp) {
-	pair<__int8, __int8> regs = decomposeRegisters((__int16)temp);
+    pair<uint8_t, uint8_t> regs = decomposeRegisters((uint16_t)temp);
 	this->setD(regs.first);
 	this->setE(regs.second);
 	emit this->valuesChanged();
@@ -160,7 +160,7 @@ int RegisterBank::getHL() const {
 }
 
 void RegisterBank::setHL(const int temp) {
-	pair<__int8, __int8> regs = decomposeRegisters((__int16)temp);
+    pair<uint8_t, uint8_t> regs = decomposeRegisters((uint16_t)temp);
 	this->setH(regs.first);
 	this->setL(regs.second);
 	emit this->valuesChanged();

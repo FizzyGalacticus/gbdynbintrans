@@ -89,8 +89,8 @@ signals:
 
 private:
 
-    __int16 combineRegisters(const __int8 &, const __int8 &) const;
-    const pair<__int8, __int8> decomposeRegisters(const __int16 &);
+    uint16_t combineRegisters(const uint8_t &, const uint8_t &) const;
+    const pair<uint8_t, uint8_t> decomposeRegisters(const uint16_t &);
     int * getGetFunction(const QString);
     void * getSetFunction(const QString);
 
@@ -98,8 +98,8 @@ private:
     get_function_map _getAlias;
     set_function_map _setAlias;
     function_map _functionAlias;
-    unsigned __int8 _A, _B, _C, _D, _E, _H, _L, _flags;
-    unsigned __int16 _PC, _SP;
+    uint8_t _A, _B, _C, _D, _E, _H, _L, _flags;
+    uint16_t _PC, _SP;
 };
 
 #endif // REGISTERBANK_H
