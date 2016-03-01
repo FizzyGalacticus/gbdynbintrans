@@ -1,6 +1,18 @@
 NOP
-ADD A,B
-SUB A,B
+LD HL, #256
+LD A,#255
+LD B,#2
+LD C,#3
+LD D,#4
+LD E,#5
+LD H,#6
+LD L,#7
+LD B,A
+LD C,A
+LD D,A
+LD E,A
+LD H,A
+LD L,A
 ADD A,B
 ADD A,B
 ADD A,B
