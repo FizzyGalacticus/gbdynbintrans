@@ -1,8 +1,5 @@
 #include "cpu.h"
 #include "ui_cpu.h"
-#include <iostream>
-using std::cout;
-using std::endl;
 
 Cpu::Cpu(QWidget *parent) :
     QWidget(parent),
