@@ -2420,7 +2420,7 @@
         16
       ]
     }, 
-    "0xd6": {
+    "0xd7": {
       "mnemonic": "RST", 
       "flags_ZHNC": [
         "-", 
@@ -3499,7 +3499,7 @@
         16
       ]
     }, 
-    "0xd5": {
+    "0xd6": {
       "mnemonic": "SUB",
       "function": "sub", 
       "flags_ZHNC": [
