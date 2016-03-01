@@ -29,7 +29,7 @@ OpcodeDecoder::OpcodeDecoder(QString filename, QWidget *parent) :
     if(!parsingSuccessful) {
         // report to the user the failure and their locations in the document.
         QString err = "Failed to parse configuration\n";
-        err += QString(reader.getFormatedErrorMessages().c_str());
+        err += QString(reader.getFormattedErrorMessages().c_str());
         this->ui->instructionLabel->setText(err);
     } else {
         Json::Value unprefixed = root["unprefixed"];
