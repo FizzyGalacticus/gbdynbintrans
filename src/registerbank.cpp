@@ -96,19 +96,19 @@ void RegisterBank::setCFlag() {
 }
 
 bool RegisterBank::getZFlag() {
-    return (this->_flags & 0x80 > 1);
+    return ( (this->_flags & 0x80) > 1);
 }
 
 bool RegisterBank::getOFlag() {
-    return (this->_flags & 0x40 > 1);
+    return ( (this->_flags & 0x40) > 1);
 }
 
 bool RegisterBank::getHCFlag() {
-    return (this->_flags & 0x20 > 1);
+    return ( (this->_flags & 0x20) > 1);
 }
 
 bool RegisterBank::getCFlag() {
-    return (this->_flags & 0x10 > 1);
+    return ( (this->_flags & 0x10) > 1);
 }
 
 int RegisterBank::getA() const {
