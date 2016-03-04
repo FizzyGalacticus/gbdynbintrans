@@ -69,7 +69,8 @@ public:
     void setSP(const int);
 
     void ld(Operand &, Operand &);
-    void jp(Operand &, Operand &);
+    void jpAbsolute(Operand &);
+    void jpConditional(Operand &, Operand &);
     void add(Operand &, Operand &);
     void sub(Operand &, Operand &);
 
@@ -97,6 +98,10 @@ private:
     void setOFlag();
     void setHCFlag();
     void setCFlag();
+    bool getZFlag();
+    bool getOFlag();
+    bool getHCFlag();
+    bool getCFlag();
 
     Ui::RegisterBank *ui;
     get_function_map _getAlias;

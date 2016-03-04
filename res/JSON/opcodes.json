@@ -2238,6 +2238,7 @@
     }, 
     "0xca": {
       "mnemonic": "JP", 
+      "function": "jpConditional",
       "flags_ZHNC": [
         "-", 
         "-", 
@@ -2801,7 +2802,7 @@
     }, 
     "0xc3": {
       "mnemonic": "JP",
-      "function": "jp",
+      "function": "jpConditional",
       "flags_ZHNC": [
         "-", 
         "-", 
@@ -2817,6 +2818,7 @@
     }, 
     "0xc2": {
       "mnemonic": "JP", 
+      "function": "jpConditional",
       "flags_ZHNC": [
         "-", 
         "-", 
@@ -3175,6 +3177,7 @@
     }, 
     "0xd9": {
       "mnemonic": "JP", 
+      "function": "jpConditional",
       "flags_ZHNC": [
         "-", 
         "-", 
@@ -3452,6 +3455,7 @@
     }, 
     "0xd2": {
       "mnemonic": "JP", 
+      "function": "jpConditional",
       "flags_ZHNC": [
         "-", 
         "-", 
@@ -3582,6 +3586,7 @@
     }, 
     "0xe7": {
       "mnemonic": "JP", 
+      "function": "jpConditional",
       "flags_ZHNC": [
         "-", 
         "-", 

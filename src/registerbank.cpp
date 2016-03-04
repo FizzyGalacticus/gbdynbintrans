@@ -48,7 +48,7 @@ RegisterBank::RegisterBank(QWidget *parent) :
 
     /*Map strings to RegisterBank function pointers*/
     this->_functionAlias.insert(make_pair<string, fnPtr>("ld", &RegisterBank::ld));
-    this->_functionAlias.insert(make_pair<string, fnPtr>("jp", &RegisterBank::jp));
+    this->_functionAlias.insert(make_pair<string, fnPtr>("jpConditional", &RegisterBank::jpConditional));
     this->_functionAlias.insert(make_pair<string, fnPtr>("add", &RegisterBank::add));
     this->_functionAlias.insert(make_pair<string, fnPtr>("sub", &RegisterBank::sub));
 
@@ -93,6 +93,22 @@ void RegisterBank::setHCFlag() {
 void RegisterBank::setCFlag() {
     this->_flags = this->_flags | 0x10;
     emit this->valuesChanged();
+}
+
+bool RegisterBank::getZFlag() {
+    return (this->_flags & 0x80 > 1);
+}
+
+bool RegisterBank::getOFlag() {
+    return (this->_flags & 0x40 > 1);
+}
+
+bool RegisterBank::getHCFlag() {
+    return (this->_flags & 0x20 > 1);
+}
+
+bool RegisterBank::getCFlag() {
+    return (this->_flags & 0x10 > 1);
 }
 
 int RegisterBank::getA() const {
@@ -214,9 +230,22 @@ void RegisterBank::ld(Operand & op1, Operand & op2) {
     this->add(op1, op2);
 }
 
-void RegisterBank::jp(Operand & op1, Operand & op2) {
+void RegisterBank::jpAbsolute(Operand & op1) {
     this->setPC(op1.getVal()-900);
     emit this->jumpTriggered(this->getPC());
+}
+
+void RegisterBank::jpConditional(Operand & op1, Operand & op2) {
+    if(op1.getRegisterName() == "")
+        this->jpAbsolute(op1);
+    else if(op1.getRegisterName() == "Z" && this->getZFlag())
+        this->jpAbsolute(op2);
+    else if(op1.getRegisterName() == "NZ" && !this->getZFlag())
+        this->jpAbsolute(op2);
+    else if(op1.getRegisterName() == "C" && this->getCFlag())
+        this->jpAbsolute(op2);
+    else if(op1.getRegisterName() == "NC" && !this->getCFlag())
+        this->jpAbsolute(op2);
 }
 
 void RegisterBank::add(Operand & op1,  Operand & op2) {

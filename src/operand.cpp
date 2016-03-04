@@ -10,7 +10,8 @@ Operand::Operand(RegisterBank * regBank, string reg, QObject *parent)
 
 Operand::Operand(const int constantInt, QObject *parent)
     : QObject(parent),
-      _constVal(constantInt)
+      _constVal(constantInt),
+      _registerName("")
 {
     this->_regBank = NULL;
 }
