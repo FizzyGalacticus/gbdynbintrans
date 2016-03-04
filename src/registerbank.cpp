@@ -228,6 +228,7 @@ void RegisterBank::setSP(const int temp) {
 void RegisterBank::ld(Operand & op1, Operand & op2) {
     this->sub(op1, op1);
     this->add(op1, op2);
+    this->clearFlags();
 }
 
 void RegisterBank::jpAbsolute(Operand & op1) {
