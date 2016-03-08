@@ -20,6 +20,7 @@ public:
     Operand(const int, QObject *parent=0);
 
     void setRegisterBank(RegisterBank *);
+    void setValue(const int);
     int getVal() const;
     const string getRegisterName();
 

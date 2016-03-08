@@ -16,6 +16,11 @@ Operand::Operand(const int constantInt, QObject *parent)
     this->_regBank = NULL;
 }
 
+void Operand::setValue(const int val) {
+    this->_regBank = NULL;
+    this->_constVal = val;
+}
+
 int Operand::getVal() const {
     if(this->_regBank)
         return (this->_regBank->*(this->_regBank->getRegisterAccessor(this->_registerName)))();
