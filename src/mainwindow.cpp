@@ -54,7 +54,7 @@ void MainWindow::loadROM(QString filename) {
     ifstream inFile(filename.toStdString().c_str(), std::ios::binary);
     inFile.seekg(900);
 
-    while(inFile >> data) {
+    while(inFile.read((char *)&data,1)) {
         if((int)data < 16)
             programText += "0";
         programText += QString::number((int)data, 16);
