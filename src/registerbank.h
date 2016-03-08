@@ -78,6 +78,7 @@ public:
     void nd(Operand &, Operand &); //and, or & xor are c++ keywords
     void orr(Operand &, Operand &);
     void xorr(Operand &, Operand &);
+    void cp(Operand &, Operand &);
 
     getPtr getRegisterAccessor(string);
 
