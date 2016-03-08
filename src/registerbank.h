@@ -73,6 +73,8 @@ public:
     void jpConditional(Operand &, Operand &);
     void add(Operand &, Operand &);
     void sub(Operand &, Operand &);
+    void inc(Operand &, Operand &);
+    void dec(Operand &, Operand &);
 
     getPtr getRegisterAccessor(string);
 

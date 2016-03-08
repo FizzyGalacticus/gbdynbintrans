@@ -51,6 +51,8 @@ RegisterBank::RegisterBank(QWidget *parent) :
     this->_functionAlias.insert(make_pair<string, fnPtr>("jpConditional", &RegisterBank::jpConditional));
     this->_functionAlias.insert(make_pair<string, fnPtr>("add", &RegisterBank::add));
     this->_functionAlias.insert(make_pair<string, fnPtr>("sub", &RegisterBank::sub));
+    this->_functionAlias.insert(make_pair<string, fnPtr>("inc", &RegisterBank::inc));
+    this->_functionAlias.insert(make_pair<string, fnPtr>("dec", &RegisterBank::dec));
 
     emit this->valuesChanged();
 }
@@ -280,6 +282,16 @@ void RegisterBank::sub(Operand & op1, Operand & op2) {
     if(op2.getVal() > 0 && op1.getVal() > original)
         this->setCFlag();
     this->setOFlag();
+}
+
+void RegisterBank::inc(Operand & op1, Operand & op2) {
+    op2.setValue(1);
+    this->add(op1, op2);
+}
+
+void RegisterBank::dec(Operand & op1, Operand & op2) {
+    op2.setValue(1);
+    this->sub(op1, op2);
 }
 
 RegisterBank::getPtr RegisterBank::getRegisterAccessor(string registerName) {
