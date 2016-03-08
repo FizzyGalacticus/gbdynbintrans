@@ -75,6 +75,9 @@ public:
     void sub(Operand &, Operand &);
     void inc(Operand &, Operand &);
     void dec(Operand &, Operand &);
+    void nd(Operand &, Operand &); //and, or & xor are c++ keywords
+    void orr(Operand &, Operand &);
+    void xorr(Operand &, Operand &);
 
     getPtr getRegisterAccessor(string);
 

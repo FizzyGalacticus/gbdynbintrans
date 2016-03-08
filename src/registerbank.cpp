@@ -52,7 +52,9 @@ RegisterBank::RegisterBank(QWidget *parent) :
     this->_functionAlias.insert(make_pair<string, fnPtr>("add", &RegisterBank::add));
     this->_functionAlias.insert(make_pair<string, fnPtr>("sub", &RegisterBank::sub));
     this->_functionAlias.insert(make_pair<string, fnPtr>("inc", &RegisterBank::inc));
-    this->_functionAlias.insert(make_pair<string, fnPtr>("dec", &RegisterBank::dec));
+    this->_functionAlias.insert(make_pair<string, fnPtr>("nd", &RegisterBank::nd));
+    this->_functionAlias.insert(make_pair<string, fnPtr>("orr", &RegisterBank::orr));
+    this->_functionAlias.insert(make_pair<string, fnPtr>("xorr", &RegisterBank::xorr));
 
     emit this->valuesChanged();
 }
@@ -292,6 +294,18 @@ void RegisterBank::inc(Operand & op1, Operand & op2) {
 void RegisterBank::dec(Operand & op1, Operand & op2) {
     op2.setValue(1);
     this->sub(op1, op2);
+}
+
+void RegisterBank::nd(Operand & op1, Operand & op2) {
+    this->setA(this->getA() & op1.getVal());
+}
+
+void RegisterBank::orr(Operand & op1, Operand & op2) {
+    this->setA(this->getA() | op1.getVal());
+}
+
+void RegisterBank::xorr(Operand & op1, Operand & op2) {
+    this->setA(this->getA() ^ op1.getVal());
 }
 
 RegisterBank::getPtr RegisterBank::getRegisterAccessor(string registerName) {
