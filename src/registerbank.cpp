@@ -23,6 +23,11 @@ RegisterBank::RegisterBank(QWidget *parent) :
     ui->setupUi(this);
     connect(this, SIGNAL(valuesChanged()), this, SLOT(registerValuesHaveChanged()));
 
+    /*
+     * The rest of this constructor is horrible and yucky. Unless you want to
+     * lose your mind, I suggest turning back now. Read at your own risk!
+     */
+
     /* Map register strings to corresponding getters */
     this->_getAlias.insert(make_pair<string, getPtr >("A", &RegisterBank::getA));
     this->_getAlias.insert(make_pair<string, getPtr >("B", &RegisterBank::getB));
@@ -126,8 +131,8 @@ int RegisterBank::getA() const {
 }
 
 void RegisterBank::setA(const int temp) {
-	this->_A = temp;
-	emit this->valuesChanged();
+    this->_A = temp;
+    emit this->valuesChanged();
 }
 
 int RegisterBank::getB() const {
@@ -135,53 +140,53 @@ int RegisterBank::getB() const {
 }
 
 void RegisterBank::setB(const int temp) {
-	this->_B = temp;
-	emit this->valuesChanged();
+    this->_B = temp;
+    emit this->valuesChanged();
 }
 
 int RegisterBank::getC() const {
-	return this->_C;
+    return this->_C;
 }
 
 void RegisterBank::setC(const int temp) {
-	this->_C = temp;
-	emit this->valuesChanged();
+    this->_C = temp;
+    emit this->valuesChanged();
 }
 
 int RegisterBank::getD() const {
-	return this->_D;
+    return this->_D;
 }
 
 void RegisterBank::setD(const int temp) {
-	this->_D = temp;
-	emit this->valuesChanged();
+    this->_D = temp;
+    emit this->valuesChanged();
 }
 
 int RegisterBank::getE() const {
-	return this->_E;
+    return this->_E;
 }
 
 void RegisterBank::setE(const int temp) {
-	this->_E = temp;
-	emit this->valuesChanged();
+    this->_E = temp;
+    emit this->valuesChanged();
 }
 
 int RegisterBank::getH() const {
-	return this->_H;
+    return this->_H;
 }
 
 void RegisterBank::setH(const int temp) {
-	this->_H = temp;
-	emit this->valuesChanged();
+    this->_H = temp;
+    emit this->valuesChanged();
 }
 
 int RegisterBank::getL() const {
-	return this->_L;
+    return this->_L;
 }
 
 void RegisterBank::setL(const int temp) {
-	this->_L = temp;
-	emit this->valuesChanged();
+    this->_L = temp;
+    emit this->valuesChanged();
 }
 
 int RegisterBank::getBC() const {
@@ -190,49 +195,49 @@ int RegisterBank::getBC() const {
 
 void RegisterBank::setBC(const int temp) {
     pair<uint8_t, uint8_t> regs = decomposeRegisters((uint16_t)temp);
-	this->setB(regs.first);
-	this->setC(regs.second);
-	emit this->valuesChanged();
+    this->setB(regs.first);
+    this->setC(regs.second);
+    emit this->valuesChanged();
 }
 
 int RegisterBank::getDE() const {
-	return this->combineRegisters(this->getD(), this->getE());
+    return this->combineRegisters(this->getD(), this->getE());
 }
 
 void RegisterBank::setDE(const int temp) {
     pair<uint8_t, uint8_t> regs = decomposeRegisters((uint16_t)temp);
-	this->setD(regs.first);
-	this->setE(regs.second);
-	emit this->valuesChanged();
+    this->setD(regs.first);
+    this->setE(regs.second);
+    emit this->valuesChanged();
 }
 
 int RegisterBank::getHL() const {
-	return this->combineRegisters(this->getH(), this->getL());
+    return this->combineRegisters(this->getH(), this->getL());
 }
 
 void RegisterBank::setHL(const int temp) {
     pair<uint8_t, uint8_t> regs = decomposeRegisters((uint16_t)temp);
-	this->setH(regs.first);
-	this->setL(regs.second);
-	emit this->valuesChanged();
+    this->setH(regs.first);
+    this->setL(regs.second);
+    emit this->valuesChanged();
 }
 
 int RegisterBank::getPC() const {
-	return this->_PC;
+    return this->_PC;
 }
 
 void RegisterBank::setPC(const int temp) {
-	this->_PC = temp;
-	emit this->valuesChanged();
+    this->_PC = temp;
+    emit this->valuesChanged();
 }
 
 int RegisterBank::getSP() const {
-	return this->_SP;
+    return this->_SP;
 }
 
 void RegisterBank::setSP(const int temp) {
-	this->_SP = temp;
-	emit this->valuesChanged();
+    this->_SP = temp;
+    emit this->valuesChanged();
 }
 
 void RegisterBank::ld(Operand & op1, Operand & op2) {
@@ -242,7 +247,7 @@ void RegisterBank::ld(Operand & op1, Operand & op2) {
 }
 
 void RegisterBank::jpAbsolute(Operand & op1) {
-    this->setPC(op1.getVal()-900);
+    this->setPC(op1.getVal()-512);
     emit this->jumpTriggered(this->getPC());
 }
 
