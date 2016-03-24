@@ -35,6 +35,8 @@ Cpu::Cpu(QWidget *parent) :
 
 Cpu::~Cpu()
 {
+    this->pause();
+
     delete ui;
 }
 
@@ -108,8 +110,10 @@ void Cpu::run() {
 }
 
 void Cpu::pause() {
-    this->_isRunning = false;
-    this->_runningThread.join();
+    if(this->_isRunning) {
+        this->_isRunning = false;
+        this->_runningThread.join();
+    }
 }
 
 void Cpu::runThread() {
