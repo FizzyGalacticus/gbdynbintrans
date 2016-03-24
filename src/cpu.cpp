@@ -5,10 +5,12 @@
 
 #include "cpu.h"
 #include "ui_cpu.h"
+#include <unistd.h>
 
 Cpu::Cpu(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::Cpu),
+    _isRunning(false),
     _programCounter(0),
     _regBank(new RegisterBank),
     _opDecoder(new OpcodeDecoder(":opcodes.json", this)),
@@ -21,6 +23,8 @@ Cpu::Cpu(QWidget *parent) :
 
     connect(this, SIGNAL(programHexChanged()), this, SLOT(resetStyle()));
     connect(this, SIGNAL(programCounterHasChanged(int)), this, SLOT(resetStyle()));
+    connect(this->ui->runButton, SIGNAL(pressed()), this, SLOT(runThread()));
+    connect(this->ui->pauseButton, SIGNAL(pressed()), this, SLOT(pause()));
     connect(this->ui->nextInstructionButton, SIGNAL(pressed()), this, SLOT(nextInstructionButtonPressed()));
     connect(this->ui->programCounterLineEdit, SIGNAL(textChanged(QString)), this, SLOT(programCounterLineEditTextChanged(QString)));
     connect(this, SIGNAL(opcodeChanged(QString, RegisterBank *)), this->_opDecoder, SLOT(opcodeChanged(QString, RegisterBank *)));
@@ -92,6 +96,25 @@ void Cpu::programCounterLineEditTextChanged(QString newCounter) {
         return;
 
     this->setProgramCounter(counterInteger);
+}
+
+void Cpu::run() {
+    this->_isRunning = true;
+
+    while(this->_isRunning) {
+        this->nextInstructionButtonPressed();
+        sleep(1);
+    }
+}
+
+void Cpu::pause() {
+    this->_isRunning = false;
+    this->_runningThread.join();
+}
+
+void Cpu::runThread() {
+    if(!this->_isRunning)
+        this->_runningThread = std::thread(&Cpu::run, this);
 }
 
 int Cpu::get8BitConst() {

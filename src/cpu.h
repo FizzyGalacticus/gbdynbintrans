@@ -13,6 +13,8 @@
 #define CPU_H
 
 #include <QWidget>
+#include <thread>
+using std::thread;
 #include "opcodedecoder.h"
 #include "registerbank.h"
 
@@ -47,12 +49,17 @@ private slots:
     void resetStyle();
     void nextInstructionButtonPressed();
     void programCounterLineEditTextChanged(QString);
+    void run();
+    void pause();
+    void runThread();
 
 private:
     QString formatProgramHex(const QString) const;
 
     Ui::Cpu *ui;
 
+    std::thread _runningThread;
+    bool _isRunning;
     uint16_t _programCounter;
     QString _programHex;
     RegisterBank * _regBank;
