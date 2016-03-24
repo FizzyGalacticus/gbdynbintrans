@@ -21,7 +21,7 @@ public slots:
     void opcodeChanged(const QString, RegisterBank *);
 
 signals:
-    instructionChanged(string, Operand &, Operand &);
+    void instructionChanged(string, Operand &, Operand &);
 
 public:
     explicit OpcodeDecoder(QString filename, QWidget *parent = 0);
