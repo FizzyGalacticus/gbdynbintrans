@@ -1,3 +1,12 @@
+/* CS 441 - System Architecture
+ * Project #2 - gbdynbintrans - opcodedecoder.h
+ * Bucky Frost & Dustin Dodson
+ *
+ * This class uses the "opcodes.json" file that
+ * we have, grabs all of the opcodes, and parses
+ * the commands as they come in from the CPU.
+ */
+
 #ifndef OPCODEDECODER_H
 #define OPCODEDECODER_H
 

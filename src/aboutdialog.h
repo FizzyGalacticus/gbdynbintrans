@@ -1,3 +1,12 @@
+/* CS 441 - System Architecture
+ * Project #2 - gbdynbintrans - aboutdialog.h
+ * Bucky Frost & Dustin Dodson
+ *
+ * This class is meant only to provide basic
+ * information within the application about
+ * its creators.
+ */
+
 #ifndef ABOUTDIALOG_H
 #define ABOUTDIALOG_H
 

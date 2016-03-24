@@ -1,3 +1,14 @@
+/* CS 441 - System Architecture
+ * Project #2 - gbdynbintrans - cpu.h
+ * Bucky Frost & Dustin Dodson
+ *
+ * This class acts as the CPU of our
+ * translator. It gets the opcodes
+ * and translates them into commands,
+ * which in turn act on the register
+ * bank.
+ */
+
 #ifndef CPU_H
 #define CPU_H
 

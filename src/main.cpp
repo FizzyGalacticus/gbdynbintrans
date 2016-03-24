@@ -1,3 +1,8 @@
+/* CS 441 - System Architecture
+ * Project #2 - gbdynbintrans - main.cpp
+ * Bucky Frost & Dustin Dodson
+ */
+
 #include "mainwindow.h"
 #include <QApplication>
 

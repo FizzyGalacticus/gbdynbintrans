@@ -1,3 +1,12 @@
+/* CS 441 - System Architecture
+ * Project #2 - gbdynbintrans - registerbank.h
+ * Bucky Frost & Dustin Dodson
+ *
+ * This class acts as the registers of the CPU.
+ * There are methods that help abstract away
+ * the arithmetic functions (which was a pain!)
+ */
+
 #ifndef REGISTERBANK_H
 #define REGISTERBANK_H
 

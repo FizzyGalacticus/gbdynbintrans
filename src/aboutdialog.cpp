@@ -1,3 +1,8 @@
+/* CS 441 - System Architecture
+ * Project #2 - gbdynbintrans - aboutdialog.cpp
+ * Bucky Frost & Dustin Dodson
+ */
+
 #include "aboutdialog.h"
 #include "ui_aboutdialog.h"
 

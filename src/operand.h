@@ -1,3 +1,15 @@
+/* CS 441 - System Architecture
+ * Project #2 - gbdynbintrans - operand.h
+ * Bucky Frost & Dustin Dodson
+ *
+ * This class is to abstract the method
+ * of getting a value, whether the value
+ * originates from a register or be a
+ * constant, this allows us to perform
+ * the same operation without worrying
+ * about it.
+ */
+
 #ifndef OPERAND_H
 #define OPERAND_H
 

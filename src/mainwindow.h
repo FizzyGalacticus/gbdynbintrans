@@ -1,3 +1,14 @@
+/* CS 441 - System Architecture
+ * Project #2 - gbdynbintrans - mainwindow.h
+ * Bucky Frost & Dustin Dodson
+ *
+ * This class, as the name suggests, acts as
+ * the main window for the application. Its
+ * sole purpose is to allow the user to
+ * choose a ROM file, and display the CPU
+ * operations as they happen.
+ */
+
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 

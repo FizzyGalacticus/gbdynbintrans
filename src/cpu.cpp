@@ -1,3 +1,8 @@
+/* CS 441 - System Architecture
+ * Project #2 - gbdynbintrans - cpu.cpp
+ * Bucky Frost & Dustin Dodson
+ */
+
 #include "cpu.h"
 #include "ui_cpu.h"
 

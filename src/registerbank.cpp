@@ -1,3 +1,8 @@
+/* CS 441 - System Architecture
+ * Project #2 - gbdynbintrans - registerbank.cpp
+ * Bucky Frost & Dustin Dodson
+ */
+
 #include "registerbank.h"
 #include "ui_registerbank.h"
 #include <utility>

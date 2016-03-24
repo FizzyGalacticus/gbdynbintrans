@@ -1,3 +1,8 @@
+/* CS 441 - System Architecture
+ * Project #2 - gbdynbintrans - opcodedecoder.cpp
+ * Bucky Frost & Dustin Dodson
+ */
+
 #include "opcodedecoder.h"
 #include "ui_opcodedecoder.h"
 #include <QFile>

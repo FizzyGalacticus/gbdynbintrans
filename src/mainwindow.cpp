@@ -1,3 +1,8 @@
+/* CS 441 - System Architecture
+ * Project #2 - gbdynbintrans - mainwindow.cpp
+ * Bucky Frost & Dustin Dodson
+ */
+
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "aboutdialog.h"
