@@ -63,7 +63,7 @@ void MainWindow::loadROM(QString filename) {
         if((int)data < 16)
             programText += "0";
         programText += QString::number((int)data, 16);
-        if(programText.contains("ffffffff"))
+        if(programText.contains("c32f027d"))
             break;
     }
     inFile.close();
