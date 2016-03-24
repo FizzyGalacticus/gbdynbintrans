@@ -30,7 +30,10 @@ RegisterBank::RegisterBank(QWidget *parent) :
     connect(this, SIGNAL(valuesChanged()), this, SLOT(registerValuesHaveChanged()));
 
     /*
-     * The rest of this constructor is horrible and yucky. Unless you want to
+     * The rest of this constructor is horrible and yucky. I wanted to be
+     * able to perform arithmetic on registers by simply using a string
+     * to represent the register name. For example, this allows me to call
+     * add("A", 5), and it will add 5 to the A register. Unless you want to
      * lose your mind, I suggest turning back now. Read at your own risk!
      */
 
@@ -452,8 +455,10 @@ void RegisterBank::setSP(const int temp) {
 
 /*
  * Name: ld
- * Pre-conditions: 
- * Post-conditions: 
+ * Pre-conditions: Operands must contain values.
+ * Post-conditions: Will set the value of the register
+ *     found in op1 to the value found in op2 and
+ *     will clear all flags.
  */
 void RegisterBank::ld(Operand & op1, Operand & op2) {
     this->sub(op1, op1);
@@ -463,7 +468,7 @@ void RegisterBank::ld(Operand & op1, Operand & op2) {
 
 /*
  * Name: jpAbsolute
- * Pre-conditions: 
+ * Pre-conditions: Operand must contain a value.
  * Post-conditions: 
  */
 void RegisterBank::jpAbsolute(Operand & op1) {
@@ -473,7 +478,7 @@ void RegisterBank::jpAbsolute(Operand & op1) {
 
 /*
  * Name: jpConditional
- * Pre-conditions: 
+ * Pre-conditions: Operands must contain values.
  * Post-conditions: 
  */
 void RegisterBank::jpConditional(Operand & op1, Operand & op2) {
@@ -491,7 +496,7 @@ void RegisterBank::jpConditional(Operand & op1, Operand & op2) {
 
 /*
  * Name: add
- * Pre-conditions: 
+ * Pre-conditions: Operands must contain values.
  * Post-conditions: 
  */
 void RegisterBank::add(Operand & op1,  Operand & op2) {
@@ -513,7 +518,7 @@ void RegisterBank::add(Operand & op1,  Operand & op2) {
 
 /*
  * Name: sub
- * Pre-conditions: 
+ * Pre-conditions: Operands must contain values.
  * Post-conditions: 
  */
 void RegisterBank::sub(Operand & op1, Operand & op2) {
@@ -534,7 +539,7 @@ void RegisterBank::sub(Operand & op1, Operand & op2) {
 
 /*
  * Name: inc
- * Pre-conditions: 
+ * Pre-conditions: Operands must contain values.
  * Post-conditions: 
  */
 void RegisterBank::inc(Operand & op1, Operand & op2) {
@@ -544,7 +549,7 @@ void RegisterBank::inc(Operand & op1, Operand & op2) {
 
 /*
  * Name: dec
- * Pre-conditions: 
+ * Pre-conditions: Operands must contain values.
  * Post-conditions: 
  */
 void RegisterBank::dec(Operand & op1, Operand & op2) {
@@ -554,7 +559,7 @@ void RegisterBank::dec(Operand & op1, Operand & op2) {
 
 /*
  * Name: nd
- * Pre-conditions: 
+ * Pre-conditions: Operands must contain values.
  * Post-conditions: 
  */
 void RegisterBank::nd(Operand & op1, Operand & op2) {
@@ -563,7 +568,7 @@ void RegisterBank::nd(Operand & op1, Operand & op2) {
 
 /*
  * Name: orr
- * Pre-conditions: 
+ * Pre-conditions: Operands must contain values.
  * Post-conditions: 
  */
 void RegisterBank::orr(Operand & op1, Operand & op2) {
@@ -572,7 +577,7 @@ void RegisterBank::orr(Operand & op1, Operand & op2) {
 
 /*
  * Name: xorr
- * Pre-conditions: 
+ * Pre-conditions: Operands must contain values.
  * Post-conditions: 
  */
 void RegisterBank::xorr(Operand & op1, Operand & op2) {
@@ -581,7 +586,7 @@ void RegisterBank::xorr(Operand & op1, Operand & op2) {
 
 /*
  * Name: cp
- * Pre-conditions: 
+ * Pre-conditions: Operands must contain values.
  * Post-conditions: 
  */
 void RegisterBank::cp(Operand & op1, Operand & op2) {
