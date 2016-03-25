@@ -101,6 +101,9 @@ void OpcodeDecoder::opcodeChanged(const QString opcode, RegisterBank * regBank) 
     if(this->_opcodes.find(opcode.toStdString()) != this->_opcodes.end()) {
         this->_currentInstruction = this->_opcodes.at(opcode.toStdString());
 
+        if(this->_currentInstruction._function == "")
+            this->_currentInstruction = this->_opcodes.at("00");
+
         QString instruction = this->_currentInstruction._mnemonic.c_str();
 
         if(this->_currentInstruction._numOps >0) {
@@ -117,5 +120,5 @@ void OpcodeDecoder::opcodeChanged(const QString opcode, RegisterBank * regBank) 
 
         emit this->instructionChanged(this->_currentInstruction._function, *op1, *op2);
     }
-    else this->_currentInstruction = Instruction("00");
+    else this->_currentInstruction = this->_opcodes.at("00");
 }
