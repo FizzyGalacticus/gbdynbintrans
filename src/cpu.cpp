@@ -121,17 +121,23 @@ void Cpu::runThread() {
         this->_runningThread = std::thread(&Cpu::run, this);
 }
 
+/*
+ * This function pulls a 8-bit integer from the binary
+ */
 int Cpu::get8BitConst() {
-    QString constHex = this->_programHex.mid(this->getProgramCounter()*2+2,2);
+    QString constHex = this->_programHex.mid(this->getProgramCounter()*2+2, 2);
     int constInt = constHex.toInt(0,16);
     this->_retrievedConst = true;
     this->_retrievedConstWidth = false;
     return constInt;
 }
 
+/*
+ * This function pulls a 16-bit integer from the binary
+ */
 int Cpu::get16BitConst() {
-    QString constHexLeastSig = this->_programHex.mid(this->getProgramCounter()*2+2,2);
-    QString constHexMostSig = this->_programHex.mid(this->getProgramCounter()*2+4,2);
+    QString constHexLeastSig = this->_programHex.mid(this->getProgramCounter()*2+2, 2);
+    QString constHexMostSig = this->_programHex.mid(this->getProgramCounter()*2+4, 2);
     QString constHex = constHexMostSig + constHexLeastSig;
     int constInt = constHex.toInt(0, 16);
     this->_retrievedConst = true;
