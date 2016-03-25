@@ -16,8 +16,13 @@ gbdk/bin/lcc -o <outputfilename> <inputfilename>
 * [GameBoy Opcode Map](http://imrannazar.com/Gameboy-Z80-Opcode-Map)
 * [Qt Framework Documentation](http://doc.qt.io/qt-5/)
 
-## Currently Implemented Instruction
-All add, sub, ld, and jp instructions work, with the exception of any that use memory or memory addresses. This is because we have not yet added RAM support.
+## Currently Implemented Z80 Instructions
+This list includes implemented instructions with the exception of those referencing memory or memory addresses. Currently there is no support for any instructions involving memory.
+* All ```add``` functions
+* All ```sub``` functions
+* All ```ld``` functions
+* All ```jp``` functions
+
 
 ## Special Thanks
 * [NewbiZ](https://github.com/NewbiZ) - Provided [opcodes.json](https://github.com/NewbiZ/gbemu/blob/master/scripts/opcodes.json) which allows us to easily translate opcodes to corresponding assembly commands.
