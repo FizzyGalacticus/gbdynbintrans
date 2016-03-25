@@ -62,6 +62,7 @@ RegisterBank::RegisterBank(QWidget *parent) :
     this->_functionAlias.insert(make_pair<string, fnPtr>("add", &RegisterBank::add));
     this->_functionAlias.insert(make_pair<string, fnPtr>("sub", &RegisterBank::sub));
     this->_functionAlias.insert(make_pair<string, fnPtr>("inc", &RegisterBank::inc));
+    this->_functionAlias.insert(make_pair<string, fnPtr>("dec", &RegisterBank::dec));
     this->_functionAlias.insert(make_pair<string, fnPtr>("nd", &RegisterBank::nd));
     this->_functionAlias.insert(make_pair<string, fnPtr>("orr", &RegisterBank::orr));
     this->_functionAlias.insert(make_pair<string, fnPtr>("xorr", &RegisterBank::xorr));
@@ -322,13 +323,15 @@ void RegisterBank::xorr(Operand & op1, Operand & op2) {
 void RegisterBank::cp(Operand & op1, Operand & op2) {
     this->clearFlags();
 
-    this->setOFlag();
+    const int A = this->getA();
+    const int cmpVal = op1.getVal();
 
-    if(this->getA() == op1.getVal())
+    //Set flags
+    if(A - cmpVal == 0)
         this->setZFlag();
-    if(this->getA() < op1.getVal())
+    if(cmpVal > 0 && (A - cmpVal) > A)
         this->setCFlag();
-    //Need to set flag HC "if no borrow from bit 4"
+    this->setOFlag();
 }
 
 RegisterBank::getPtr RegisterBank::getRegisterAccessor(string registerName) {
