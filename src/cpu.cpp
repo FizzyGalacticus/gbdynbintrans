@@ -5,7 +5,7 @@
 
 #include "cpu.h"
 #include "ui_cpu.h"
-#include <unistd.h>
+#include <chrono>
 
 Cpu::Cpu(QWidget *parent) :
     QWidget(parent),
@@ -105,7 +105,7 @@ void Cpu::run() {
 
     while(this->_isRunning) {
         this->nextInstructionButtonPressed();
-        sleep(1);
+        std::this_thread::sleep_for(std::chrono::milliseconds(100));
     }
 }
 
