@@ -25,7 +25,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->actionAbout, SIGNAL(triggered(bool)), this, SLOT(aboutDialogTriggered()));
     connect(this, SIGNAL(fileNameChanged(QString)), this, SLOT(loadROM(QString)));
 
-    this->_fileDialog->setDirectory(QDir().currentPath() + "../../res/test_asm");
+    this->_fileDialog->setDirectory(QDir().currentPath() + "gbdynbintrans/res/test_asm");
 }
 
 MainWindow::~MainWindow()
@@ -63,7 +63,7 @@ void MainWindow::loadROM(QString filename) {
         if((int)data < 16)
             programText += "0";
         programText += QString::number((int)data, 16);
-        if(programText.contains("ffffffff"))
+        if(programText.contains("7deaa1c0e6"))
             break;
     }
     inFile.close();
