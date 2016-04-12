@@ -3997,6 +3997,7 @@
     }, 
     "0xe4": {
       "mnemonic": "SET", 
+      "function":"setBit",
       "flags_ZHNC": [
         "-", 
         "-", 
@@ -4073,6 +4074,7 @@
     }, 
     "0xff": {
       "mnemonic": "SET", 
+      "function":"setBit",
       "flags_ZHNC": [
         "-", 
         "-", 
@@ -4089,6 +4091,7 @@
     }, 
     "0xfa": {
       "mnemonic": "SET", 
+      "function":"setBit",
       "flags_ZHNC": [
         "-", 
         "-", 
@@ -4105,6 +4108,7 @@
     }, 
     "0xda": {
       "mnemonic": "SET", 
+      "function":"setBit",
       "flags_ZHNC": [
         "-", 
         "-", 
@@ -4121,6 +4125,7 @@
     }, 
     "0xec": {
       "mnemonic": "SET", 
+      "function":"setBit",
       "flags_ZHNC": [
         "-", 
         "-", 
@@ -4167,6 +4172,7 @@
     }, 
     "0xcf": {
       "mnemonic": "SET", 
+      "function":"setBit",
       "flags_ZHNC": [
         "-", 
         "-", 
@@ -4183,6 +4189,7 @@
     }, 
     "0xf8": {
       "mnemonic": "SET", 
+      "function":"setBit",
       "flags_ZHNC": [
         "-", 
         "-", 
@@ -4199,6 +4206,7 @@
     }, 
     "0xeb": {
       "mnemonic": "SET", 
+      "function":"setBit",
       "flags_ZHNC": [
         "-", 
         "-", 
@@ -4352,6 +4360,7 @@
     }, 
     "0xef": {
       "mnemonic": "SET", 
+      "function":"setBit",
       "flags_ZHNC": [
         "-", 
         "-", 
@@ -4368,6 +4377,7 @@
     }, 
     "0xe2": {
       "mnemonic": "SET", 
+      "function":"setBit",
       "flags_ZHNC": [
         "-", 
         "-", 
@@ -4400,6 +4410,7 @@
     }, 
     "0xed": {
       "mnemonic": "SET", 
+      "function":"setBit",
       "flags_ZHNC": [
         "-", 
         "-", 
@@ -4583,6 +4594,7 @@
     }, 
     "0xc0": {
       "mnemonic": "SET", 
+      "function":"setBit",
       "flags_ZHNC": [
         "-", 
         "-", 
@@ -4599,6 +4611,7 @@
     }, 
     "0xe1": {
       "mnemonic": "SET", 
+      "function":"setBit",
       "flags_ZHNC": [
         "-", 
         "-", 
@@ -4648,6 +4661,7 @@
     }, 
     "0xdd": {
       "mnemonic": "SET", 
+      "function":"setBit",
       "flags_ZHNC": [
         "-", 
         "-", 
@@ -4711,6 +4725,7 @@
     }, 
     "0xfd": {
       "mnemonic": "SET", 
+      "function":"setBit",
       "flags_ZHNC": [
         "-", 
         "-", 
@@ -4757,6 +4772,7 @@
     }, 
     "0xfc": {
       "mnemonic": "SET", 
+      "function":"setBit",
       "flags_ZHNC": [
         "-", 
         "-", 
@@ -5206,6 +5222,7 @@
     }, 
     "0xe5": {
       "mnemonic": "SET", 
+      "function":"setBit",
       "flags_ZHNC": [
         "-", 
         "-", 
@@ -5356,6 +5373,7 @@
     }, 
     "0xea": {
       "mnemonic": "SET", 
+      "function":"setBit",
       "flags_ZHNC": [
         "-", 
         "-", 
@@ -5715,6 +5733,7 @@
     }, 
     "0xf4": {
       "mnemonic": "SET", 
+      "function":"setBit",
       "flags_ZHNC": [
         "-", 
         "-", 
@@ -5731,6 +5750,7 @@
     }, 
     "0xfb": {
       "mnemonic": "SET", 
+      "function":"setBit",
       "flags_ZHNC": [
         "-", 
         "-", 
@@ -5747,6 +5767,7 @@
     }, 
     "0xdc": {
       "mnemonic": "SET", 
+      "function":"setBit",
       "flags_ZHNC": [
         "-", 
         "-", 
@@ -5763,6 +5784,7 @@
     }, 
     "0xf9": {
       "mnemonic": "SET", 
+      "function":"setBit",
       "flags_ZHNC": [
         "-", 
         "-", 
@@ -5964,6 +5986,7 @@
     }, 
     "0xf5": {
       "mnemonic": "SET", 
+      "function":"setBit",
       "flags_ZHNC": [
         "-", 
         "-", 
@@ -5997,6 +6020,7 @@
     }, 
     "0xf2": {
       "mnemonic": "SET", 
+      "function":"setBit",
       "flags_ZHNC": [
         "-", 
         "-", 
@@ -6097,6 +6121,7 @@
     }, 
     "0xf0": {
       "mnemonic": "SET", 
+      "function":"setBit",
       "flags_ZHNC": [
         "-", 
         "-", 
@@ -6298,6 +6323,7 @@
     }, 
     "0xcd": {
       "mnemonic": "SET", 
+      "function":"setBit",
       "flags_ZHNC": [
         "-", 
         "-", 
@@ -6348,6 +6374,7 @@
     }, 
     "0xca": {
       "mnemonic": "SET", 
+      "function":"setBit",
       "flags_ZHNC": [
         "-", 
         "-", 
@@ -6364,6 +6391,7 @@
     }, 
     "0xcc": {
       "mnemonic": "SET", 
+      "function":"setBit",
       "flags_ZHNC": [
         "-", 
         "-", 
@@ -6380,6 +6408,7 @@
     }, 
     "0xcb": {
       "mnemonic": "SET", 
+      "function":"setBit",
       "flags_ZHNC": [
         "-", 
         "-", 
@@ -6531,6 +6560,7 @@
     }, 
     "0xe3": {
       "mnemonic": "SET", 
+      "function":"setBit",
       "flags_ZHNC": [
         "-", 
         "-", 
@@ -6833,6 +6863,7 @@
     }, 
     "0xc5": {
       "mnemonic": "SET", 
+      "function":"setBit",
       "flags_ZHNC": [
         "-", 
         "-", 
@@ -6849,6 +6880,7 @@
     }, 
     "0xc4": {
       "mnemonic": "SET", 
+      "function":"setBit",
       "flags_ZHNC": [
         "-", 
         "-", 
@@ -6865,6 +6897,7 @@
     }, 
     "0xc7": {
       "mnemonic": "SET", 
+      "function":"setBit",
       "flags_ZHNC": [
         "-", 
         "-", 
@@ -6897,6 +6930,7 @@
     }, 
     "0xc1": {
       "mnemonic": "SET", 
+      "function":"setBit",
       "flags_ZHNC": [
         "-", 
         "-", 
@@ -6930,6 +6964,7 @@
     }, 
     "0xc3": {
       "mnemonic": "SET", 
+      "function":"setBit",
       "flags_ZHNC": [
         "-", 
         "-", 
@@ -6946,6 +6981,7 @@
     }, 
     "0xc2": {
       "mnemonic": "SET", 
+      "function":"setBit",
       "flags_ZHNC": [
         "-", 
         "-", 
@@ -7030,6 +7066,7 @@
     }, 
     "0xc8": {
       "mnemonic": "SET", 
+      "function":"setBit",
       "flags_ZHNC": [
         "-", 
         "-", 
@@ -7079,6 +7116,7 @@
     }, 
     "0xf1": {
       "mnemonic": "SET", 
+      "function":"setBit",
       "flags_ZHNC": [
         "-", 
         "-", 
@@ -7095,6 +7133,7 @@
     }, 
     "0xe9": {
       "mnemonic": "SET", 
+      "function":"setBit",
       "flags_ZHNC": [
         "-", 
         "-", 
@@ -7111,6 +7150,7 @@
     }, 
     "0xe8": {
       "mnemonic": "SET", 
+      "function":"setBit",
       "flags_ZHNC": [
         "-", 
         "-", 
@@ -7127,6 +7167,7 @@
     }, 
     "0xf7": {
       "mnemonic": "SET", 
+      "function":"setBit",
       "flags_ZHNC": [
         "-", 
         "-", 
@@ -7143,6 +7184,7 @@
     }, 
     "0xc9": {
       "mnemonic": "SET", 
+      "function":"setBit",
       "flags_ZHNC": [
         "-", 
         "-", 
@@ -7159,6 +7201,7 @@
     }, 
     "0xf3": {
       "mnemonic": "SET", 
+      "function":"setBit",
       "flags_ZHNC": [
         "-", 
         "-", 
@@ -7175,6 +7218,7 @@
     }, 
     "0xd0": {
       "mnemonic": "SET", 
+      "function":"setBit",
       "flags_ZHNC": [
         "-", 
         "-", 
@@ -7292,6 +7336,7 @@
     }, 
     "0xd7": {
       "mnemonic": "SET", 
+      "function":"setBit",
       "flags_ZHNC": [
         "-", 
         "-", 
@@ -7308,6 +7353,7 @@
     }, 
     "0xd8": {
       "mnemonic": "SET", 
+      "function":"setBit",
       "flags_ZHNC": [
         "-", 
         "-", 
@@ -7324,6 +7370,7 @@
     }, 
     "0xd9": {
       "mnemonic": "SET", 
+      "function":"setBit",
       "flags_ZHNC": [
         "-", 
         "-", 
@@ -7340,6 +7387,7 @@
     }, 
     "0xdb": {
       "mnemonic": "SET", 
+      "function":"setBit",
       "flags_ZHNC": [
         "-", 
         "-", 
@@ -7597,6 +7645,7 @@
     }, 
     "0xdf": {
       "mnemonic": "SET", 
+      "function":"setBit",
       "flags_ZHNC": [
         "-", 
         "-", 
@@ -7613,6 +7662,7 @@
     }, 
     "0xd1": {
       "mnemonic": "SET", 
+      "function":"setBit",
       "flags_ZHNC": [
         "-", 
         "-", 
@@ -7629,6 +7679,7 @@
     }, 
     "0xd2": {
       "mnemonic": "SET", 
+      "function":"setBit",
       "flags_ZHNC": [
         "-", 
         "-", 
@@ -7645,6 +7696,7 @@
     }, 
     "0xd3": {
       "mnemonic": "SET", 
+      "function":"setBit",
       "flags_ZHNC": [
         "-", 
         "-", 
@@ -7661,6 +7713,7 @@
     }, 
     "0xd4": {
       "mnemonic": "SET", 
+      "function":"setBit",
       "flags_ZHNC": [
         "-", 
         "-", 
@@ -7677,6 +7730,7 @@
     }, 
     "0xd5": {
       "mnemonic": "SET", 
+      "function":"setBit",
       "flags_ZHNC": [
         "-", 
         "-", 
@@ -7743,6 +7797,7 @@
     }, 
     "0xe0": {
       "mnemonic": "SET", 
+      "function":"setBit",
       "flags_ZHNC": [
         "-", 
         "-", 
@@ -7759,6 +7814,7 @@
     }, 
     "0xe7": {
       "mnemonic": "SET", 
+      "function":"setBit",
       "flags_ZHNC": [
         "-", 
         "-", 
