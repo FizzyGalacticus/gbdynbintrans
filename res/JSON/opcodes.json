@@ -4335,6 +4335,7 @@
     }, 
     "0xba": {
       "mnemonic": "RES", 
+      "function":"resetBit",
       "flags_ZHNC": [
         "-", 
         "-", 
@@ -4630,6 +4631,7 @@
     }, 
     "0x88": {
       "mnemonic": "RES", 
+      "function":"resetBit",
       "flags_ZHNC": [
         "-", 
         "-", 
@@ -4662,6 +4664,7 @@
     }, 
     "0x89": {
       "mnemonic": "RES", 
+      "function":"resetBit",
       "flags_ZHNC": [
         "-", 
         "-", 
@@ -5219,6 +5222,7 @@
     }, 
     "0xaf": {
       "mnemonic": "RES", 
+      "function":"resetBit",
       "flags_ZHNC": [
         "-", 
         "-", 
@@ -5251,6 +5255,7 @@
     }, 
     "0xad": {
       "mnemonic": "RES", 
+      "function":"resetBit",
       "flags_ZHNC": [
         "-", 
         "-", 
@@ -5267,6 +5272,7 @@
     }, 
     "0xac": {
       "mnemonic": "RES", 
+      "function":"resetBit",
       "flags_ZHNC": [
         "-", 
         "-", 
@@ -5283,6 +5289,7 @@
     }, 
     "0xab": {
       "mnemonic": "RES", 
+      "function":"resetBit",
       "flags_ZHNC": [
         "-", 
         "-", 
@@ -5299,6 +5306,7 @@
     }, 
     "0xaa": {
       "mnemonic": "RES", 
+      "function":"resetBit",
       "flags_ZHNC": [
         "-", 
         "-", 
@@ -5787,6 +5795,7 @@
     }, 
     "0xa9": {
       "mnemonic": "RES", 
+      "function":"resetBit",
       "flags_ZHNC": [
         "-", 
         "-", 
@@ -5803,6 +5812,7 @@
     }, 
     "0xa8": {
       "mnemonic": "RES", 
+      "function":"resetBit",
       "flags_ZHNC": [
         "-", 
         "-", 
@@ -5819,6 +5829,7 @@
     }, 
     "0xa7": {
       "mnemonic": "RES", 
+      "function":"resetBit",
       "flags_ZHNC": [
         "-", 
         "-", 
@@ -5851,6 +5862,7 @@
     }, 
     "0xa5": {
       "mnemonic": "RES", 
+      "function":"resetBit",
       "flags_ZHNC": [
         "-", 
         "-", 
@@ -5867,6 +5879,7 @@
     }, 
     "0xa4": {
       "mnemonic": "RES", 
+      "function":"resetBit",
       "flags_ZHNC": [
         "-", 
         "-", 
@@ -5883,6 +5896,7 @@
     }, 
     "0xa3": {
       "mnemonic": "RES", 
+      "function":"resetBit",
       "flags_ZHNC": [
         "-", 
         "-", 
@@ -5899,6 +5913,7 @@
     }, 
     "0xa2": {
       "mnemonic": "RES", 
+      "function":"resetBit",
       "flags_ZHNC": [
         "-", 
         "-", 
@@ -5915,6 +5930,7 @@
     }, 
     "0xa1": {
       "mnemonic": "RES", 
+      "function":"resetBit",
       "flags_ZHNC": [
         "-", 
         "-", 
@@ -5931,6 +5947,7 @@
     }, 
     "0xa0": {
       "mnemonic": "RES", 
+      "function":"resetBit",
       "flags_ZHNC": [
         "-", 
         "-", 
@@ -6297,6 +6314,7 @@
     }, 
     "0xb8": {
       "mnemonic": "RES", 
+      "function":"resetBit",
       "flags_ZHNC": [
         "-", 
         "-", 
@@ -6313,6 +6331,7 @@
     }, 
     "0xb9": {
       "mnemonic": "RES", 
+      "function":"resetBit",
       "flags_ZHNC": [
         "-", 
         "-", 
@@ -6377,6 +6396,7 @@
     }, 
     "0xb2": {
       "mnemonic": "RES", 
+      "function":"resetBit",
       "flags_ZHNC": [
         "-", 
         "-", 
@@ -6393,6 +6413,7 @@
     }, 
     "0xb3": {
       "mnemonic": "RES", 
+      "function":"resetBit",
       "flags_ZHNC": [
         "-", 
         "-", 
@@ -6409,6 +6430,7 @@
     }, 
     "0xb0": {
       "mnemonic": "RES", 
+      "function":"resetBit",
       "flags_ZHNC": [
         "-", 
         "-", 
@@ -6425,6 +6447,7 @@
     }, 
     "0xb1": {
       "mnemonic": "RES", 
+      "function":"resetBit",
       "flags_ZHNC": [
         "-", 
         "-", 
@@ -6457,6 +6480,7 @@
     }, 
     "0xb7": {
       "mnemonic": "RES", 
+      "function":"resetBit",
       "flags_ZHNC": [
         "-", 
         "-", 
@@ -6473,6 +6497,7 @@
     }, 
     "0xb4": {
       "mnemonic": "RES", 
+      "function":"resetBit",
       "flags_ZHNC": [
         "-", 
         "-", 
@@ -6489,6 +6514,7 @@
     }, 
     "0xb5": {
       "mnemonic": "RES", 
+      "function":"resetBit",
       "flags_ZHNC": [
         "-", 
         "-", 
@@ -6887,6 +6913,7 @@
     }, 
     "0x8b": {
       "mnemonic": "RES", 
+      "function":"resetBit",
       "flags_ZHNC": [
         "-", 
         "-", 
@@ -6935,6 +6962,7 @@
     }, 
     "0xbb": {
       "mnemonic": "RES", 
+      "function":"resetBit",
       "flags_ZHNC": [
         "-", 
         "-", 
@@ -6951,6 +6979,7 @@
     }, 
     "0xbc": {
       "mnemonic": "RES", 
+      "function":"resetBit",
       "flags_ZHNC": [
         "-", 
         "-", 
@@ -6967,6 +6996,7 @@
     }, 
     "0x8c": {
       "mnemonic": "RES", 
+      "function":"resetBit",
       "flags_ZHNC": [
         "-", 
         "-", 
@@ -6983,6 +7013,7 @@
     }, 
     "0xbf": {
       "mnemonic": "RES", 
+      "function":"resetBit",
       "flags_ZHNC": [
         "-", 
         "-", 
@@ -7015,6 +7046,7 @@
     }, 
     "0xbd": {
       "mnemonic": "RES", 
+      "function":"resetBit",
       "flags_ZHNC": [
         "-", 
         "-", 
@@ -7159,6 +7191,7 @@
     }, 
     "0x9f": {
       "mnemonic": "RES", 
+      "function":"resetBit",
       "flags_ZHNC": [
         "-", 
         "-", 
@@ -7191,6 +7224,7 @@
     }, 
     "0x9d": {
       "mnemonic": "RES", 
+      "function":"resetBit",
       "flags_ZHNC": [
         "-", 
         "-", 
@@ -7207,6 +7241,7 @@
     }, 
     "0x9c": {
       "mnemonic": "RES", 
+      "function":"resetBit",
       "flags_ZHNC": [
         "-", 
         "-", 
@@ -7223,6 +7258,7 @@
     }, 
     "0x9b": {
       "mnemonic": "RES", 
+      "function":"resetBit",
       "flags_ZHNC": [
         "-", 
         "-", 
@@ -7239,6 +7275,7 @@
     }, 
     "0x9a": {
       "mnemonic": "RES", 
+      "function":"resetBit",
       "flags_ZHNC": [
         "-", 
         "-", 
@@ -7319,6 +7356,7 @@
     }, 
     "0x84": {
       "mnemonic": "RES", 
+      "function":"resetBit",
       "flags_ZHNC": [
         "-", 
         "-", 
@@ -7335,6 +7373,7 @@
     }, 
     "0x85": {
       "mnemonic": "RES", 
+      "function":"resetBit",
       "flags_ZHNC": [
         "-", 
         "-", 
@@ -7367,6 +7406,7 @@
     }, 
     "0x87": {
       "mnemonic": "RES", 
+      "function":"resetBit",
       "flags_ZHNC": [
         "-", 
         "-", 
@@ -7383,6 +7423,7 @@
     }, 
     "0x80": {
       "mnemonic": "RES", 
+      "function":"resetBit",
       "flags_ZHNC": [
         "-", 
         "-", 
@@ -7399,6 +7440,7 @@
     }, 
     "0x81": {
       "mnemonic": "RES", 
+      "function":"resetBit",
       "flags_ZHNC": [
         "-", 
         "-", 
@@ -7415,6 +7457,7 @@
     }, 
     "0x82": {
       "mnemonic": "RES", 
+      "function":"resetBit",
       "flags_ZHNC": [
         "-", 
         "-", 
@@ -7431,6 +7474,7 @@
     }, 
     "0x83": {
       "mnemonic": "RES", 
+      "function":"resetBit",
       "flags_ZHNC": [
         "-", 
         "-", 
@@ -7649,6 +7693,7 @@
     }, 
     "0x8d": {
       "mnemonic": "RES", 
+      "function":"resetBit",
       "flags_ZHNC": [
         "-", 
         "-", 
@@ -7681,6 +7726,7 @@
     }, 
     "0x8f": {
       "mnemonic": "RES", 
+      "function":"resetBit",
       "flags_ZHNC": [
         "-", 
         "-", 
@@ -7729,6 +7775,7 @@
     }, 
     "0x8a": {
       "mnemonic": "RES", 
+      "function":"resetBit",
       "flags_ZHNC": [
         "-", 
         "-", 
@@ -7895,6 +7942,7 @@
     }, 
     "0x97": {
       "mnemonic": "RES", 
+      "function":"resetBit",
       "flags_ZHNC": [
         "-", 
         "-", 
@@ -7927,6 +7975,7 @@
     }, 
     "0x95": {
       "mnemonic": "RES", 
+      "function":"resetBit",
       "flags_ZHNC": [
         "-", 
         "-", 
@@ -7943,6 +7992,7 @@
     }, 
     "0x94": {
       "mnemonic": "RES", 
+      "function":"resetBit",
       "flags_ZHNC": [
         "-", 
         "-", 
@@ -7959,6 +8009,7 @@
     }, 
     "0x93": {
       "mnemonic": "RES", 
+      "function":"resetBit",
       "flags_ZHNC": [
         "-", 
         "-", 
@@ -7975,6 +8026,7 @@
     }, 
     "0x92": {
       "mnemonic": "RES", 
+      "function":"resetBit",
       "flags_ZHNC": [
         "-", 
         "-", 
@@ -7991,6 +8043,7 @@
     }, 
     "0x91": {
       "mnemonic": "RES", 
+      "function":"resetBit",
       "flags_ZHNC": [
         "-", 
         "-", 
@@ -8007,6 +8060,7 @@
     }, 
     "0x90": {
       "mnemonic": "RES", 
+      "function":"resetBit",
       "flags_ZHNC": [
         "-", 
         "-", 
@@ -8023,6 +8077,7 @@
     }, 
     "0x99": {
       "mnemonic": "RES", 
+      "function":"resetBit",
       "flags_ZHNC": [
         "-", 
         "-", 
@@ -8039,6 +8094,7 @@
     }, 
     "0x98": {
       "mnemonic": "RES", 
+      "function":"resetBit",
       "flags_ZHNC": [
         "-", 
         "-", 
