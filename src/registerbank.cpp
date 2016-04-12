@@ -71,6 +71,7 @@ RegisterBank::RegisterBank(QWidget *parent) :
     this->_functionAlias.insert(make_pair<string, fnPtr>("cp", &RegisterBank::cp));
     this->_functionAlias.insert(make_pair<string, fnPtr>("testBit", &RegisterBank::testBit));
     this->_functionAlias.insert(make_pair<string, fnPtr>("resetBit", &RegisterBank::resetBit));
+    this->_functionAlias.insert(make_pair<string, fnPtr>("setBit", &RegisterBank::setBit));
 
     emit this->valuesChanged();
 }
@@ -357,6 +358,16 @@ void RegisterBank::resetBit(Operand & op1, Operand & op2) {
     setPtr setFn = this->_setAlias.at(op2.getRegisterName());
 
     int newNum = op2.getVal() & ~(1 << op1.getVal());
+
+    (this->*setFn)(newNum);
+}
+
+void RegisterBank::setBit(Operand & op1, Operand & op2) {
+    this->clearFlags();
+
+    setPtr setFn = this->_setAlias.at(op2.getRegisterName());
+
+    int newNum = op2.getVal() | (1 << op1.getVal());
 
     (this->*setFn)(newNum);
 }

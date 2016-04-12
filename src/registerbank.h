@@ -90,6 +90,7 @@ public:
     void cp(Operand &, Operand &);
     void testBit(Operand &, Operand &);
     void resetBit(Operand &, Operand &);
+    void setBit(Operand &, Operand &);
 
     getPtr getRegisterAccessor(string);
 
