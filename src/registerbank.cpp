@@ -70,6 +70,7 @@ RegisterBank::RegisterBank(QWidget *parent) :
     this->_functionAlias.insert(make_pair<string, fnPtr>("xorr", &RegisterBank::xorr));
     this->_functionAlias.insert(make_pair<string, fnPtr>("cp", &RegisterBank::cp));
     this->_functionAlias.insert(make_pair<string, fnPtr>("testBit", &RegisterBank::testBit));
+    this->_functionAlias.insert(make_pair<string, fnPtr>("resetBit", &RegisterBank::resetBit));
 
     emit this->valuesChanged();
 }
@@ -348,6 +349,16 @@ void RegisterBank::testBit(Operand & op1, Operand & op2) {
         this->setZFlag();
 
     this->setHCFlag();
+}
+
+void RegisterBank::resetBit(Operand & op1, Operand & op2) {
+    this->clearFlags();
+
+    setPtr setFn = this->_setAlias.at(op2.getRegisterName());
+
+    int newNum = op2.getVal() & ~(1 << op1.getVal());
+
+    (this->*setFn)(newNum);
 }
 
 RegisterBank::getPtr RegisterBank::getRegisterAccessor(string registerName) {
