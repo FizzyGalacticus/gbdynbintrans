@@ -4415,6 +4415,7 @@
     }, 
     "0x7d": {
       "mnemonic": "BIT", 
+      "function": "testBit",
       "flags_ZHNC": [
         "Z", 
         "0", 
@@ -4799,6 +4800,7 @@
     }, 
     "0x5c": {
       "mnemonic": "BIT", 
+      "function": "testBit",
       "flags_ZHNC": [
         "Z", 
         "0", 
@@ -4815,6 +4817,7 @@
     }, 
     "0x5b": {
       "mnemonic": "BIT", 
+      "function": "testBit",
       "flags_ZHNC": [
         "Z", 
         "0", 
@@ -4861,6 +4864,7 @@
     }, 
     "0x5f": {
       "mnemonic": "BIT", 
+      "function": "testBit",
       "flags_ZHNC": [
         "Z", 
         "0", 
@@ -4893,6 +4897,7 @@
     }, 
     "0x5d": {
       "mnemonic": "BIT", 
+      "function": "testBit",
       "flags_ZHNC": [
         "Z", 
         "0", 
@@ -5029,6 +5034,7 @@
     }, 
     "0x40": {
       "mnemonic": "BIT", 
+      "function": "testBit",
       "flags_ZHNC": [
         "Z", 
         "0", 
@@ -5045,6 +5051,7 @@
     }, 
     "0x41": {
       "mnemonic": "BIT", 
+      "function": "testBit",
       "flags_ZHNC": [
         "Z", 
         "0", 
@@ -5061,6 +5068,7 @@
     }, 
     "0x42": {
       "mnemonic": "BIT", 
+      "function": "testBit",
       "flags_ZHNC": [
         "Z", 
         "0", 
@@ -5077,6 +5085,7 @@
     }, 
     "0x43": {
       "mnemonic": "BIT", 
+      "function": "testBit",
       "flags_ZHNC": [
         "Z", 
         "0", 
@@ -5093,6 +5102,7 @@
     }, 
     "0x44": {
       "mnemonic": "BIT", 
+      "function": "testBit",
       "flags_ZHNC": [
         "Z", 
         "0", 
@@ -5109,6 +5119,7 @@
     }, 
     "0x45": {
       "mnemonic": "BIT", 
+      "function": "testBit",
       "flags_ZHNC": [
         "Z", 
         "0", 
@@ -5141,6 +5152,7 @@
     }, 
     "0x47": {
       "mnemonic": "BIT", 
+      "function": "testBit",
       "flags_ZHNC": [
         "Z", 
         "0", 
@@ -5157,6 +5169,7 @@
     }, 
     "0x48": {
       "mnemonic": "BIT", 
+      "function": "testBit",
       "flags_ZHNC": [
         "Z", 
         "0", 
@@ -5173,6 +5186,7 @@
     }, 
     "0x49": {
       "mnemonic": "BIT", 
+      "function": "testBit",
       "flags_ZHNC": [
         "Z", 
         "0", 
@@ -5301,6 +5315,7 @@
     }, 
     "0x63": {
       "mnemonic": "BIT", 
+      "function": "testBit",
       "flags_ZHNC": [
         "Z", 
         "0", 
@@ -5349,6 +5364,7 @@
     }, 
     "0x4a": {
       "mnemonic": "BIT", 
+      "function": "testBit",
       "flags_ZHNC": [
         "Z", 
         "0", 
@@ -5365,6 +5381,7 @@
     }, 
     "0x4b": {
       "mnemonic": "BIT", 
+      "function": "testBit",
       "flags_ZHNC": [
         "Z", 
         "0", 
@@ -5381,6 +5398,7 @@
     }, 
     "0x4c": {
       "mnemonic": "BIT", 
+      "function": "testBit",
       "flags_ZHNC": [
         "Z", 
         "0", 
@@ -5397,6 +5415,7 @@
     }, 
     "0x4d": {
       "mnemonic": "BIT", 
+      "function": "testBit",
       "flags_ZHNC": [
         "Z", 
         "0", 
@@ -5429,6 +5448,7 @@
     }, 
     "0x4f": {
       "mnemonic": "BIT", 
+      "function": "testBit",
       "flags_ZHNC": [
         "Z", 
         "0", 
@@ -5445,6 +5465,7 @@
     }, 
     "0x53": {
       "mnemonic": "BIT", 
+      "function": "testBit",
       "flags_ZHNC": [
         "Z", 
         "0", 
@@ -5461,6 +5482,7 @@
     }, 
     "0x52": {
       "mnemonic": "BIT", 
+      "function": "testBit",
       "flags_ZHNC": [
         "Z", 
         "0", 
@@ -5477,6 +5499,7 @@
     }, 
     "0x51": {
       "mnemonic": "BIT", 
+      "function": "testBit",
       "flags_ZHNC": [
         "Z", 
         "0", 
@@ -5493,6 +5516,7 @@
     }, 
     "0x50": {
       "mnemonic": "BIT", 
+      "function": "testBit",
       "flags_ZHNC": [
         "Z", 
         "0", 
@@ -5509,6 +5533,7 @@
     }, 
     "0x57": {
       "mnemonic": "BIT", 
+      "function": "testBit",
       "flags_ZHNC": [
         "Z", 
         "0", 
@@ -5541,6 +5566,7 @@
     }, 
     "0x55": {
       "mnemonic": "BIT", 
+      "function": "testBit",
       "flags_ZHNC": [
         "Z", 
         "0", 
@@ -5557,6 +5583,7 @@
     }, 
     "0x54": {
       "mnemonic": "BIT", 
+      "function": "testBit",
       "flags_ZHNC": [
         "Z", 
         "0", 
@@ -5618,6 +5645,7 @@
     }, 
     "0x58": {
       "mnemonic": "BIT", 
+      "function": "testBit",
       "flags_ZHNC": [
         "Z", 
         "0", 
@@ -5935,6 +5963,7 @@
     }, 
     "0x7a": {
       "mnemonic": "BIT", 
+      "function": "testBit",
       "flags_ZHNC": [
         "Z", 
         "0", 
@@ -5967,6 +5996,7 @@
     }, 
     "0x7c": {
       "mnemonic": "BIT", 
+      "function": "testBit",
       "flags_ZHNC": [
         "Z", 
         "0", 
@@ -5983,6 +6013,7 @@
     }, 
     "0x7b": {
       "mnemonic": "BIT", 
+      "function": "testBit",
       "flags_ZHNC": [
         "Z", 
         "0", 
@@ -6015,6 +6046,7 @@
     }, 
     "0x5a": {
       "mnemonic": "BIT", 
+      "function": "testBit",
       "flags_ZHNC": [
         "Z", 
         "0", 
@@ -6031,6 +6063,7 @@
     }, 
     "0x7f": {
       "mnemonic": "BIT", 
+      "function": "testBit",
       "flags_ZHNC": [
         "Z", 
         "0", 
@@ -6063,6 +6096,7 @@
     }, 
     "0x68": {
       "mnemonic": "BIT", 
+      "function": "testBit",
       "flags_ZHNC": [
         "Z", 
         "0", 
@@ -6079,6 +6113,7 @@
     }, 
     "0x69": {
       "mnemonic": "BIT", 
+      "function": "testBit",
       "flags_ZHNC": [
         "Z", 
         "0", 
@@ -6111,6 +6146,7 @@
     }, 
     "0x67": {
       "mnemonic": "BIT", 
+      "function": "testBit",
       "flags_ZHNC": [
         "Z", 
         "0", 
@@ -6127,6 +6163,7 @@
     }, 
     "0x64": {
       "mnemonic": "BIT", 
+      "function": "testBit",
       "flags_ZHNC": [
         "Z", 
         "0", 
@@ -6143,6 +6180,7 @@
     }, 
     "0x65": {
       "mnemonic": "BIT", 
+      "function": "testBit",
       "flags_ZHNC": [
         "Z", 
         "0", 
@@ -6159,6 +6197,7 @@
     }, 
     "0x62": {
       "mnemonic": "BIT", 
+      "function": "testBit",
       "flags_ZHNC": [
         "Z", 
         "0", 
@@ -6175,6 +6214,7 @@
     }, 
     "0x59": {
       "mnemonic": "BIT", 
+      "function": "testBit",
       "flags_ZHNC": [
         "Z", 
         "0", 
@@ -6191,6 +6231,7 @@
     }, 
     "0x60": {
       "mnemonic": "BIT", 
+      "function": "testBit",
       "flags_ZHNC": [
         "Z", 
         "0", 
@@ -6207,6 +6248,7 @@
     }, 
     "0x61": {
       "mnemonic": "BIT", 
+      "function": "testBit",
       "flags_ZHNC": [
         "Z", 
         "0", 
@@ -6495,6 +6537,7 @@
     }, 
     "0x6f": {
       "mnemonic": "BIT", 
+      "function": "testBit",
       "flags_ZHNC": [
         "Z", 
         "0", 
@@ -6511,6 +6554,7 @@
     }, 
     "0x6d": {
       "mnemonic": "BIT", 
+      "function": "testBit",
       "flags_ZHNC": [
         "Z", 
         "0", 
@@ -6543,6 +6587,7 @@
     }, 
     "0x6b": {
       "mnemonic": "BIT", 
+      "function": "testBit",
       "flags_ZHNC": [
         "Z", 
         "0", 
@@ -6559,6 +6604,7 @@
     }, 
     "0x6c": {
       "mnemonic": "BIT", 
+      "function": "testBit",
       "flags_ZHNC": [
         "Z", 
         "0", 
@@ -6575,6 +6621,7 @@
     }, 
     "0x6a": {
       "mnemonic": "BIT", 
+      "function": "testBit",
       "flags_ZHNC": [
         "Z", 
         "0", 
@@ -6591,6 +6638,7 @@
     }, 
     "0x79": {
       "mnemonic": "BIT", 
+      "function": "testBit",
       "flags_ZHNC": [
         "Z", 
         "0", 
@@ -6607,6 +6655,7 @@
     }, 
     "0x78": {
       "mnemonic": "BIT", 
+      "function": "testBit",
       "flags_ZHNC": [
         "Z", 
         "0", 
@@ -6623,6 +6672,7 @@
     }, 
     "0x71": {
       "mnemonic": "BIT", 
+      "function": "testBit",
       "flags_ZHNC": [
         "Z", 
         "0", 
@@ -6639,6 +6689,7 @@
     }, 
     "0x70": {
       "mnemonic": "BIT", 
+      "function": "testBit",
       "flags_ZHNC": [
         "Z", 
         "0", 
@@ -6655,6 +6706,7 @@
     }, 
     "0x73": {
       "mnemonic": "BIT", 
+      "function": "testBit",
       "flags_ZHNC": [
         "Z", 
         "0", 
@@ -6671,6 +6723,7 @@
     }, 
     "0x72": {
       "mnemonic": "BIT", 
+      "function": "testBit",
       "flags_ZHNC": [
         "Z", 
         "0", 
@@ -6687,6 +6740,7 @@
     }, 
     "0x75": {
       "mnemonic": "BIT", 
+      "function": "testBit",
       "flags_ZHNC": [
         "Z", 
         "0", 
@@ -6703,6 +6757,7 @@
     }, 
     "0x74": {
       "mnemonic": "BIT", 
+      "function": "testBit",
       "flags_ZHNC": [
         "Z", 
         "0", 
@@ -6719,6 +6774,7 @@
     }, 
     "0x77": {
       "mnemonic": "BIT", 
+      "function": "testBit",
       "flags_ZHNC": [
         "Z", 
         "0", 
