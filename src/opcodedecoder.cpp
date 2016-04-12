@@ -90,43 +90,28 @@ void OpcodeDecoder::parseOpcodeJSON(const QString & filename, const QString & ro
 
 Operand * OpcodeDecoder::initOp(const string & opStr, RegisterBank * regBank) {
     Operand * op;
+    int opNum = NULL;
+
+    //Test if opStr is an integer
+    try{opNum = std::stoi(opStr);}
+    catch(...){}
 
     if(opStr == "d8" || opStr == "a8")
         op = new Operand( ( (Cpu *)this->parent() )->get8BitConst() );
     else if(opStr == "d16" || opStr == "a16")
         op = new Operand( ( (Cpu *)this->parent() )->get16BitConst() );
+    else if(opNum)
+        op = new Operand(opNum);
     else op = new Operand(regBank, opStr);
 
     return op;
 }
 
 void OpcodeDecoder::opcodeChanged(const QString opcode, RegisterBank * regBank) {
-    if(this->_unprefixedOpcodes.find(opcode.toStdString()) != this->_unprefixedOpcodes.end()) {
-        this->_currentInstruction = this->_unprefixedOpcodes.at(opcode.toStdString());
-
-        if(this->_currentInstruction._function == "")
-            this->_currentInstruction = this->_unprefixedOpcodes.at("00");
-
-        QString instruction = this->_currentInstruction._mnemonic.c_str();
-
-        if(this->_currentInstruction._numOps > 0) {
-            instruction += (QString(" ") + this->_currentInstruction._op1.c_str());
-
-            if(this->_currentInstruction._numOps > 1)
-                instruction += (QString(", ") + this->_currentInstruction._op2.c_str());
-        }
-
-        this->ui->instructionLabel->setText(instruction);
-
-        Operand * op1 = this->initOp(this->_currentInstruction._op1, regBank),
-                * op2 = this->initOp(this->_currentInstruction._op2, regBank);
-
-        emit this->instructionChanged(this->_currentInstruction._function, *op1, *op2);
-    }
-    else if(opcode == "cb" && !(((Cpu *)this->parent())->getMode())) {
+    if(opcode == "cb" && !(((Cpu *)this->parent())->getMode())) {
         ((Cpu *)this->parent())->setMode(1);
 
-        QString newOp = QString::number(((Cpu *)this->parent())->get8BitConst());
+        QString newOp = QString::number(((Cpu *)this->parent())->get8BitConst(), 16);
         if(newOp.size() == 1) newOp = "0" + newOp;
 
         this->opcodeChanged(newOp, regBank);
@@ -155,6 +140,28 @@ void OpcodeDecoder::opcodeChanged(const QString opcode, RegisterBank * regBank) 
                 * op2 = this->initOp(this->_currentInstruction._op2, regBank);
 
         ((Cpu *)this->parent())->setMode(0);
+
+        emit this->instructionChanged(this->_currentInstruction._function, *op1, *op2);
+    }
+    else if(this->_unprefixedOpcodes.find(opcode.toStdString()) != this->_unprefixedOpcodes.end()) {
+        this->_currentInstruction = this->_unprefixedOpcodes.at(opcode.toStdString());
+
+        if(this->_currentInstruction._function == "")
+            this->_currentInstruction = this->_unprefixedOpcodes.at("00");
+
+        QString instruction = this->_currentInstruction._mnemonic.c_str();
+
+        if(this->_currentInstruction._numOps > 0) {
+            instruction += (QString(" ") + this->_currentInstruction._op1.c_str());
+
+            if(this->_currentInstruction._numOps > 1)
+                instruction += (QString(", ") + this->_currentInstruction._op2.c_str());
+        }
+
+        this->ui->instructionLabel->setText(instruction);
+
+        Operand * op1 = this->initOp(this->_currentInstruction._op1, regBank),
+                * op2 = this->initOp(this->_currentInstruction._op2, regBank);
 
         emit this->instructionChanged(this->_currentInstruction._function, *op1, *op2);
     }
