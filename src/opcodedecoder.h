@@ -67,10 +67,11 @@ private:
         }
     };
 
+    void parseOpcodeJSON(const QString &, const QString &, unordered_map<string, Instruction> &);
     Operand * initOp(const string &, RegisterBank *);
 
     Ui::OpcodeDecoder *ui;
-    unordered_map<string, Instruction> _opcodes;
+    unordered_map<string, Instruction> _unprefixedOpcodes, _prefixedOpcodes;
     Instruction _currentInstruction;
 };
 

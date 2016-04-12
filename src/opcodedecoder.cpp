@@ -13,11 +13,19 @@ using std::make_pair;
 OpcodeDecoder::OpcodeDecoder(QString filename, QWidget *parent) :
     QWidget(parent),
     ui(new Ui::OpcodeDecoder),
-    _opcodes(),
+    _unprefixedOpcodes(),
     _currentInstruction("00")
 {
     ui->setupUi(this);
+    this->parseOpcodeJSON(filename, "unprefixed", this->_unprefixedOpcodes);
+    this->parseOpcodeJSON(filename, "cbprefixed", this->_prefixedOpcodes);
+}
 
+OpcodeDecoder::~OpcodeDecoder() {
+    delete ui;
+}
+
+void OpcodeDecoder::parseOpcodeJSON(const QString & filename, const QString & rootJSON, unordered_map<std::__cxx11::string, Instruction> & opcodeMap) {
     QFile * jsonFile = new QFile(filename);
 
     jsonFile->open(QFile::ReadOnly);
@@ -34,7 +42,7 @@ OpcodeDecoder::OpcodeDecoder(QString filename, QWidget *parent) :
         err += QString(reader.getFormattedErrorMessages().c_str());
         this->ui->instructionLabel->setText(err);
     } else {
-        Json::Value unprefixed = root["unprefixed"];
+        Json::Value unprefixed = root[rootJSON.toStdString()];
 
         for(auto i = unprefixed.begin(); i != unprefixed.end(); i++) {
             string opcode = i.name().substr(2,2);
@@ -75,14 +83,9 @@ OpcodeDecoder::OpcodeDecoder(QString filename, QWidget *parent) :
                 instr._function = function.asString();
 
             //Add instruction to map
-            this->_opcodes.insert(make_pair(opcode, instr));
+            opcodeMap.insert(make_pair(opcode, instr));
         }
     }
-}
-
-OpcodeDecoder::~OpcodeDecoder()
-{
-    delete ui;
 }
 
 Operand * OpcodeDecoder::initOp(const string & opStr, RegisterBank * regBank) {
@@ -98,11 +101,11 @@ Operand * OpcodeDecoder::initOp(const string & opStr, RegisterBank * regBank) {
 }
 
 void OpcodeDecoder::opcodeChanged(const QString opcode, RegisterBank * regBank) {
-    if(this->_opcodes.find(opcode.toStdString()) != this->_opcodes.end()) {
-        this->_currentInstruction = this->_opcodes.at(opcode.toStdString());
+    if(this->_unprefixedOpcodes.find(opcode.toStdString()) != this->_unprefixedOpcodes.end()) {
+        this->_currentInstruction = this->_unprefixedOpcodes.at(opcode.toStdString());
 
         if(this->_currentInstruction._function == "")
-            this->_currentInstruction = this->_opcodes.at("00");
+            this->_currentInstruction = this->_unprefixedOpcodes.at("00");
 
         QString instruction = this->_currentInstruction._mnemonic.c_str();
 
@@ -120,5 +123,5 @@ void OpcodeDecoder::opcodeChanged(const QString opcode, RegisterBank * regBank) 
 
         emit this->instructionChanged(this->_currentInstruction._function, *op1, *op2);
     }
-    else this->_currentInstruction = this->_opcodes.at("00");
+    else this->_currentInstruction = this->_unprefixedOpcodes.at("00");
 }
