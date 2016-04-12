@@ -109,7 +109,7 @@ void OpcodeDecoder::opcodeChanged(const QString opcode, RegisterBank * regBank) 
 
         QString instruction = this->_currentInstruction._mnemonic.c_str();
 
-        if(this->_currentInstruction._numOps >0) {
+        if(this->_currentInstruction._numOps > 0) {
             instruction += (QString(" ") + this->_currentInstruction._op1.c_str());
 
             if(this->_currentInstruction._numOps > 1)
@@ -120,6 +120,41 @@ void OpcodeDecoder::opcodeChanged(const QString opcode, RegisterBank * regBank) 
 
         Operand * op1 = this->initOp(this->_currentInstruction._op1, regBank),
                 * op2 = this->initOp(this->_currentInstruction._op2, regBank);
+
+        emit this->instructionChanged(this->_currentInstruction._function, *op1, *op2);
+    }
+    else if(opcode == "cb" && !(((Cpu *)this->parent())->getMode())) {
+        ((Cpu *)this->parent())->setMode(1);
+
+        QString newOp = QString::number(((Cpu *)this->parent())->get8BitConst());
+        if(newOp.size() == 1) newOp = "0" + newOp;
+
+        this->opcodeChanged(newOp, regBank);
+    }
+    else if(((Cpu *)this->parent())->getMode() && this->_prefixedOpcodes.find(opcode.toStdString()) != this->_prefixedOpcodes.end()) {
+        ((Cpu *)this->parent())->setMode(1);
+        this->_currentInstruction = this->_prefixedOpcodes.at(opcode.toStdString());
+
+        if(this->_currentInstruction._function == "") {
+            this->_currentInstruction = this->_unprefixedOpcodes.at("00");
+            ((Cpu *)this->parent())->setMode(0);
+        }
+
+        QString instruction = this->_currentInstruction._mnemonic.c_str();
+
+        if(this->_currentInstruction._numOps > 0) {
+            instruction += (QString(" ") + this->_currentInstruction._op1.c_str());
+
+            if(this->_currentInstruction._numOps > 1)
+                instruction += (QString(", ") + this->_currentInstruction._op2.c_str());
+        }
+
+        this->ui->instructionLabel->setText(instruction);
+
+        Operand * op1 = this->initOp(this->_currentInstruction._op1, regBank),
+                * op2 = this->initOp(this->_currentInstruction._op2, regBank);
+
+        ((Cpu *)this->parent())->setMode(0);
 
         emit this->instructionChanged(this->_currentInstruction._function, *op1, *op2);
     }
