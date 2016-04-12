@@ -90,17 +90,17 @@ void OpcodeDecoder::parseOpcodeJSON(const QString & filename, const QString & ro
 
 Operand * OpcodeDecoder::initOp(const string & opStr, RegisterBank * regBank) {
     Operand * op;
-    int opNum = NULL;
+    int opNum = -1;
 
     //Test if opStr is an integer
     try{opNum = std::stoi(opStr);}
-    catch(...){}
+    catch(std::invalid_argument e){}
 
     if(opStr == "d8" || opStr == "a8")
         op = new Operand( ( (Cpu *)this->parent() )->get8BitConst() );
     else if(opStr == "d16" || opStr == "a16")
         op = new Operand( ( (Cpu *)this->parent() )->get16BitConst() );
-    else if(opNum)
+    else if(opNum > -1)
         op = new Operand(opNum);
     else op = new Operand(regBank, opStr);
 
