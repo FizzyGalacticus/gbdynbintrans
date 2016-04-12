@@ -15,7 +15,8 @@ Cpu::Cpu(QWidget *parent) :
     _regBank(new RegisterBank),
     _opDecoder(new OpcodeDecoder(":opcodes.json", this)),
     _retrievedConst(false),
-    _retrievedConstWidth(false)
+    _retrievedConstWidth(false),
+    _mode(false)
 {
     ui->setupUi(this);
     ui->instructionLayout->addWidget(this->_opDecoder);
@@ -143,6 +144,14 @@ int Cpu::get16BitConst() {
     this->_retrievedConst = true;
     this->_retrievedConstWidth = true;
     return constInt;
+}
+
+bool Cpu::getMode() {
+    return this->_mode;
+}
+
+void Cpu::setMode(bool mode) {
+    this->_mode = mode;
 }
 
 void Cpu::jumpTriggered(const int position) {

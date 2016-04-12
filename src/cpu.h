@@ -36,6 +36,8 @@ public:
     const QString getOpcode();
     int get8BitConst();
     int get16BitConst();
+    bool getMode();
+    void setMode(bool);
 
 signals:
     void programCounterHasChanged(const int);
@@ -65,6 +67,7 @@ private:
     RegisterBank * _regBank;
     OpcodeDecoder * _opDecoder;
     bool _retrievedConst, _retrievedConstWidth; //retrievedConstWidth 0 for 8bit 1 for 16bit
+    bool _mode; //mode 0 for 8bit 1 for 16bit
 };
 
 #endif // CPU_H
