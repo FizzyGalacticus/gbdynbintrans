@@ -8,6 +8,8 @@
 #include <utility>
 using std::pair;
 using std::make_pair;
+#include <cmath>
+using std::pow;
 
 RegisterBank::RegisterBank(QWidget *parent) :
     QWidget(parent),
@@ -67,6 +69,7 @@ RegisterBank::RegisterBank(QWidget *parent) :
     this->_functionAlias.insert(make_pair<string, fnPtr>("orr", &RegisterBank::orr));
     this->_functionAlias.insert(make_pair<string, fnPtr>("xorr", &RegisterBank::xorr));
     this->_functionAlias.insert(make_pair<string, fnPtr>("cp", &RegisterBank::cp));
+    this->_functionAlias.insert(make_pair<string, fnPtr>("testBit", &RegisterBank::testBit));
 
     emit this->valuesChanged();
 }
@@ -332,6 +335,19 @@ void RegisterBank::cp(Operand & op1, Operand & op2) {
     if(cmpVal > 0 && (A - cmpVal) > A)
         this->setCFlag();
     this->setOFlag();
+}
+
+void RegisterBank::testBit(Operand & op1, Operand & op2) {
+    this->clearFlags();
+
+    int bitNum = pow(2, op1.getVal());
+
+    bool bitIsSet = (op2.getVal() & bitNum);
+
+    if(!bitIsSet)
+        this->setZFlag();
+
+    this->setHCFlag();
 }
 
 RegisterBank::getPtr RegisterBank::getRegisterAccessor(string registerName) {

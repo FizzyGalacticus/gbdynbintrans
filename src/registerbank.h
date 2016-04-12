@@ -88,6 +88,7 @@ public:
     void orr(Operand &, Operand &);
     void xorr(Operand &, Operand &);
     void cp(Operand &, Operand &);
+    void testBit(Operand &, Operand &);
 
     getPtr getRegisterAccessor(string);
 
