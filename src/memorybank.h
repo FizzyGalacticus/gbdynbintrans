@@ -1,7 +1,7 @@
 #ifndef MEMORYBANK_H
 #define MEMORYBANK_H
 
-#include <QWidget>
+#include <QDialog>
 #include <unordered_map>
 using std::unordered_map;
 
@@ -9,11 +9,11 @@ namespace Ui {
 class MemoryBank;
 }
 
-class MemoryBank : public QWidget
+class MemoryBank : public QDialog
 {
     Q_OBJECT
     public:
-        explicit MemoryBank(QWidget *parent = 0);
+        explicit MemoryBank(QDialog *parent = 0);
         ~MemoryBank();
 
         uint8_t getByte(const uint16_t);
@@ -27,9 +27,12 @@ class MemoryBank : public QWidget
     public slots:
 
     private:
+        void updateView();
+
     	Ui::MemoryBank *ui;
 
         unordered_map<uint16_t, uint8_t> _memory;
+        int _viewPosition;
 };
 
 #endif // MEMORYBANK_H
