@@ -9,6 +9,8 @@
 #include <QDir>
 #include <fstream>
 using std::ifstream;
+#include "memorybank.h"
+#include <QDebug>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -23,6 +25,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->actionOpen,SIGNAL(triggered(bool)), this, SLOT(openFileDialogTriggered()));
     connect(ui->actionExit, SIGNAL(triggered(bool)), this, SLOT(exitTriggered()));
     connect(ui->actionAbout, SIGNAL(triggered(bool)), this, SLOT(aboutDialogTriggered()));
+    connect(ui->actionViewMemory, SIGNAL(triggered(bool)), this, SLOT(viewMemoryTriggered()));
     connect(this, SIGNAL(fileNameChanged(QString)), this, SLOT(loadROM(QString)));
 
     this->_fileDialog->setDirectory(QDir().currentPath() + "gbdynbintrans/res/test_asm");
@@ -72,4 +75,8 @@ void MainWindow::loadROM(QString filename) {
         this->_cpu->setProgramHex(programText);
     else
         this->_cpu->setProgramHex("Could not open " + filename + ". This has not yet been implemented.");
+}
+
+void MainWindow::viewMemoryTriggered() {
+    this->_cpu->getMemory()->show();
 }

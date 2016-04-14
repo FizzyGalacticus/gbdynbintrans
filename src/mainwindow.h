@@ -38,6 +38,9 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
+private slots:
+    void viewMemoryTriggered();
+
 private:
     Ui::MainWindow *ui;
 
