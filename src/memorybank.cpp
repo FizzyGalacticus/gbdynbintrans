@@ -48,11 +48,19 @@ void MemoryBank::setWord(const uint16_t addr, const uint16_t & word) {
 }
 
 void MemoryBank::nextViewButtonPressed() {
+    const int maxPosition = (this->_memory.size()/11-1);
 
+    if(this->_viewPosition < maxPosition) {
+        this->_viewPosition++;
+        this->updateView();
+    }
 }
 
 void MemoryBank::prevViewButtonPressed() {
-
+    if(this->_viewPosition > 0) {
+        this->_viewPosition--;
+        this->updateView();
+    }
 }
 
 void MemoryBank::updateView() {
