@@ -17,6 +17,7 @@
 using std::thread;
 #include "opcodedecoder.h"
 #include "registerbank.h"
+#include "memorybank.h"
 
 namespace Ui {
 class Cpu;
@@ -38,6 +39,7 @@ public:
     int get16BitConst();
     bool getMode();
     void setMode(bool);
+    MemoryBank * getMemory();
 
 signals:
     void programCounterHasChanged(const int);
@@ -65,6 +67,7 @@ private:
     uint16_t _programCounter;
     QString _programHex;
     RegisterBank * _regBank;
+    MemoryBank * _memory;
     OpcodeDecoder * _opDecoder;
     bool _retrievedConst, _retrievedConstWidth; //retrievedConstWidth 0 for 8bit 1 for 16bit
     bool _mode; //mode 0 for 8bit 1 for 16bit

@@ -13,6 +13,7 @@ Cpu::Cpu(QWidget *parent) :
     _isRunning(false),
     _programCounter(0),
     _regBank(new RegisterBank),
+    _memory(new MemoryBank),
     _opDecoder(new OpcodeDecoder(":opcodes.json", this)),
     _retrievedConst(false),
     _retrievedConstWidth(false),
@@ -152,6 +153,10 @@ bool Cpu::getMode() {
 
 void Cpu::setMode(bool mode) {
     this->_mode = mode;
+}
+
+MemoryBank * Cpu::getMemory() {
+    return this->_memory;
 }
 
 void Cpu::jumpTriggered(const int position) {
