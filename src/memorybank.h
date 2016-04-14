@@ -25,6 +25,8 @@ class MemoryBank : public QDialog
     signals:
 
     public slots:
+        void nextViewButtonPressed();
+        void prevViewButtonPressed();
 
     private:
         void updateView();

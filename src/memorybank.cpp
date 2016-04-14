@@ -15,6 +15,8 @@ MemoryBank::MemoryBank(QDialog *parent) :
     _viewPosition(0)
 {
     ui->setupUi(this);
+    connect(ui->nextButton, SIGNAL(clicked(bool)), this, SLOT(nextViewButtonPressed()));
+    connect(ui->prevButton, SIGNAL(clicked(bool)), this, SLOT(prevViewButtonPressed()));
 }
 
 MemoryBank::~MemoryBank() {
@@ -43,6 +45,14 @@ void MemoryBank::setByte(const uint16_t addr, const uint8_t & val) {
 void MemoryBank::setWord(const uint16_t addr, const uint16_t & word) {
 	this->setByte(addr, (word >> 8));
     this->setByte(addr+1,((word << 8) >> 8));
+}
+
+void MemoryBank::nextViewButtonPressed() {
+
+}
+
+void MemoryBank::prevViewButtonPressed() {
+
 }
 
 void MemoryBank::updateView() {
