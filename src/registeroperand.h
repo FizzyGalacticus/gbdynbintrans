@@ -22,7 +22,7 @@ class RegisterOperand : public Operand
         typedef std::map<string, setPtr> set_function_map;
 
         RegisterBank * _regBank;
-        QString _registerName;
+        const QString _registerName;
         get_function_map _getAlias;
         set_function_map _setAlias;
 };
