@@ -7,8 +7,6 @@
 #include "ui_mainwindow.h"
 #include "aboutdialog.h"
 #include <QDir>
-#include <fstream>
-using std::ifstream;
 #include "memorybank.h"
 #include <QDebug>
 
@@ -26,7 +24,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->actionExit, SIGNAL(triggered(bool)), this, SLOT(exitTriggered()));
     connect(ui->actionAbout, SIGNAL(triggered(bool)), this, SLOT(aboutDialogTriggered()));
     connect(ui->actionViewMemory, SIGNAL(triggered(bool)), this, SLOT(viewMemoryTriggered()));
-    connect(this, SIGNAL(fileNameChanged(QString)), this, SLOT(loadROM(QString)));
+    connect(this, SIGNAL(fileNameChanged(const QString)), this->_cpu, SLOT(loadROM(const QString)));
 
     this->_fileDialog->setDirectory(QDir().currentPath() + "gbdynbintrans/res/test_asm");
 }
@@ -53,28 +51,6 @@ void MainWindow::exitTriggered() {
 void MainWindow::aboutDialogTriggered() {
     AboutDialog * dialog = new AboutDialog(this);
     dialog->show();
-}
-
-void MainWindow::loadROM(QString filename) {
-    unsigned char data;
-    QString programText = "";
-
-    ifstream inFile(filename.toStdString().c_str(), std::ios::binary);
-    inFile.seekg(512);
-
-    while(inFile.read((char *)&data,1)) {
-        if((int)data < 16)
-            programText += "0";
-        programText += QString::number((int)data, 16);
-        if(programText.contains("7deaa1c0e6"))
-            break;
-    }
-    inFile.close();
-
-    if(programText.size())
-        this->_cpu->setProgramHex(programText);
-    else
-        this->_cpu->setProgramHex("Could not open " + filename + ". This has not yet been implemented.");
 }
 
 void MainWindow::viewMemoryTriggered() {

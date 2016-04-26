@@ -6,12 +6,14 @@
 #include "cpu.h"
 #include "ui_cpu.h"
 #include <chrono>
+#include <fstream>
+using std::ifstream;
+#include <QDebug>
 
 Cpu::Cpu(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::Cpu),
     _isRunning(false),
-    _programCounter(0),
     _regBank(new RegisterBank),
     _memory(new MemoryBank),
     _opDecoder(new OpcodeDecoder(this->_regBank, this->_memory, this)),
@@ -23,8 +25,7 @@ Cpu::Cpu(QWidget *parent) :
     ui->instructionLayout->addWidget(this->_opDecoder);
     ui->registerLayout->addWidget(this->_regBank);
 
-    connect(this, SIGNAL(programHexChanged()), this, SLOT(resetStyle()));
-    connect(this, SIGNAL(programCounterHasChanged(int)), this, SLOT(resetStyle()));
+    connect(this->_regBank, SIGNAL(programCounterChanged(int)), this, SLOT(programCounterChanged(int)));
     connect(this->ui->runButton, SIGNAL(pressed()), this, SLOT(runThread()));
     connect(this->ui->pauseButton, SIGNAL(pressed()), this, SLOT(pause()));
     connect(this->ui->nextInstructionButton, SIGNAL(pressed()), this, SLOT(nextInstructionButtonPressed()));
@@ -42,64 +43,44 @@ Cpu::~Cpu()
     delete ui;
 }
 
-void Cpu::setProgramCounter(const int pc) {
-    if(pc > this->_programHex.size()/2-1)
-        return;
+void Cpu::loadROM(const QString filename) {
+    uint8_t data;
 
-    this->_programCounter = pc;
+    ifstream inFile(filename.toStdString().c_str(), std::ios::binary);
+    inFile.seekg(512);
 
-    emit this->programCounterHasChanged(this->getProgramCounter());
-    emit this->opcodeChanged(this->getOpcode(), this->_regBank);
+    while(inFile.read((char *)&data,1) && int(inFile.tellg()) < 1024) {
+        this->_memory->setByte(int(inFile.tellg()), data);
+    }
+    inFile.close();
+
+    this->formatProgramHex();
 }
 
-int Cpu::getProgramCounter() const {
-    return this->_programCounter;
-}
-
-void Cpu::setProgramHex(QString hex) {
-    this->_programHex = hex;
-    this->setProgramCounter(0);
-
-    emit this->programHexChanged();
-}
-
-const QString Cpu::getOpcode() {
-    return this->_programHex.mid(this->getProgramCounter()*2,2);
-}
-
-void Cpu::resetStyle() {
-    QString temp = "<div style=\"font-family: 'Lucida Console'; font-size: 16pt;\">";
-
-    temp += formatProgramHex( this->_programHex.mid(0,this->getProgramCounter()*2) );
-    temp += "<span class=\"active\" style=\"color: red;\">";
-    temp += formatProgramHex( this->_programHex.mid(this->getProgramCounter()*2,2) );
-    temp += "</span>";
-    temp += formatProgramHex( this->_programHex.mid(this->getProgramCounter()*2+2,-1) );
-    temp += "</div>";
-
-    this->ui->textBrowser->setHtml(temp);
+void Cpu::programCounterChanged(const int programCounter) {
+    this->formatProgramHex();
 }
 
 void Cpu::nextInstructionButtonPressed() {
     if(this->_retrievedConst) {
         if(this->_retrievedConstWidth) {
             this->_retrievedConst = this->_retrievedConstWidth = false;
-            this->setProgramCounter(this->getProgramCounter()+3);
+            this->_regBank->setPC(this->_regBank->getPC()+3);
         }
         else {
             this->_retrievedConst = this->_retrievedConstWidth = false;
-            this->setProgramCounter(this->getProgramCounter()+2);
+            this->_regBank->setPC(this->_regBank->getPC()+2);
         }
     }
-    else this->setProgramCounter(this->getProgramCounter()+1);
+    else this->_regBank->setPC(this->_regBank->getPC()+1);
 }
 
 void Cpu::programCounterLineEditTextChanged(QString newCounter) {
     int counterInteger = newCounter.toInt();
-    if(counterInteger > this->_programHex.size()/2-1)
+    if(counterInteger > QString("7fff").toInt(NULL, 16))
         return;
 
-    this->setProgramCounter(counterInteger);
+    this->_regBank->setPC(counterInteger);
 }
 
 void Cpu::run() {
@@ -127,8 +108,7 @@ void Cpu::runThread() {
  * This function pulls a 8-bit integer from the binary
  */
 int Cpu::get8BitConst() {
-    QString constHex = this->_programHex.mid(this->getProgramCounter()*2+2, 2);
-    int constInt = constHex.toInt(0,16);
+    int constInt = this->_memory->getByte(this->_regBank->getPC()+1);
     this->_retrievedConst = true;
     this->_retrievedConstWidth = false;
     return constInt;
@@ -138,10 +118,7 @@ int Cpu::get8BitConst() {
  * This function pulls a 16-bit integer from the binary
  */
 int Cpu::get16BitConst() {
-    QString constHexLeastSig = this->_programHex.mid(this->getProgramCounter()*2+2, 2);
-    QString constHexMostSig = this->_programHex.mid(this->getProgramCounter()*2+4, 2);
-    QString constHex = constHexMostSig + constHexLeastSig;
-    int constInt = constHex.toInt(0, 16);
+    int constInt = this->_memory->getWord(this->_regBank->getPC()+1);
     this->_retrievedConst = true;
     this->_retrievedConstWidth = true;
     return constInt;
@@ -161,21 +138,27 @@ MemoryBank * Cpu::getMemory() {
 
 void Cpu::jumpTriggered(const int position) {
     this->_retrievedConst = this->_retrievedConstWidth = false;
-    this->setProgramCounter(position);
+    this->_regBank->setPC(position);
 }
 
-QString Cpu::formatProgramHex(const QString str) const {
-    QString retStr = str;
+void Cpu::formatProgramHex() const {
+    QString hexStr = "<div style=\"font-family: 'Lucida Console'; font-size: 16pt;\">";
 
-    if(retStr.size() == 2) {
-        retStr += " ";
-        return retStr;
+    for(int i = 512; i < 0x7FFF; i++) {
+        QString tempStr = QString::number(this->_memory->getByte(i), 16);
+        if(tempStr.size() < 2) tempStr = "0" + tempStr;
+
+        if(i == this->_regBank->getPC()) {
+            hexStr += "<span class=\"active\" style=\"color: red;\">";
+            hexStr += tempStr;
+            hexStr += "</span> ";
+            continue;
+        }
+
+        hexStr += (tempStr + " ");
     }
 
-    for(int i = 2; i < retStr.size(); i+=3)
-        retStr.insert(i, " ");
+    hexStr += "</div>";
 
-    retStr += " ";
-
-    return retStr;
+    this->ui->textBrowser->setHtml(hexStr);
 }

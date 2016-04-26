@@ -84,12 +84,12 @@ public slots:
 
 private slots:
     void registerValuesHaveChanged();
-    void programCounterChanged(const int);
 
 signals:
     void valuesChanged();
     void jumpTriggered(const int);
     void stackPointerPositionChanged(const int);
+    void programCounterChanged(const int);
 
 private:
     uint16_t combineRegisters(const uint8_t &, const uint8_t &) const;

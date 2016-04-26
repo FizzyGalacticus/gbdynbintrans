@@ -184,6 +184,7 @@ int RegisterBank::getPC() const {
 void RegisterBank::setPC(const int temp) {
     this->_PC = temp;
     emit this->valuesChanged();
+    emit this->programCounterChanged(this->getPC());
 }
 
 int RegisterBank::getSP() const {
@@ -212,8 +213,4 @@ void RegisterBank::registerValuesHaveChanged() {
     this->ui->subOpFlagValue->setText(QString::number((this->_flags & 0x40)>>6));
     this->ui->hCarryFlagValue->setText(QString::number((this->_flags & 0x20)>>5));
     this->ui->carryFlagValue->setText(QString::number((this->_flags & 0x10)>>4));
-}
-
-void RegisterBank::programCounterChanged(const int newCounter) {
-    this->setPC(newCounter);
 }

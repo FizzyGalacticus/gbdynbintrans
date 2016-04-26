@@ -29,10 +29,9 @@ public slots:
     void openFileDialogTriggered();
     void exitTriggered();
     void aboutDialogTriggered();
-    void loadROM(QString filename);
 
 signals:
-    void fileNameChanged(QString filename);
+    void fileNameChanged(const QString filename);
 
 public:
     explicit MainWindow(QWidget *parent = 0);

@@ -7,6 +7,7 @@ using std::vector;
 #include <QListWidgetItem>
 #include <algorithm>
 using std::sort;
+#include <QDebug>
 
 MemoryBank::MemoryBank(QDialog *parent) :
     QDialog(parent),
@@ -79,7 +80,11 @@ void MemoryBank::updateView() {
 
     for(auto i = startingPos; i < startingPos+viewCount && i < keys.size(); i++) {
         QListWidgetItem * item = new QListWidgetItem;
-        item->setText(QString::number(keys[i]) + ": " + QString::number(this->getByte(i)));
+        QString addr = QString::number(keys[i], 16);
+
+        while(addr.size() < 4) addr = "0" + addr;
+
+        item->setText(addr + ": " + QString::number(this->getByte(i)));
         this->ui->listOne->addItem(item);
     }
 

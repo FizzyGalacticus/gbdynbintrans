@@ -42,15 +42,13 @@ public:
     MemoryBank * getMemory();
 
 signals:
-    void programCounterHasChanged(const int);
-    void programHexChanged();
-    void opcodeChanged(const QString, RegisterBank *);
 
 public slots:
     void jumpTriggered(const int);
+    void loadROM(const QString);
 
 private slots:
-    void resetStyle();
+    void programCounterChanged(const int);
     void nextInstructionButtonPressed();
     void programCounterLineEditTextChanged(QString);
     void run();
@@ -58,14 +56,12 @@ private slots:
     void runThread();
 
 private:
-    QString formatProgramHex(const QString) const;
+    void formatProgramHex() const;
 
     Ui::Cpu *ui;
 
     std::thread _runningThread;
     bool _isRunning;
-    uint16_t _programCounter;
-    QString _programHex;
     RegisterBank * _regBank;
     MemoryBank * _memory;
     OpcodeDecoder * _opDecoder;
