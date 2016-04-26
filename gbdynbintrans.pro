@@ -21,7 +21,10 @@ SOURCES += src/main.cpp\
     src/opcodedecoder.cpp \
     src/cpu.cpp \
     src/operand.cpp \
-    src/memorybank.cpp
+    src/memorybank.cpp \
+    src/memoryoperand.cpp \
+    src/registeroperand.cpp \
+    src/constantoperand.cpp
 
 HEADERS  += src/mainwindow.h \
     src/aboutdialog.h \
@@ -31,7 +34,10 @@ HEADERS  += src/mainwindow.h \
     src/opcodedecoder.h \
     src/cpu.h \
     src/operand.h \
-    src/memorybank.h
+    src/memorybank.h \
+    src/memoryoperand.h \
+    src/registeroperand.h \
+    src/constantoperand.h
 
 FORMS    += src/mainwindow.ui \
     src/aboutdialog.ui \

@@ -14,11 +14,6 @@
 #define OPERAND_H
 
 #include <QObject>
-#include <string>
-using std::string;
-#include "registerbank.h"
-
-class RegisterBank;
 
 class Operand : public QObject
 {
@@ -28,21 +23,14 @@ public slots:
 signals:
 
 public:
-    Operand(RegisterBank *, string, QObject *parent = 0);
-    Operand(const int, QObject *parent=0);
+    Operand(QObject *parent=0);
 
-    void setRegisterBank(RegisterBank *);
-    void setValue(const int);
-    int getVal() const;
-    const string getRegisterName();
+    virtual void setValue(const int) = 0;
+    virtual int getVal() = 0;
+    virtual QString getType() = 0;
 
 private:
-//    typedef RegisterBank::getPtr getPtr;
 
-    RegisterBank * _regBank;
-//    getPtr _regVal;
-    int _constVal;
-    string _registerName;
 };
 
 #endif // OPERAND_H

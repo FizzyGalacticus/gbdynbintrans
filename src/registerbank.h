@@ -30,14 +30,6 @@ class RegisterBank : public QWidget
     Q_OBJECT
 
 public:
-    /* Typdefs needed for passing function pointers */
-    typedef int (RegisterBank::*getPtr)(void) const;
-    typedef void (RegisterBank::*setPtr)(int);
-    typedef void (RegisterBank::*fnPtr)(Operand &, Operand &);
-    typedef std::map<string, getPtr> get_function_map;
-    typedef std::map<string, setPtr> set_function_map;
-    typedef std::map<string, fnPtr> function_map;
-
     explicit RegisterBank(QWidget *parent = 0);
     ~RegisterBank();
 
@@ -77,25 +69,18 @@ public:
     int getSP() const;
     void setSP(const int);
 
-    void ld(Operand &, Operand &);
-    void jpAbsolute(Operand &);
-    void jpConditional(Operand &, Operand &);
-    void add(Operand &, Operand &);
-    void sub(Operand &, Operand &);
-    void inc(Operand &, Operand &);
-    void dec(Operand &, Operand &);
-    void nd(Operand &, Operand &); //and, or & xor are c++ keywords
-    void orr(Operand &, Operand &);
-    void xorr(Operand &, Operand &);
-    void cp(Operand &, Operand &);
-    void testBit(Operand &, Operand &);
-    void resetBit(Operand &, Operand &);
-    void setBit(Operand &, Operand &);
-
-    getPtr getRegisterAccessor(string);
+    void clearFlags();
+    void setZFlag();
+    void setOFlag();
+    void setHCFlag();
+    void setCFlag();
+    bool getZFlag();
+    bool getOFlag();
+    bool getHCFlag();
+    bool getCFlag();
 
 public slots:
-    void instructionChanged(string, Operand &, Operand &);
+//    void instructionChanged(string, Operand &, Operand &);
 
 private slots:
     void registerValuesHaveChanged();
@@ -111,20 +96,8 @@ private:
     const pair<uint8_t, uint8_t> decomposeRegisters(const uint16_t &);
     int * getGetFunction(const QString);
     void * getSetFunction(const QString);
-    void clearFlags();
-    void setZFlag();
-    void setOFlag();
-    void setHCFlag();
-    void setCFlag();
-    bool getZFlag();
-    bool getOFlag();
-    bool getHCFlag();
-    bool getCFlag();
 
     Ui::RegisterBank *ui;
-    get_function_map _getAlias;
-    set_function_map _setAlias;
-    function_map _functionAlias;
     uint8_t _A, _B, _C, _D, _E, _H, _L, _flags;
     uint16_t _PC, _SP;
 };

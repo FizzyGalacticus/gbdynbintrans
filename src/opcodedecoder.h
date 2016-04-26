@@ -18,6 +18,9 @@ using std::unordered_map;
 using std::string;
 #include "operand.h"
 #include "memorybank.h"
+#include "registerbank.h"
+#include <utility>
+using std::pair;
 
 namespace Ui {
 class OpcodeDecoder;
@@ -28,7 +31,8 @@ class OpcodeDecoder : public QWidget
     Q_OBJECT
 
 public slots:
-    void opcodeChanged(const QString, RegisterBank *);
+    void opcodeChanged(const QString);
+    void callFunction(string fn, Operand * op1, Operand * op2);
 
 signals:
     void instructionChanged(string, Operand &, Operand &);
@@ -38,6 +42,9 @@ public:
     ~OpcodeDecoder();
 
 private:
+    typedef void (OpcodeDecoder::*fnPtr)(Operand *, Operand *);
+    typedef std::map<string, fnPtr> function_map;
+
     struct Instruction {
         unsigned int _numBytes:2;
         unsigned int _numOps:2;
@@ -69,7 +76,25 @@ private:
     };
 
     void parseOpcodeJSON(const QString &, const QString &, unordered_map<string, Instruction> &);
-    Operand * initOp(const string &, RegisterBank *);
+
+    /*           Opcode Functions                 */
+    void ld(Operand *, Operand *);
+    void jpAbsolute(Operand *);
+    void jpConditional(Operand *, Operand *);
+    void add(Operand *, Operand *);
+    void sub(Operand *, Operand *);
+    void inc(Operand *, Operand *);
+    void dec(Operand *, Operand *);
+    void nd(Operand *, Operand *); //and, or & xor are c++ keywords
+    void orr(Operand *, Operand *);
+    void xorr(Operand *, Operand *);
+    void cp(Operand *, Operand *);
+    void testBit(Operand *, Operand *);
+    void resetBit(Operand *, Operand *);
+    void setBit(Operand *, Operand *);
+    /**********************************************/
+
+    Operand * initOp(const string &);
 
     Ui::OpcodeDecoder *ui;
     unordered_map<string, Instruction> _unprefixedOpcodes, _prefixedOpcodes;
@@ -77,6 +102,7 @@ private:
     MemoryBank * _memory;
     const QString _opcodeFileName;
     Instruction _currentInstruction;
+    function_map _functionAlias;
 };
 
 #endif // OPCODEDECODER_H
