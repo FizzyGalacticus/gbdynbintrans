@@ -10,15 +10,19 @@
 using std::make_pair;
 #include "cpu.h"
 
-OpcodeDecoder::OpcodeDecoder(QString filename, QWidget *parent) :
+OpcodeDecoder::OpcodeDecoder(RegisterBank * regBank, MemoryBank * memBank, QWidget *parent) :
     QWidget(parent),
     ui(new Ui::OpcodeDecoder),
     _unprefixedOpcodes(),
+    _prefixedOpcodes(),
+    _regBank(regBank),
+    _memory(memBank),
+    _opcodeFileName(":opcodes.json"),
     _currentInstruction("00")
 {
     ui->setupUi(this);
-    this->parseOpcodeJSON(filename, "unprefixed", this->_unprefixedOpcodes);
-    this->parseOpcodeJSON(filename, "cbprefixed", this->_prefixedOpcodes);
+    this->parseOpcodeJSON(this->_opcodeFileName, "unprefixed", this->_unprefixedOpcodes);
+    this->parseOpcodeJSON(this->_opcodeFileName, "cbprefixed", this->_prefixedOpcodes);
 }
 
 OpcodeDecoder::~OpcodeDecoder() {

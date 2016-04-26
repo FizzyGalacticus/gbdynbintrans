@@ -14,7 +14,7 @@ Cpu::Cpu(QWidget *parent) :
     _programCounter(0),
     _regBank(new RegisterBank),
     _memory(new MemoryBank),
-    _opDecoder(new OpcodeDecoder(":opcodes.json", this)),
+    _opDecoder(new OpcodeDecoder(this->_regBank, this->_memory, this)),
     _retrievedConst(false),
     _retrievedConstWidth(false),
     _mode(false)

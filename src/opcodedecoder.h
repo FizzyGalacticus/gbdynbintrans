@@ -17,6 +17,7 @@ using std::unordered_map;
 #include <string>
 using std::string;
 #include "operand.h"
+#include "memorybank.h"
 
 namespace Ui {
 class OpcodeDecoder;
@@ -33,7 +34,7 @@ signals:
     void instructionChanged(string, Operand &, Operand &);
 
 public:
-    explicit OpcodeDecoder(QString filename, QWidget *parent = 0);
+    explicit OpcodeDecoder(RegisterBank *, MemoryBank *, QWidget *parent=0);
     ~OpcodeDecoder();
 
 private:
@@ -72,6 +73,9 @@ private:
 
     Ui::OpcodeDecoder *ui;
     unordered_map<string, Instruction> _unprefixedOpcodes, _prefixedOpcodes;
+    RegisterBank * _regBank;
+    MemoryBank * _memory;
+    const QString _opcodeFileName;
     Instruction _currentInstruction;
 };
 
