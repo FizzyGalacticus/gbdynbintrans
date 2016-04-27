@@ -76,6 +76,7 @@ private:
     };
 
     void parseOpcodeJSON(const QString &, const QString &, unordered_map<string, Instruction> &);
+    void executeOpcode(Operand *, Operand *);
 
     /*           Opcode Functions                 */
     void ld(Operand *, Operand *);

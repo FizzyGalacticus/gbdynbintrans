@@ -42,6 +42,7 @@ public:
     MemoryBank * getMemory();
 
 signals:
+    void opcodeChanged(const QString);
 
 public slots:
     void jumpTriggered(const int);

@@ -13,6 +13,8 @@ using std::make_pair;
 using std::string;
 #include "registeroperand.h"
 #include "constantoperand.h"
+#include "memoryoperand.h"
+#include <QDebug>
 
 OpcodeDecoder::OpcodeDecoder(RegisterBank * regBank, MemoryBank * memBank, QWidget *parent) :
     QWidget(parent),
@@ -108,6 +110,7 @@ void OpcodeDecoder::parseOpcodeJSON(const QString & filename, const QString & ro
 
             //Add instruction to map
             opcodeMap.insert(make_pair(opcode, instr));
+            qDebug() << opcode.c_str();
         }
     }
 }
@@ -126,12 +129,12 @@ void OpcodeDecoder::ld(Operand * op1, Operand * op2) {
 }
 
 void OpcodeDecoder::jpAbsolute(Operand * op1) {
-    this->_regBank->setPC(op1->getVal()-512);
+    this->_regBank->setPC(op1->getVal()+512);
 //    emit this->jumpTriggered(this->_regBank->getPC());
 }
 
 void OpcodeDecoder::jpConditional(Operand * op1, Operand * op2) {
-    if(op1->getType() == "REGISTER")
+    if(op1->getType() != "REGISTER")
         this->jpAbsolute(op1);
     else {
         RegisterOperand * regOp = (RegisterOperand *)op1;
@@ -253,12 +256,20 @@ Operand * OpcodeDecoder::initOp(const string & opStr) {
         return new ConstantOperand( ( (Cpu *)this->parent() )->get8BitConst() );
     else if(opStr == "d16")
         return new ConstantOperand( ( (Cpu *)this->parent() )->get16BitConst() );
+    else if(opStr == "a8")
+        return new MemoryOperand(this->_memory, ((Cpu *)this->parent() )->get8BitConst());
+    else if(opStr == "a16")
+        return new MemoryOperand(this->_memory, ((Cpu *)this->parent() )->get16BitConst(), true);
     else if(opNum > -1)
         return new ConstantOperand(opNum);
+    else if(opStr == "")
+        return new ConstantOperand(0);
     else return new RegisterOperand(this->_regBank, opStr.c_str());
 }
 
 void OpcodeDecoder::opcodeChanged(const QString opcode) {
+    QString instruction;
+
     if(opcode == "cb" && !(((Cpu *)this->parent())->getMode())) {
         ((Cpu *)this->parent())->setMode(1);
 
@@ -276,7 +287,7 @@ void OpcodeDecoder::opcodeChanged(const QString opcode) {
             ((Cpu *)this->parent())->setMode(0);
         }
 
-        QString instruction = this->_currentInstruction._mnemonic.c_str();
+        instruction = this->_currentInstruction._mnemonic.c_str();
 
         if(this->_currentInstruction._numOps > 0) {
             instruction += (QString(" ") + this->_currentInstruction._op1.c_str());
@@ -292,7 +303,7 @@ void OpcodeDecoder::opcodeChanged(const QString opcode) {
 
         ((Cpu *)this->parent())->setMode(0);
 
-        emit this->instructionChanged(this->_currentInstruction._function, *op1, *op2);
+        this->callFunction(this->_currentInstruction._function, op1, op2);
     }
     else if(this->_unprefixedOpcodes.find(opcode.toStdString()) != this->_unprefixedOpcodes.end()) {
         this->_currentInstruction = this->_unprefixedOpcodes.at(opcode.toStdString());
@@ -300,7 +311,7 @@ void OpcodeDecoder::opcodeChanged(const QString opcode) {
         if(this->_currentInstruction._function == "")
             this->_currentInstruction = this->_unprefixedOpcodes.at("00");
 
-        QString instruction = this->_currentInstruction._mnemonic.c_str();
+        instruction = this->_currentInstruction._mnemonic.c_str();
 
         if(this->_currentInstruction._numOps > 0) {
             instruction += (QString(" ") + this->_currentInstruction._op1.c_str());
@@ -314,7 +325,12 @@ void OpcodeDecoder::opcodeChanged(const QString opcode) {
         Operand * op1 = this->initOp(this->_currentInstruction._op1.c_str()),
                 * op2 = this->initOp(this->_currentInstruction._op2.c_str());
 
-        emit this->instructionChanged(this->_currentInstruction._function, *op1, *op2);
+        this->callFunction(this->_currentInstruction._function, op1, op2);
     }
-    else this->_currentInstruction = this->_unprefixedOpcodes.at("00");
+    else {
+        qDebug() << "Setting to NOP because code is undefined: " + opcode;
+        this->_currentInstruction = this->_unprefixedOpcodes.at("00");
+        instruction = this->_currentInstruction._mnemonic.c_str();
+        this->ui->instructionLabel->setText(instruction);
+    }
 }

@@ -26,6 +26,7 @@ Cpu::Cpu(QWidget *parent) :
     ui->registerLayout->addWidget(this->_regBank);
 
     connect(this->_regBank, SIGNAL(programCounterChanged(int)), this, SLOT(programCounterChanged(int)));
+    connect(this, SIGNAL(opcodeChanged(QString)), this->_opDecoder, SLOT(opcodeChanged(QString)));
     connect(this->ui->runButton, SIGNAL(pressed()), this, SLOT(runThread()));
     connect(this->ui->pauseButton, SIGNAL(pressed()), this, SLOT(pause()));
     connect(this->ui->nextInstructionButton, SIGNAL(pressed()), this, SLOT(nextInstructionButtonPressed()));
@@ -47,7 +48,7 @@ void Cpu::loadROM(const QString filename) {
     uint8_t data;
 
     ifstream inFile(filename.toStdString().c_str(), std::ios::binary);
-    inFile.seekg(512);
+    inFile.seekg(500);
 
     while(inFile.read((char *)&data,1) && int(inFile.tellg()) < 1024) {
         this->_memory->setByte(int(inFile.tellg()), data);
@@ -59,6 +60,13 @@ void Cpu::loadROM(const QString filename) {
 
 void Cpu::programCounterChanged(const int programCounter) {
     this->formatProgramHex();
+
+    QString opCode = QString::number(this->_memory->getByte(programCounter), 16);
+
+    if(opCode.size() < 2)
+        opCode = "0" + opCode;
+
+    emit this->opcodeChanged(opCode);
 }
 
 void Cpu::nextInstructionButtonPressed() {
@@ -88,7 +96,7 @@ void Cpu::run() {
 
     while(this->_isRunning) {
         this->nextInstructionButtonPressed();
-        std::this_thread::sleep_for(std::chrono::milliseconds(100));
+        std::this_thread::sleep_for(std::chrono::milliseconds(300));
     }
 }
 
